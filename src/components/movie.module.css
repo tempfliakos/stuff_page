@@ -1,0 +1,57 @@
+.newMovie {
+    background-color: #d4d4d5 !important;
+    opacity: 0.8;
+}
+
+.newMovie:hover {
+    box-shadow: 0 0 11px white !important;
+    opacity: 1;
+}
+.card {
+    opacity: 0.7;
+}
+
+.cardAdded {
+    opacity: 0.2;
+}
+
+.labelAdded {
+    opacity: 1 !important;
+}
+
+.card:hover {
+    box-shadow: 0 0 11px white !important;
+    opacity: 1;
+}
+
+.plus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.plusColor {
+    color: rgba(74, 74, 74, 0.87);
+}
+
+.textContent {
+    min-height: 82px;
+    background-color: #e0e0e2 !important;
+}
+
+.buttonContent {
+    padding: 2px !important;
+    max-height: 35px !important;
+    background-color: #e0e0e2 !important;
+}
+
+.button {
+    height: 100%;
+}
+
+.toggleButton {
+    background-color: #FFFFFF;
+    padding: 8px;
+    border-radius: 7px;
+}
