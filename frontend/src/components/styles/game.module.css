@@ -1,0 +1,168 @@
+.card:hover {
+    box-shadow: 0 0 11px #107c10 !important;
+    opacity: 1;
+}
+
+.xboxcard {
+    opacity: 0.7;
+    border-color: #282828;
+    min-height: 330px;
+    min-width: 250px;
+}
+
+.xboxcard:hover {
+    box-shadow: 0 0 11px #107c10 !important;
+    opacity: 1;
+}
+
+.pscard {
+    opacity: 0.7;
+    min-height: 330px;
+    min-width: 250px;
+}
+
+.pscard:hover {
+    box-shadow: 0 0 11px rgb(0, 112, 209) !important;
+    opacity: 1;
+}
+
+.switchcard {
+    opacity: 0.7;
+    min-height: 330px;
+    min-width: 250px;
+}
+
+.switchcard:hover {
+    box-shadow: 0 0 11px red !important;
+    opacity: 1;
+}
+
+.xboxcardDescription {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-weight: 900;
+    font-size: initial;
+}
+
+.cardAdded {
+    opacity: 0.2;
+}
+
+.toggleButton {
+    display: flex;
+    width: 100%;
+    background-color: #FFFFFF;
+    padding: 8px;
+    border-radius: 7px;
+}
+
+.achievement {
+    display: flex !important;
+}
+
+.achievement:hover {
+    display: flex !important;
+    box-shadow: 0 0 11px #107c10 !important;
+}
+
+.achievementToggle {
+    display: flex;
+    padding: 8px;
+    border-radius: 7px;
+    background-color: darkgrey;
+}
+
+
+.trophy {
+    display: flex !important;
+    align-content: center;
+}
+
+.trophy:hover {
+    display: flex !important;
+    box-shadow: 0 0 11px rgb(0, 112, 209) !important;
+}
+
+.plus {
+    display: flex !important;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 100% !important;
+}
+
+.textContent {
+    min-height: 82px;
+    background-color: #e0e0e2 !important;
+}
+
+.labelAdded {
+    opacity: 1 !important;
+}
+
+.iconClick {
+    cursor: pointer;
+}
+
+.iconClick:hover {
+    cursor: pointer !important;
+    opacity: 0.6;
+}
+
+.gameMobile {
+    display: flex !important;
+    padding: 0 !important;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(150, 150, 150);
+}
+
+.gameMobile:hover {
+    display: flex !important;
+    padding: 0 !important;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(150, 150, 150);
+    box-shadow: 0 0 11px #107c10 !important;
+}
+
+.gameMobileText {
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+}
+
+.achievementButtons {
+    display: flex;
+    align-items: center;
+}
+
+.highlightXbox {
+    width: 8em;
+    border-radius: 20px;
+    margin: 1em;
+}
+
+.highlightXbox:hover {
+    opacity: 0.8;
+    box-shadow: 0 0 11px #107c10 !important;
+    cursor: pointer;
+}
+
+.highlightPs {
+    width: 8em;
+    height: 10em;
+    border-radius: 20px;
+    margin: 1em;
+}
+
+.highlightPs:hover {
+    opacity: 0.8;
+    box-shadow: 0 0 11px rgb(0, 112, 209) !important;
+    cursor: pointer;
+}
+
+.overflow {
+    overflow: auto;
+    max-height: 13em;
+}

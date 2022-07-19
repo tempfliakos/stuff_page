@@ -1,0 +1,81 @@
+version: "3.5"
+
+services:
+
+  frontend:  
+    build: ./frontend
+    restart: always
+    container_name: frontend
+    ports:
+      - ${FRONTEND_PORT}:${FRONTEND_PORT}
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - REACT_APP_SERVER_LINK=${REACT_APP_SERVER_LINK}
+      - REACT_APP_TMDB_IMG_LINK=${REACT_APP_TMDB_IMG_LINK}
+      - PORT=${FRONTEND_PORT}
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - server
+    networks:
+      - eb
+
+  server:  
+    build: ./server
+    restart: always
+    container_name: server
+    ports:
+      - ${SERVER_PORT}:3001
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - SERVER_PORT=${SERVER_PORT}
+      - FRONTEND_LINK=${FRONTEND_LINK}
+      - NODE_ENV=${SERVER_STATUS}
+      - SECRET=${SECRET}
+      - PGHOST=${PGHOST}
+      - PGDATABASE=${PGDATABASE}
+      - PGUSER=${PGUSER}
+      - PGPORT=${PGPORT}
+      - PGPASS=${PGPASS}
+      - TMDB_LINK=${TMDB_LINK}
+      - TMDB_IMG_LINK=${TMDB_IMG_LINK}
+      - XBOX_API_XAPI_HOST=${XBOX_API_XAPI_HOST}
+      - XBOX_API_XAPI_ID=${XBOX_API_XAPI_ID}
+      - XBOX_API_XBOXUSER_ID=${XBOX_API_XBOXUSER_ID}
+      - XBOX_API_ACHIEVEMENTS=${XBOX_API_ACHIEVEMENTS}
+      - IGDB_CLIENT=${IGDB_CLIENT}
+      - IGDB_SECRET=${IGDB_SECRET}
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+    depends_on:
+      - db
+    networks:
+      - eb
+
+  db:
+    image: postgres:10.13
+    restart: always
+    container_name: db
+    ports:
+      - ${PGPORT}:5432
+    user: ${PGUSER}
+    environment:
+      - POSTGRES_USER=${PGUSER}
+      - POSTGRES_PASSWORD=${PGPASS}
+      - POSTGRES_DB=${PGDATABASE}
+    volumes:
+      - ./db/user_table.sql:/docker-entrypoint-initdb.d/01_user.sql
+      - ./db/user_movie_table.sql:/docker-entrypoint-initdb.d/02_movie.sql
+      - ./db/movie_table.sql:/docker-entrypoint-initdb.d/03_movie_table.sql
+      - ./db/todo_table.sql:/docker-entrypoint-initdb.d/04_todo.sql
+      - ./db/books_table.sql:/docker-entrypoint-initdb.d/05_book.sql
+      - ./db/c_console.sql:/docker-entrypoint-initdb.d/06_game.sql
+    networks:
+      - eb
+      
+networks:
+  eb:
+    name: eb
+    

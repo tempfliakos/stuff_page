@@ -1,0 +1,96 @@
+.newMovie {
+    background-color: #d4d4d5 !important;
+    opacity: 0.8;
+}
+
+.newMovie:hover {
+    box-shadow: 0 0 11px white !important;
+    opacity: 1;
+}
+.card {
+    opacity: 0.7;
+    min-width: 205px;
+    min-height: 230px;
+}
+
+.card:hover {
+    opacity: 1;
+    box-shadow: 0 0 11px white !important;
+}
+
+.cardMobile {
+    opacity: 1;
+}
+
+.cardAdded {
+    opacity: 0.2;
+}
+
+.picture {
+    opacity: 0.7;
+}
+
+.picture:hover {
+    opacity: 1;
+    box-shadow: 0 0 11px white !important;
+}
+
+.labelAdded {
+    opacity: 1 !important;
+}
+
+.plus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.plusColor {
+    color: rgba(74, 74, 74, 0.87);
+}
+
+.textContent {
+    min-height: 82px;
+    background-color: #e0e0e2 !important;
+}
+
+.iconContent {
+    background-color: #e0e0e2 !important;
+}
+
+.buttonContent {
+    padding: 2px !important;
+    max-height: 35px !important;
+    background-color: #e0e0e2 !important;
+}
+
+.button {
+    height: 100%;
+}
+
+.toggleButton {
+    display: flex;
+    width: 100%;
+    background-color: #FFFFFF;
+    padding: 8px;
+    border-radius: 7px;
+}
+
+
+.movieMobile {
+    display: flex !important;
+    padding: 0 !important;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(150, 150, 150);
+}
+
+.movieMobileTorles {
+    margin-right: 10px !important;
+}
+
+.movieMobileText {
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+}
