@@ -1,7 +1,7 @@
 import React from "react";
 import {Card, Icon, Image, Label} from "semantic-ui-react";
 import {useDispatch} from "react-redux";
-import {addToMovies, removeMovie} from "../../store/movie/actions";
+import {addToMovies, updateMovieObject} from "../../store/movie/actions";
 import styles from "../styles/movie.module.css";
 import defaultPicture from "../../resources/default-movie-back.jpg";
 import {getYear} from "../../utils/dateUtil";
@@ -19,9 +19,7 @@ export function AddMovie({movie, movieAttributes}) {
         if (!movieAttributes.alreadyAdded) {
             dispatch(addToMovies(createMovieObject()));
         } else {
-            if(!movieAttributes.seen) {
-                dispatch(removeMovie(createMovieObject()));
-            }
+            dispatch(updateMovieObject(createMovieObject()));
         }
     }
 

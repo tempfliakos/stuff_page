@@ -18,7 +18,7 @@ export function movieReducer(state = [], action) {
         case UPDATE_MOVIE: {
             const {movie} = action;
             let array = state.filter(s => s.id !== movie.id);
-            array.push(movie)
+            array.push(movie);
             return array;
         }
         default:

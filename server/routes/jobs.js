@@ -41,15 +41,17 @@ async function updateMovies(movies) {
 				for (let o of res.data.changes) {
 					if (o.key === "images") {
 						const value = o.items[o.items.length - 1].value;
-						if (value && value.poster) {
-							if (value.poster.iso_639_1 === 'hu') {
+						if (value) {
+							if (value.poster && value.poster.iso_639_1 === 'hu') {
 								movie.poster_path = value.poster.file_path;
 								changed = true;
 							}
 
-						} else if (value && value.backdrop) {
-							movie.backdrop_path = value.backdrop.file_path;
-							changed = true;
+							if(value.backdrop) {
+								movie.backdrop_path = value.backdrop.file_path;
+								changed = true;
+							}
+
 						}
 					} else if (o.key === "release_dates") {
 						movie.release_date = o.items[o.items.length - 1].value.release_date;
@@ -59,7 +61,7 @@ async function updateMovies(movies) {
 				if (changed) {
 					const userMovie = await Movies.findByPk(movie.id);
 					const updatedMovie = await userMovie.update(movie);
-					updatedList.push(movie);
+					updatedList.push(updatedMovie);
 				}
 			}).catch((error) => console.error("Hiba"));
 	}

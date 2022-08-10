@@ -1,7 +1,7 @@
 import {movieService} from "../../services/movie-service";
 
 export const ADD_MOVIE = "ADD_MOVIE";
-export const SET_MOVIES = "SET_MOVIES"
+export const SET_MOVIES = "SET_MOVIES";
 export const DELETE_MOVIE = "DELETE_MOVIE";
 export const UPDATE_MOVIE = "UPDATE_MOVIE";
 
@@ -44,7 +44,14 @@ export function removeMovie(movie) {
 
 export function update(movie) {
     return async (dispatch) => {
-        await movieService.update(movie.id, movie);
+        movie = await movieService.update(movie.id, movie);
+        dispatch(updateMovie(movie));
+    }
+}
+
+export function updateMovieObject(movie) {
+    return async (dispatch) => {
+        movie = await movieService.insert(movie);
         dispatch(updateMovie(movie));
     }
 }

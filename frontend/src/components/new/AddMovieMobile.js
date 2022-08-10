@@ -4,7 +4,7 @@ import styles from "../styles/movie.module.css";
 import {getYear} from "../../utils/dateUtil";
 import {useDispatch} from "react-redux";
 import {tmdbConverter} from "../../utils/TransformMovieUtil";
-import {addToMovies, removeMovie} from "../../store/movie/actions";
+import {addToMovies, updateMovieObject} from "../../store/movie/actions";
 import defaultPicture from "../../resources/default-movie-back.jpg";
 
 export function AddMovieMobile({movie, movieAttributes}) {
@@ -19,9 +19,7 @@ export function AddMovieMobile({movie, movieAttributes}) {
         if (!movieAttributes.alreadyAdded) {
             dispatch(addToMovies(createMovieObject()));
         } else {
-            if(!movieAttributes.seen) {
-                dispatch(removeMovie(createMovieObject()));
-            }
+            dispatch(updateMovieObject(createMovieObject()));
         }
     }
 
