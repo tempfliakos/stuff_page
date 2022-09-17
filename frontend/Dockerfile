@@ -6,4 +6,4 @@ COPY package.json /app/package.json
 
 RUN npm i
 
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "dev"]

@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.STRING,
     picture: DataTypes.STRING,
     page: DataTypes.INTEGER,
+    priority: DataTypes.INTEGER,
     title: DataTypes.STRING
   }, {
     sequelize,

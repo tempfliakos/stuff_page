@@ -5,6 +5,7 @@ services:
   frontend:  
     build: ./frontend
     restart: always
+    stdin_open: true
     container_name: frontend
     ports:
       - ${FRONTEND_PORT}:${FRONTEND_PORT}
@@ -43,7 +44,6 @@ services:
       - XBOX_API_XAPI_HOST=${XBOX_API_XAPI_HOST}
       - XBOX_API_XAPI_ID=${XBOX_API_XAPI_ID}
       - XBOX_API_XBOXUSER_ID=${XBOX_API_XBOXUSER_ID}
-      - XBOX_API_ACHIEVEMENTS=${XBOX_API_ACHIEVEMENTS}
       - IGDB_CLIENT=${IGDB_CLIENT}
       - IGDB_SECRET=${IGDB_SECRET}
     volumes:

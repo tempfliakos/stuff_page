@@ -51,11 +51,12 @@ router
 		try {
 			const data = req.body;
 			const {id} = req.user;
-			/*let movie = await Movies.findByPk(data.id);
+			let movie = await Movies.findByPk(data.id);
 			if (!movie) {
 				movie = await Movies.create(data);
-			}*/
-			let movie = await Movies.upsert(data);
+			} else {
+				movie = await Movies.update(data);
+			}
 			await UserMovies.create({user_id: id, movie_id: movie.id});
 			res.status(200).send(movie);
 		} catch (e) {

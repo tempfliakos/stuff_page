@@ -181,17 +181,17 @@ router
 async function xbox_achievement(body) {
 	const header = {
 		'Access-Control-Allow-Origin': '*',
-		'X-Auth': 'bb5b17184989b2e029c329c78a906a1e80e322f3',
+		'Authorization': `Bearer ${process.env.XBOX_API_XAPI_ID}`,
 		'Content-Type': 'application/json; charset=utf-8'
 	};
-	const achivement_url = process.env.XBOX_API_ACHIEVEMENTS + body.game_id;
-	axios.get(achivement_url, {
-		url: achivement_url,
+	const achievement_url = `${process.env.XBOX_API_XAPI_HOST}${process.env.XBOX_API_XBOXUSER_ID}/achievements/${body.game_id}`;
+	axios.get(achievement_url, {
+		url: achievement_url,
 		headers: header
 	}).then(res => {
 			let achievementPicture;
 			let gamerscore;
-			for (let data of res.data) {
+			for (let data of res.data.achievements) {
 				if (data.imageUnlocked) {
 					achievementPicture = data.imageUnlocked;
 					gamerscore = data.gamerscore;

@@ -55,7 +55,6 @@ export async function getDashboardData(endpoint) {
 export async function getDataFromEndpoint(endpoint, data) {
 	if (data) {
 		const url = process.env.REACT_APP_SERVER_LINK + "endpoint/" + endpoint + "/query=" + data;
-		console.log(url)
 		return await axios.get(url).then(res => {
 				return res;
 			}

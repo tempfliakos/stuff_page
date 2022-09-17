@@ -9,6 +9,7 @@
   },
   "scripts": {
     "start": "node index.js",
+    "dev": "nodemon index.js",
     "build": "npm build",
     "heroku-postbuild": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -33,5 +34,8 @@
     "sequelize": "^6.3.5",
     "sequelize-cli": "^6.2.0",
     "serve": "^11.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
   }
 }

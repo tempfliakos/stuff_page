@@ -46,3 +46,10 @@ export function removeBook(book) {
 		dispatch(deleteBook(book));
 	}
 }
+
+export function update(book) {
+	return async (dispatch) => {
+		book = await bookService.update(book.id, book);
+		dispatch(updateBook(book));
+	}
+}

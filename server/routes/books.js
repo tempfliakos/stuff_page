@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const jwtMiddleware = require('express-jwt');
-const {Books, UserMovies} = require('../models');
+const {Books} = require('../models');
 const cors = require('cors');
 
 const jwtOptions = {
@@ -72,6 +72,25 @@ router
 		}
 
 	})
+	.put("/:book", jwtMiddleware(jwtOptions), async (req, res) => {
+		try {
+			const {id} = req.user;
+			const data = req.body;
+			let book = await Books.findOne({
+				where: {
+					user_id: id,
+					book_id: data.book_id
+				}
+			});
+			book = await book.update(data, {where: {id: book.id}});
+			res.status(200).send(book);
+		} catch (e) {
+			res.status(400).send({
+				message: e.message,
+			});
+		}
+	})
+
 	.delete("/:book", jwtMiddleware(jwtOptions), async (req, res) => {
 		try {
 			const {id} = req.user;

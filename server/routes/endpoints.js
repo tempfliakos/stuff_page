@@ -116,7 +116,7 @@ async function getXAPIGame(query, res) {
 async function sendToXboxApi(title) {
 	const header = {
 		'Access-Control-Allow-Origin': '*',
-		'X-Auth': process.env.XBOX_API_XAPI_ID,
+		'Authorization': `Bearer ${process.env.XBOX_API_XAPI_ID}`,
 		'Content-Type': 'application/json; charset=utf-8'
 	};
 	const url = `${process.env.XBOX_API_XAPI_HOST}marketplace/search/${title}`
@@ -173,7 +173,6 @@ async function sendToIGDB(title, res, isRefreshable) {
 }
 
 async function getIGDBNewToken() {
-	console.log("GENERATE NEW TOKEN");
 	const client_id = process.env.IGDB_CLIENT;
 	const client_secret = process.env.IGDB_SECRET;
 	const grant_type = 'client_credentials';

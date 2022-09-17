@@ -11,6 +11,7 @@ create table books
 	description text,
 	picture text,
 	page numeric(3),
+	priority numeric(3) default 999,
 	title text
 );
 

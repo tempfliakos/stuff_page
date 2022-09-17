@@ -22,7 +22,7 @@ export function bookReducer(state = [], action) {
         case UPDATE_BOOK: {
             const {book} = action;
             let array = state.filter(s => s.id !== book.id);
-            array.push(book)
+            array.push(book);
             return array;
         }
         default:
