@@ -56,19 +56,19 @@ export function Options() {
 		<Grid columns="equal">
 			<Grid.Row>
 				<Grid.Column>
-					<a onClick={handleAppleDownload} href="https://drive.google.com/u/0/uc?id=1zrNZCnHI7_zorussVvAWrFmYdRw7LvsF&export=download">
+					<a onClick={handleAppleDownload}
+					   href="https://drive.google.com/u/0/uc?id=1zrNZCnHI7_zorussVvAWrFmYdRw7LvsF&export=download">
 						<Icon name="apple" size="massive" color="black"/>
 					</a>
 				</Grid.Column>
 				<Grid.Column>
-					<a onClick={handleAndroidDownload} href="https://drive.google.com/u/0/uc?id=1zrNZCnHI7_zorussVvAWrFmYdRw7LvsF&export=download">
+					<a onClick={handleAndroidDownload}
+					   href="https://drive.google.com/u/0/uc?id=1zrNZCnHI7_zorussVvAWrFmYdRw7LvsF&export=download">
 						<Icon name="android" size="massive" color="green"/>
 					</a>
 				</Grid.Column>
 				<Grid.Column>
-					<a onClick={handleUpdateJob}>
-						<Icon name="play" size="massive" color="green"/>
-					</a>
+					<Icon name="play" size="massive" color="green" onClick={handleUpdateJob}/>
 				</Grid.Column>
 			</Grid.Row>
 

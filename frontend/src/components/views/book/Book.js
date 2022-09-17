@@ -5,7 +5,6 @@ import {useDispatch} from "react-redux";
 import {removeBook} from "../../../store/book/actions";
 import {useDrag} from "react-dnd";
 import {Dropzone} from "../../components/Dropzone";
-import {update} from "../../../store/movie/actions";
 
 export function Book({book, type}) {
 

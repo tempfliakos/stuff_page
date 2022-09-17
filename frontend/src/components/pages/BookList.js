@@ -10,7 +10,6 @@ import {BookMobile} from "../views/book/BookMobile";
 import {trackPromise} from "react-promise-tracker";
 import {HTML5Backend} from "react-dnd-html5-backend";
 import {DndProvider} from "react-dnd";
-import {TouchBackend} from "react-dnd-touch-backend";
 
 export function BookList() {
 
@@ -46,15 +45,13 @@ export function BookList() {
 					</Responsive>
 				</DndProvider>
 
-				<DndProvider backend={TouchBackend}>
-					<Responsive as={Grid} {...Responsive.onlyMobile}>
-						<Grid columns="equal">
-							{books ? books.map(book => (
-								<BookMobile key={book.book_id} book={book} type={type}/>
-							)) : null}
-						</Grid>
-					</Responsive>
-				</DndProvider>
+				<Responsive as={Grid} {...Responsive.onlyMobile}>
+					<Grid columns="equal">
+						{books ? books.map(book => (
+							<BookMobile key={book.book_id} book={book}/>
+						)) : null}
+					</Grid>
+				</Responsive>
 			</Grid.Row>
 		</Grid>
 	);
