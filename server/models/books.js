@@ -13,7 +13,8 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       this.belongsTo(models.Users);
     }
-  };
+  }
+
   Books.init({
     book_id: DataTypes.STRING,
     user_id: DataTypes.BIGINT,

@@ -53,6 +53,11 @@ router
 					book_id: data.book_id,
 				}
 			});
+			const nextPriority = await Books.count({
+				where: {
+					user_id: id
+				}
+			}) + 1;
 			if (!userBook) {
 				userBook = await Books.create({
 					user_id: id,
@@ -61,7 +66,8 @@ router
 					description: data.description,
 					picture: data.picture,
 					page: data.page,
-					title: data.title
+					title: data.title,
+					priority: nextPriority
 				});
 			}
 			res.status(200).send(userBook);
@@ -76,14 +82,29 @@ router
 		try {
 			const {id} = req.user;
 			const data = req.body;
-			let book = await Books.findOne({
+			let books = await Books.findAll({
 				where: {
-					user_id: id,
-					book_id: data.book_id
-				}
+					user_id: id
+				},
+				order: [['priority', 'ASC']]
 			});
-			book = await book.update(data, {where: {id: book.id}});
-			res.status(200).send(book);
+			let priority = 1;
+			let result = [];
+			for (let book of books) {
+				if (book.book_id === data.book_id) {
+					book.priority = data.priority;
+				} else {
+					priority = priority === data.priority ? priority + 1 : priority;
+					book.priority = priority;
+					priority++;
+				}
+				result.push(book.dataValues);
+			}
+			result = result.sort((a, b) => a.priority - b.priority);
+			for (let i = 0; i < result.length; i++) {
+				await updateBook(result[i], i + 1);
+			}
+			res.status(200).send(result);
 		} catch (e) {
 			res.status(400).send({
 				message: e.message,
@@ -110,5 +131,12 @@ router
 		}
 
 	});
+
+async function updateBook(book, priority) {
+	const updateAble = {
+		priority: priority
+	}
+	Books.update(updateAble, {where: {id: book.id}});
+}
 
 module.exports = router;
