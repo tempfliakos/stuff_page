@@ -44,7 +44,7 @@ router
 	})
 	.get("/xbox/:query", async (req, res) => {
 		const query = req.params.query.split('=')[1].normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-		await getXAPIGame(query, res);
+		await getIGDBGame("Xbox", query, res);
 	})
 	.get("/playstation/:query", async (req, res) => {
 		const query = req.params.query.split('=')[1].normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -68,65 +68,6 @@ async function sendToEndpoint(link, res) {
 	}).then(response => {
 		return response.data;
 	});
-}
-
-async function getXAPIGame(query, res) {
-	try {
-		await sendToXboxApi(query, res).then(r => {
-			const result = [];
-			for (let product of r.data.Products) {
-				if (product.Properties.PackageIdentityName) {
-					const is360 = product.Properties.PackageIdentityName.startsWith("Xbox360");
-					let id = product.AlternateIds.filter(id => id.IdType === "XboxTitleId")[0];
-					if (is360) {
-						const productGroupName = product.Properties.ProductGroupName
-						id = productGroupName.substring(productGroupName.length - 9, productGroupName.length - 1);
-						if (id) {
-							id = parseInt(id.substring(0, id.length - 1), 16);
-						}
-					}
-					const localizedProperties = product.LocalizedProperties[0];
-					if (id && product.ProductType === "Game" && !localizedProperties.ProductTitle.toUpperCase().includes("DEMO")) {
-						let kep;
-						if (localizedProperties.Images.filter(img => img.ImagePurpose === "BoxArt")[0]) {
-							kep = localizedProperties.Images.filter(img => img.ImagePurpose === "BoxArt")[0].Uri;
-						} else if (localizedProperties.Images.filter(img => img.ImagePurpose === "BrandedKeyArt")[0]) {
-							kep = localizedProperties.Images.filter(img => img.ImagePurpose === "BrandedKeyArt")[0].Uri;
-						} else if (localizedProperties.Images.filter(img => img.ImagePurpose === "Poster")[0]) {
-							kep = localizedProperties.Images.filter(img => img.ImagePurpose === "Poster")[0].Uri;
-						}
-						result.push({
-							game_id: is360 ? id : id.Value,
-							title: product.LocalizedProperties[0].ProductTitle,
-							picture: kep,
-							console: 'Xbox'
-						});
-					}
-				}
-			}
-			res.status(200).send(result);
-		})
-	} catch (e) {
-		res.status(400).send({
-			message: e.message,
-		});
-	}
-}
-
-async function sendToXboxApi(title) {
-	const header = {
-		'Access-Control-Allow-Origin': '*',
-		'Authorization': `Bearer ${process.env.XBOX_API_XAPI_ID}`,
-		'Content-Type': 'application/json; charset=utf-8'
-	};
-	const url = `${process.env.XBOX_API_XAPI_HOST}marketplace/search/${title}`
-	return await axios.get(url, {
-		url: url,
-		headers: header
-	}).then(res => {
-			return res;
-		}
-	)
 }
 
 async function getIGDBGame(console, query, res) {

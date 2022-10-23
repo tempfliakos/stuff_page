@@ -30,15 +30,6 @@ export function AchievementModal({trigger, game, open, setOpen}) {
 		setEarned(data.checked);
 	}
 
-	function updateAchievement() {
-		makePostRequest(`achievements/game=${game.game_id}`, undefined, true)
-			.then(() => {
-				handleOpen();
-			}).catch(error => {
-			console.log(error);
-		})
-	}
-
 	return (
 		<Modal open={open} trigger={trigger} onOpen={handleOpen} onClose={handleClose} basic closeIcon>
 			<Form size='large'>
@@ -47,11 +38,6 @@ export function AchievementModal({trigger, game, open, setOpen}) {
 					<Checkbox toggle onChange={handleEarnedToggle}
 					          label={{children: earned ? "Kész achievementek megjelenítve" : "Szűrés a kész achievementekre"}}
 					          className={styles.achievementToggle} defaultChecked={game.earned === game.sum}/>
-					<Button icon labelPosition='left' circular floated='right' size='small' inverted
-					        onClick={() => updateAchievement()}>
-						<Icon name='refresh'/>
-						Frissít
-					</Button>
 					<List>
 						{filterAchievement() ? filterAchievement().map(achievement => (
 							<div key={achievement.id}>

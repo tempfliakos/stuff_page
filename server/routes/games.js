@@ -2,7 +2,6 @@ require('dotenv').config();
 const express = require('express');
 const jwtMiddleware = require('express-jwt');
 const {UserGames, UserAchievements} = require('../models');
-const axios = require('axios');
 const cors = require('cors');
 const {Op} = require("sequelize");
 
@@ -84,11 +83,6 @@ router
 			body.star = false;
 
 			const game = await UserGames.create(body);
-			if (body.console === "Xbox") {
-				await xbox_achievement(body);
-			} else {
-				//await playstation_trophies(body);
-			}
 			res.status(200).send(await convertGame(game, body.user_id));
 		} catch (e) {
 			res.status(400).send({
@@ -177,41 +171,6 @@ router
 			});
 		}
 	});
-
-async function xbox_achievement(body) {
-	const header = {
-		'Access-Control-Allow-Origin': '*',
-		'Authorization': `Bearer ${process.env.XBOX_API_XAPI_ID}`,
-		'Content-Type': 'application/json; charset=utf-8'
-	};
-	const achievement_url = `${process.env.XBOX_API_XAPI_HOST}${process.env.XBOX_API_XBOXUSER_ID}/achievements/${body.game_id}`;
-	axios.get(achievement_url, {
-		url: achievement_url,
-		headers: header
-	}).then(res => {
-			let achievementPicture;
-			let gamerscore;
-			for (let data of res.data.achievements) {
-				if (data.imageUnlocked) {
-					achievementPicture = data.imageUnlocked;
-					gamerscore = data.gamerscore;
-				} else {
-					achievementPicture = data.mediaAssets[0].url;
-					gamerscore = data.rewards[0].value;
-				}
-				UserAchievements.create({
-					user_id: body.user_id,
-					game_id: body.game_id,
-					title: data.name,
-					description: data.description,
-					secret: data.isSecret,
-					picture: achievementPicture,
-					value: gamerscore,
-				});
-			}
-		}
-	).catch(err => console.error(err));
-}
 
 async function generateGamesList(games, userId) {
 	let gameList = [];
