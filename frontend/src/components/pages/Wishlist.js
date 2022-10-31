@@ -91,13 +91,13 @@ export function Wishlist() {
 			</Grid.Row>
 
 			<Grid.Row>
-				<Responsive minWidth={Responsive.onlyTablet.minWidth}>
+				<Responsive minWidth={Responsive.onlyComputer.minWidth}>
 					<Grid.Column>
 						<Tab panes={panes}/>
 					</Grid.Column>
 				</Responsive>
 
-				<Responsive as={Grid} {...Responsive.onlyMobile}>
+				<Responsive as={Grid} maxWidth={Responsive.onlyTablet.maxWidth}>
 					<Tab panes={mobilePanes}/>
 				</Responsive>
 			</Grid.Row>

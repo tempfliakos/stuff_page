@@ -35,7 +35,7 @@ export function BookList() {
 
 			<Grid.Row>
 				<DndProvider backend={HTML5Backend}>
-					<Responsive minWidth={Responsive.onlyTablet.minWidth}>
+					<Responsive minWidth={Responsive.onlyComputer.minWidth}>
 						<Card.Group relaxed="very" columns="equal" padded="vertically" centered
 						            itemsPerRow={window.screen.width > 800 ? 4 : 1} className="gridFull">
 							{books ? books.map(book => (
@@ -45,7 +45,7 @@ export function BookList() {
 					</Responsive>
 				</DndProvider>
 
-				<Responsive as={Grid} {...Responsive.onlyMobile}>
+				<Responsive as={Grid} maxWidth={Responsive.onlyTablet.maxWidth}>
 					<Grid columns="equal">
 						{books ? books.map(book => (
 							<BookMobile key={book.book_id} book={book}/>

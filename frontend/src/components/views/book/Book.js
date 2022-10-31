@@ -33,8 +33,9 @@ export function Book({book, type}) {
 			<Dropzone accept={type} priority={book.priority}/>
 			<div ref={dragRef}>
 				<Card as="a" className={styles.card}>
-
-					<Image src={book.picture} ui={false} wrapped/>
+					<div className={styles.bookImgContainer}>
+						<Image src={book.picture} ui={false} wrapped className={styles.bookImg}/>
+					</div>
 					<Card.Content className={styles.textContent}>
 						<Card.Header>{book.title}</Card.Header>
 						<Card.Description>{book.author} ({book.page ? book.page : '?'} oldal)</Card.Description>

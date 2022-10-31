@@ -165,7 +165,7 @@ export function MovieList() {
 			</Grid.Row>
 
 			<Grid.Row>
-				<Responsive minWidth={Responsive.onlyTablet.minWidth}>
+				<Responsive minWidth={Responsive.onlyComputer.minWidth}>
 					<Card.Group relaxed="very" columns="equal" padded="vertically" centered
 					            itemsPerRow={window.screen.width > 800 ? 4 : 1} className="gridFull">
 						{movies ? movies.map(movie => (
@@ -174,7 +174,7 @@ export function MovieList() {
 					</Card.Group>
 				</Responsive>
 
-				<Responsive as={Grid} {...Responsive.onlyMobile}>
+				<Responsive as={Grid} maxWidth={Responsive.onlyTablet.maxWidth}>
 					<Grid columns="equal">
 						{movies ? movies.map(movie => (
 							<MovieMobile key={movie.id} movie={movie} filter={filter}/>

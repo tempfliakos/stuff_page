@@ -79,7 +79,7 @@ export function SwitchList() {
 
 			<Grid.Row>
 				<Scrollable func={handleScroll}>
-					<Responsive minWidth={Responsive.onlyTablet.minWidth}>
+					<Responsive minWidth={Responsive.onlyComputer.minWidth}>
 						<Card.Group relaxed="very" columns="equal" padded="vertically" centered
 						            itemsPerRow={window.screen.width > 800 ? 4 : 1} className="gridFull">
 							{games ? games.map(game => (
@@ -88,7 +88,7 @@ export function SwitchList() {
 						</Card.Group>
 					</Responsive>
 
-					<Responsive as={Grid} {...Responsive.onlyMobile}>
+					<Responsive as={Grid} maxWidth={Responsive.onlyTablet.maxWidth}>
 						<Grid columns="equal">
 							{games ? games.map(game => (
 								<SwitchGameMobile key={game.game_id} game={game} filter={filter}/>

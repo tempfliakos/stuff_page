@@ -94,3 +94,15 @@
     margin-left: 5px !important;
     margin-right: 5px !important;
 }
+
+.bookImgContainer {
+    background-color: #e0e0e2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bookImg {
+    max-width: 150px;
+    background-color: #e0e0e2;
+}
