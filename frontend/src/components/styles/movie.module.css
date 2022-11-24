@@ -55,6 +55,14 @@
     background-color: #e0e0e2 !important;
 }
 
+.headerTitle {
+    min-height: 2.5em;
+}
+
+.dragContainer {
+    margin: 0.5em 0;
+}
+
 .iconContent {
     background-color: #e0e0e2 !important;
 }
