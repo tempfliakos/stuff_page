@@ -3,8 +3,6 @@ import {Button, Grid, Icon, Image} from "semantic-ui-react";
 import {useDispatch} from "react-redux";
 import styles from "../../styles/movie.module.css";
 import {removeBook, update} from "../../../store/book/actions";
-import {Dropzone} from "../../components/Dropzone";
-import {useDrag} from "react-dnd";
 import {trackPromise} from "react-promise-tracker";
 
 export function BookMobile({book}) {
@@ -31,7 +29,7 @@ export function BookMobile({book}) {
 			<Grid.Column className={styles.movieMobile}>
 				<Image src={book.picture} size='small' verticalAlign='middle'/>{' '}
 				<span className={styles.movieMobileText}>
-                                {book.title}({book.author})
+                                {book.priority}.{book.title}({book.author})
 						</span>
 
 				<Button size="tiny" circular icon="arrow alternate circle up" floated="right"

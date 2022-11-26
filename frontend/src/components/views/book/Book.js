@@ -30,14 +30,16 @@ export function Book({book, type}) {
 
 	return (
 		<>
-			<Dropzone accept={type} priority={book.priority}/>
+			{book.priority == 1 ?
+				<Dropzone accept={type} priority={book.priority - 1}/>
+			: null}
 			<div ref={dragRef} className={styles.dragContainer}>
 				<Card as="a" className={styles.card}>
 					<div className={styles.bookImgContainer}>
 						<Image src={book.picture} ui={false} wrapped className={styles.bookImg}/>
 					</div>
 					<Card.Content className={styles.textContent}>
-						<Card.Header className={styles.headerTitle}>{book.title}</Card.Header>
+						<Card.Header className={styles.headerTitle}>{book.priority}.{book.title}</Card.Header>
 						<Card.Description>{book.author} ({book.page ? book.page : '?'} oldal)</Card.Description>
 					</Card.Content>
 
@@ -62,6 +64,7 @@ export function Book({book, type}) {
 					</Card.Content>
 				</Card>
 			</div>
+			<Dropzone accept={type} priority={book.priority+1}/>
 		</>
 	)
 }
