@@ -5,9 +5,8 @@ import styles from "../styles/game.module.css";
 import {getAchievementList} from "../../store/achievement/actions";
 import {useDispatch, useSelector} from "react-redux";
 import {getAchievements} from "../../store/achievement/selectors";
-import {makePostRequest} from "../../services/axios";
 
-export function AchievementModal({trigger, game, open, setOpen}) {
+export function AchievementModal({trigger, game, open, setOpen, defaultState}) {
 
 	const achievements = useSelector(getAchievements);
 	const dispatch = useDispatch();
@@ -16,7 +15,7 @@ export function AchievementModal({trigger, game, open, setOpen}) {
 		return achievements.filter(a => a.game_id === game.game_id)
 	}
 
-	const [earned, setEarned] = useState(game.earned === game.sum);
+	const [earned, setEarned] = useState(isDefaultChecked());
 
 	function handleOpen() {
 		dispatch(getAchievementList(game));
@@ -30,6 +29,10 @@ export function AchievementModal({trigger, game, open, setOpen}) {
 		setEarned(data.checked);
 	}
 
+	function isDefaultChecked() {
+		return defaultState == null ? game.earned === game.sum : defaultState;
+	}
+
 	return (
 		<Modal open={open} trigger={trigger} onOpen={handleOpen} onClose={handleClose} basic closeIcon>
 			<Form size='large'>
@@ -37,7 +40,7 @@ export function AchievementModal({trigger, game, open, setOpen}) {
 				<Segment stacked inverted>
 					<Checkbox toggle onChange={handleEarnedToggle}
 					          label={{children: earned ? "Kész achievementek megjelenítve" : "Szűrés a kész achievementekre"}}
-					          className={styles.achievementToggle} defaultChecked={game.earned === game.sum}/>
+					          className={styles.achievementToggle} defaultChecked={isDefaultChecked()}/>
 					<List>
 						{filterAchievement() ? filterAchievement().map(achievement => (
 							<div key={achievement.id}>

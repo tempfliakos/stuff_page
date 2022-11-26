@@ -17,9 +17,9 @@ export function StarGame({game}) {
 
 	function getModal() {
 		if(game.console === 'Xbox') {
-			return <AchievementModal key={game.game_id} trigger={trigger} game={game} open={openStar} setOpen={setOpenStar}/>
+			return <AchievementModal key={game.game_id} trigger={trigger} game={game} open={openStar} setOpen={setOpenStar} defaultState={false}/>
 		}
-		return <TrophyModal key={game.game_id} trigger={trigger} game={game} open={openStar} setOpen={setOpenStar}/>
+		return <TrophyModal key={game.game_id} trigger={trigger} game={game} open={openStar} setOpen={setOpenStar} defaultState={false}/>
 	}
 
 	return getModal();

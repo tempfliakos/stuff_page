@@ -6,7 +6,7 @@ import {getAchievementList} from "../../store/achievement/actions";
 import {useDispatch, useSelector} from "react-redux";
 import {getAchievements} from "../../store/achievement/selectors";
 
-export function TrophyModal({trigger, game, open, setOpen}) {
+export function TrophyModal({trigger, game, open, setOpen, defaultState}) {
 
     const trophies = useSelector(getAchievements);
 	const dispatch = useDispatch();
@@ -15,7 +15,7 @@ export function TrophyModal({trigger, game, open, setOpen}) {
 		return trophies.filter(a => a.game_id === game.game_id)
 	}
 
-	const [earned, setEarned] = useState(game.earned === game.sum);
+	const [earned, setEarned] = useState(isDefaultChecked());
 
 	function handleOpen() {
 		dispatch(getAchievementList(game));
@@ -29,6 +29,10 @@ export function TrophyModal({trigger, game, open, setOpen}) {
 		setEarned(data.checked);
 	}
 
+	function isDefaultChecked() {
+		return defaultState == null ? game.earned === game.sum : defaultState;
+	}
+
 	return (
 		<Modal open={open} trigger={trigger} onOpen={handleOpen} onClose={handleClose} basic closeIcon>
 			<Form size='large'>
@@ -36,7 +40,7 @@ export function TrophyModal({trigger, game, open, setOpen}) {
 				<Segment stacked inverted>
 					<Checkbox toggle onChange={handleEarnedToggle}
 					          label={{children: earned ? "Kész trófeák megjelenítve" : "Szűrés a kész trófeákra"}}
-					          className={styles.achievementToggle} defaultChecked={game.earned === game.sum}/>
+					          className={styles.achievementToggle} defaultChecked={isDefaultChecked()}/>
 					<List>
 						{filterTrophies() ? filterTrophies().map(tropy => (
 							<>
