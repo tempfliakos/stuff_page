@@ -197,7 +197,6 @@ async function convertGame(game, userId) {
 		star: game.star,
 		earned: achievements.filter(a => a.earned).length,
 		sum: achievements.length,
-		highlight: false,
 	}
 
 	if (game.console === "Playstation") {
@@ -227,7 +226,7 @@ async function generateStarGamesList(games) {
 				picture: game.picture,
 				console: game.console,
 				title: game.title,
-				highlight: true,
+				star: game.star,
 			}
 		)
 	}
