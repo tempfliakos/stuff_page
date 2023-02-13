@@ -5,3 +5,5 @@ frontend/build/
 frontend/package-lock.json
 
 .idea/
+
+icons/
