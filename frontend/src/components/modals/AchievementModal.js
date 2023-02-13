@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import {Button, Checkbox, Form, Icon, List, Modal, Segment} from "semantic-ui-react";
 import {Achievement} from "../views/xbox/Achievement";
 import styles from "../styles/game.module.css";
 import {getAchievementList} from "../../store/achievement/actions";
@@ -34,24 +33,25 @@ export function AchievementModal({trigger, game, open, setOpen, defaultState}) {
 	}
 
 	return (
-		<Modal open={open} trigger={trigger} onOpen={handleOpen} onClose={handleClose} basic closeIcon>
-			<Form size='large'>
-				<List.Item content={game.title + " - Achievementek"}/>
-				<Segment stacked inverted>
-					<Checkbox toggle onChange={handleEarnedToggle}
-					          label={{children: earned ? "Kész achievementek megjelenítve" : "Szűrés a kész achievementekre"}}
-					          className={styles.achievementToggle} defaultChecked={isDefaultChecked()}/>
-					<List>
-						{filterAchievement() ? filterAchievement().map(achievement => (
-							<div key={achievement.id}>
-								{achievement.earned === earned ?
-									<Achievement game={game} achievement={achievement}/> : null
-								}
-							</div>
-						)) : null}
-					</List>
-				</Segment>
-			</Form>
-		</Modal>
+		// <Modal open={open} trigger={trigger} onOpen={handleOpen} onClose={handleClose} basic closeIcon>
+		// 	<Form size='large'>
+		// 		<List.Item content={game.title + " - Achievementek"}/>
+		// 		<Segment stacked inverted>
+		// 			<Checkbox toggle onChange={handleEarnedToggle}
+		// 			          label={{children: earned ? "Kész achievementek megjelenítve" : "Szűrés a kész achievementekre"}}
+		// 			          className={styles.achievementToggle} defaultChecked={isDefaultChecked()}/>
+		// 			<List>
+		// 				{filterAchievement() ? filterAchievement().map(achievement => (
+		// 					<div key={achievement.id}>
+		// 						{achievement.earned === earned ?
+		// 							<Achievement game={game} achievement={achievement}/> : null
+		// 						}
+		// 					</div>
+		// 				)) : null}
+		// 			</List>
+		// 		</Segment>
+		// 	</Form>
+		// </Modal>
+		<div>AchievementModal</div>
 	)
 }

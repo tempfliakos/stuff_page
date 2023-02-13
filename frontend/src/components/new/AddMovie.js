@@ -1,5 +1,4 @@
 import React from "react";
-import {Card, Icon, Image, Label} from "semantic-ui-react";
 import {useDispatch} from "react-redux";
 import {addToMovies, updateMovieObject} from "../../store/movie/actions";
 import styles from "../styles/movie.module.css";
@@ -32,17 +31,18 @@ export function AddMovie({movie, movieAttributes}) {
     }
 
     return (
-        <Card onClick={addFilm}>
-            {
-                movieAttributes.alreadyAdded ? <Label corner="right" color="green" size="huge" className={styles.labelAdded}>
-                    <Icon name="check square"/>
-                </Label> : null
-            }
-            <Image src={picture()} ui={false} wrapped className={movieAttributes.alreadyAdded ? styles.cardAdded : styles.picture}/>
-
-            <Card.Content className={styles.textContent}>
-                <Card.Header>{movie.title + '(' + getYear(movie.release_date) + ')'}</Card.Header>
-            </Card.Content>
-        </Card>
+        // <Card onClick={addFilm}>
+        //     {
+        //         movieAttributes.alreadyAdded ? <Label corner="right" color="green" size="huge" className={styles.labelAdded}>
+        //             <Icon name="check square"/>
+        //         </Label> : null
+        //     }
+        //     <Image src={picture()} ui={false} wrapped className={movieAttributes.alreadyAdded ? styles.cardAdded : styles.picture}/>
+        //
+        //     <Card.Content className={styles.textContent}>
+        //         <Card.Header>{movie.title + '(' + getYear(movie.release_date) + ')'}</Card.Header>
+        //     </Card.Content>
+        // </Card>
+        <div>AddMovie</div>
     )
 }

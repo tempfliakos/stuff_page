@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import {NewMovie} from "../new/NewMovie";
 import {useDispatch, useSelector} from "react-redux";
 import {getMovies} from "../../store/movie/selectors";
-import {Card, Checkbox, Dropdown, Grid, Icon, Input, Responsive} from "semantic-ui-react";
 import {getMovieList} from "../../store/movie/actions";
 import {Movie} from "../views/movie/Movie";
 import {genres} from "../../store/catalogs/genres";
@@ -114,74 +113,75 @@ export function MovieList() {
 	}
 
 	return (
-		<Grid columns="equal" className="gridFull">
-			<Grid.Row>
-				<Grid.Column>
-					<Input placeholder='Film címe...' fluid onChange={handleTitleSearch}/>
-				</Grid.Column>
-
-				<Grid.Column>
-					<Dropdown placeholder='Műfaj' fluid multiple search selection options={genres} clearable basic
-					          onChange={handleGenreSelect}/>
-				</Grid.Column>
-
-				<span className="flexCenterPointer">
-                    <Icon name="sliders horizontal" size="big" onClick={handleFilterExpand}/>
-                </span>
-
-			</Grid.Row>
-			{filterExpand ?
-				<>
-					<Grid.Row>
-						<Grid.Column>
-							<Checkbox toggle onChange={handleSeenToggle} label={{children: "Megnézett filmek kivétele"}}
-							          className={styles.toggleButton}/>
-						</Grid.Column>
-					</Grid.Row>
-					<Grid.Row>
-						<Grid.Column>
-							<Checkbox toggle onChange={handleOwnToggle} label={{children: "Beszerzendő filmek"}}
-							          className={styles.toggleButton} defaultChecked={false}/>
-						</Grid.Column>
-					</Grid.Row>
-					<Grid.Row>
-						<Grid.Column>
-							<Checkbox toggle onChange={handleReleaseToggle} label={{children: "Jövőbeni filmek"}}
-							          className={styles.toggleButton} fitted/>
-						</Grid.Column>
-					</Grid.Row>
-					<Grid.Row>
-						<Grid.Column>
-							<Checkbox toggle onChange={handleLizaToggle} label={{children: "Liza filmje"}}
-							          className={styles.toggleButton} fitted/>
-						</Grid.Column>
-					</Grid.Row>
-				</>
-				: null}
-			<Grid.Row>
-				<Grid.Column>
-					<NewMovie movies={movies}/>
-				</Grid.Column>
-			</Grid.Row>
-
-			<Grid.Row>
-				<Responsive minWidth={Responsive.onlyComputer.minWidth}>
-					<Card.Group relaxed="very" columns="equal" padded="vertically" centered
-					            itemsPerRow={window.screen.width > 800 ? 4 : 1} className="gridFull">
-						{movies ? movies.map(movie => (
-							<Movie key={movie.id} movie={movie} filter={filter}/>
-						)) : null}
-					</Card.Group>
-				</Responsive>
-
-				<Responsive as={Grid} maxWidth={Responsive.onlyTablet.maxWidth}>
-					<Grid columns="equal">
-						{movies ? movies.map(movie => (
-							<MovieMobile key={movie.id} movie={movie} filter={filter}/>
-						)) : null}
-					</Grid>
-				</Responsive>
-			</Grid.Row>
-		</Grid>
+		// <Grid columns="equal" className="gridFull">
+		// 	<Grid.Row>
+		// 		<Grid.Column>
+		// 			<Input placeholder='Film címe...' fluid onChange={handleTitleSearch}/>
+		// 		</Grid.Column>
+		//
+		// 		<Grid.Column>
+		// 			<Dropdown placeholder='Műfaj' fluid multiple search selection options={genres} clearable basic
+		// 			          onChange={handleGenreSelect}/>
+		// 		</Grid.Column>
+		//
+		// 		<span className="flexCenterPointer">
+        //             <Icon name="sliders horizontal" size="big" onClick={handleFilterExpand}/>
+        //         </span>
+		//
+		// 	</Grid.Row>
+		// 	{filterExpand ?
+		// 		<>
+		// 			<Grid.Row>
+		// 				<Grid.Column>
+		// 					<Checkbox toggle onChange={handleSeenToggle} label={{children: "Megnézett filmek kivétele"}}
+		// 					          className={styles.toggleButton}/>
+		// 				</Grid.Column>
+		// 			</Grid.Row>
+		// 			<Grid.Row>
+		// 				<Grid.Column>
+		// 					<Checkbox toggle onChange={handleOwnToggle} label={{children: "Beszerzendő filmek"}}
+		// 					          className={styles.toggleButton} defaultChecked={false}/>
+		// 				</Grid.Column>
+		// 			</Grid.Row>
+		// 			<Grid.Row>
+		// 				<Grid.Column>
+		// 					<Checkbox toggle onChange={handleReleaseToggle} label={{children: "Jövőbeni filmek"}}
+		// 					          className={styles.toggleButton} fitted/>
+		// 				</Grid.Column>
+		// 			</Grid.Row>
+		// 			<Grid.Row>
+		// 				<Grid.Column>
+		// 					<Checkbox toggle onChange={handleLizaToggle} label={{children: "Liza filmje"}}
+		// 					          className={styles.toggleButton} fitted/>
+		// 				</Grid.Column>
+		// 			</Grid.Row>
+		// 		</>
+		// 		: null}
+		// 	<Grid.Row>
+		// 		<Grid.Column>
+		// 			<NewMovie movies={movies}/>
+		// 		</Grid.Column>
+		// 	</Grid.Row>
+		//
+		// 	<Grid.Row>
+		// 		<Responsive minWidth={Responsive.onlyComputer.minWidth}>
+		// 			<Card.Group relaxed="very" columns="equal" padded="vertically" centered
+		// 			            itemsPerRow={window.screen.width > 800 ? 4 : 1} className="gridFull">
+		// 				{movies ? movies.map(movie => (
+		// 					<Movie key={movie.id} movie={movie} filter={filter}/>
+		// 				)) : null}
+		// 			</Card.Group>
+		// 		</Responsive>
+		//
+		// 		<Responsive as={Grid} maxWidth={Responsive.onlyTablet.maxWidth}>
+		// 			<Grid columns="equal">
+		// 				{movies ? movies.map(movie => (
+		// 					<MovieMobile key={movie.id} movie={movie} filter={filter}/>
+		// 				)) : null}
+		// 			</Grid>
+		// 		</Responsive>
+		// 	</Grid.Row>
+		// </Grid>
+		<div>MovieList</div>
 	)
 }

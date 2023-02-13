@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import {Button, Form, Message, Modal, Segment} from "semantic-ui-react";
 import {makePostRequest} from "../../services/axios";
 
 export function RegisterModal({trigger}) {
@@ -57,25 +56,26 @@ export function RegisterModal({trigger}) {
         setRePassword("")
     }
     return (
-        <Modal open={isOpen} trigger={trigger} onOpen={handleOpen} onClose={handleClose} basic>
-            <Form size='large'>
-                <Segment stacked inverted>
-                    <Form.Input fluid icon='user' iconPosition='left' placeholder="Email cím"
-                                onChange={handleEmailChange} inverted required/>
-                    <Form.Input fluid icon='lock' iconPosition='left' placeholder="Jelszó"
-                                onChange={handlePasswordChange} type="password" inverted required/>
-                    <Form.Input fluid icon='lock' iconPosition='left' placeholder="Jelszó újra"
-                                onChange={handleRePasswordChange} type="password" inverted required />
-
-
-                    <Form.Group>
-                        <Button fluid disabled={!email || !password || !rePassword} content="Regisztráció" color="green" onClick={handleRegister}/>
-                    </Form.Group>
-
-                </Segment>
-            </Form>
-            {errorMessage ? <Message error content={errorMessage} floating/> : null}
-
-        </Modal>
+        // <Modal open={isOpen} trigger={trigger} onOpen={handleOpen} onClose={handleClose} basic>
+        //     <Form size='large'>
+        //         <Segment stacked inverted>
+        //             <Form.Input fluid icon='user' iconPosition='left' placeholder="Email cím"
+        //                         onChange={handleEmailChange} inverted required/>
+        //             <Form.Input fluid icon='lock' iconPosition='left' placeholder="Jelszó"
+        //                         onChange={handlePasswordChange} type="password" inverted required/>
+        //             <Form.Input fluid icon='lock' iconPosition='left' placeholder="Jelszó újra"
+        //                         onChange={handleRePasswordChange} type="password" inverted required />
+        //
+        //
+        //             <Form.Group>
+        //                 <Button fluid disabled={!email || !password || !rePassword} content="Regisztráció" color="green" onClick={handleRegister}/>
+        //             </Form.Group>
+        //
+        //         </Segment>
+        //     </Form>
+        //     {errorMessage ? <Message error content={errorMessage} floating/> : null}
+        //
+        // </Modal>
+        <div>RegisterModal</div>
     )
 }

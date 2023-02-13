@@ -1,5 +1,4 @@
 import React from "react";
-import {Grid, Icon, Image, Label} from "semantic-ui-react";
 import styles from "../styles/movie.module.css";
 import {getYear} from "../../utils/dateUtil";
 import {useDispatch} from "react-redux";
@@ -32,21 +31,22 @@ export function AddMovieMobile({movie, movieAttributes}) {
     }
 
     return (
-        <Grid.Row onClick={addFilm}>
-            <Grid.Column className={styles.movieMobile}>
-                {
-                    movieAttributes.alreadyAdded ? <Label corner="left" color="green" className={styles.labelAdded}>
-                        <Icon name="check square"/>
-                    </Label> : null
-                }
-                <Image src={picture()} size='small' verticalAlign='middle'
-                       className={movieAttributes.alreadyAdded ? styles.cardAdded : styles.cardMobile}/>{' '}
-                <span className={styles.movieMobileText}>
-                                {movie.title + '(' + getYear(movie.release_date) + ')'}
-
-                </span>
-                <div></div>
-            </Grid.Column>
-        </Grid.Row>
+        // <Grid.Row onClick={addFilm}>
+        //     <Grid.Column className={styles.movieMobile}>
+        //         {
+        //             movieAttributes.alreadyAdded ? <Label corner="left" color="green" className={styles.labelAdded}>
+        //                 <Icon name="check square"/>
+        //             </Label> : null
+        //         }
+        //         <Image src={picture()} size='small' verticalAlign='middle'
+        //                className={movieAttributes.alreadyAdded ? styles.cardAdded : styles.cardMobile}/>{' '}
+        //         <span className={styles.movieMobileText}>
+        //                         {movie.title + '(' + getYear(movie.release_date) + ')'}
+        //
+        //         </span>
+        //         <div></div>
+        //     </Grid.Column>
+        // </Grid.Row>
+        <div>AddMovieMobile</div>
     )
 }

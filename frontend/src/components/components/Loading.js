@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import {usePromiseTracker} from "react-promise-tracker";
-import {Dimmer, Image} from "semantic-ui-react";
 
 export function Loading() {
 	const {promiseInProgress} = usePromiseTracker();
@@ -33,7 +32,9 @@ export function Loading() {
 		}
 	}
 
-	return (isPromiseInProgress() && <Dimmer active>
-		<Image src='/logo.svg' style={{height: "200px", width: "200px", opacity: opacity}}/>
-	</Dimmer>)
+	return (isPromiseInProgress() &&
+		// <Dimmer active>
+		<img src='/logo.svg' style={{height: "200px", width: "200px", opacity: opacity}} alt="logo"/>
+	//</Dimmer>
+	)
 }

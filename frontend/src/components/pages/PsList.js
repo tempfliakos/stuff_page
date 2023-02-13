@@ -1,5 +1,4 @@
 import React, {useCallback, useEffect, useState} from "react";
-import {Card, Checkbox, Grid, Input, Responsive} from "semantic-ui-react";
 import styles from "../styles/game.module.css";
 import {NewPsGame} from "../new/NewPsGame";
 import {useDispatch, useSelector} from "react-redux";
@@ -80,56 +79,57 @@ export function PsList() {
 	}
 
 	return (
-		<Grid columns="equal" className="gridFull">
-			<Grid.Row>
-				<Grid.Column>
-					<Input placeholder='Játék címe...' fluid onChange={handleTitleSearch}/>
-				</Grid.Column>
-
-			</Grid.Row>
-
-			<Grid.Row>
-				<Grid.Column>
-					<Checkbox toggle onChange={handleDoneToggle}
-					          label={{children: doneFilter ? "Kész játékok megjelenítve" : "Szűrés a kész játékokra"}}
-					          className={styles.toggleButton}/>
-				</Grid.Column>
-			</Grid.Row>
-
-			<Grid.Row>
-				<Grid.Column>
-					<NewPsGame games={games}/>
-				</Grid.Column>
-			</Grid.Row>
-
-			<Grid.Row>
-				<Grid.Column className={styles.overflow}>
-					{stars ? stars.map(game => (
-						<StarGame key={game.game_id} game={game}/>
-					)) : null}
-				</Grid.Column>
-			</Grid.Row>
-
-			<Grid.Row>
-				<Scrollable func={handleScroll}>
-					<Responsive minWidth={Responsive.onlyComputer.minWidth}>
-						<Card.Group relaxed="very" columns="equal" padded="vertically" centered
-						            itemsPerRow={window.screen.width > 800 ? 4 : 1} className="gridFull">
-							{games ? games.map(game => (
-								<PsGame key={game.game_id} game={game} filter={filter}/>
-							)) : null}
-						</Card.Group>
-					</Responsive>
-
-					<Responsive as={Grid} maxWidth={Responsive.onlyTablet.maxWidth}>
-						<Grid columns="equal">
-							{games ? games.map(game => (
-								<PsGameMobile key={game.game_id} game={game} filter={filter}/>
-							)) : null}
-						</Grid>
-					</Responsive>
-				</Scrollable>
-			</Grid.Row>
-		</Grid>
+		// <Grid columns="equal" className="gridFull">
+		// 	<Grid.Row>
+		// 		<Grid.Column>
+		// 			<Input placeholder='Játék címe...' fluid onChange={handleTitleSearch}/>
+		// 		</Grid.Column>
+		//
+		// 	</Grid.Row>
+		//
+		// 	<Grid.Row>
+		// 		<Grid.Column>
+		// 			<Checkbox toggle onChange={handleDoneToggle}
+		// 			          label={{children: doneFilter ? "Kész játékok megjelenítve" : "Szűrés a kész játékokra"}}
+		// 			          className={styles.toggleButton}/>
+		// 		</Grid.Column>
+		// 	</Grid.Row>
+		//
+		// 	<Grid.Row>
+		// 		<Grid.Column>
+		// 			<NewPsGame games={games}/>
+		// 		</Grid.Column>
+		// 	</Grid.Row>
+		//
+		// 	<Grid.Row>
+		// 		<Grid.Column className={styles.overflow}>
+		// 			{stars ? stars.map(game => (
+		// 				<StarGame key={game.game_id} game={game}/>
+		// 			)) : null}
+		// 		</Grid.Column>
+		// 	</Grid.Row>
+		//
+		// 	<Grid.Row>
+		// 		<Scrollable func={handleScroll}>
+		// 			<Responsive minWidth={Responsive.onlyComputer.minWidth}>
+		// 				<Card.Group relaxed="very" columns="equal" padded="vertically" centered
+		// 				            itemsPerRow={window.screen.width > 800 ? 4 : 1} className="gridFull">
+		// 					{games ? games.map(game => (
+		// 						<PsGame key={game.game_id} game={game} filter={filter}/>
+		// 					)) : null}
+		// 				</Card.Group>
+		// 			</Responsive>
+		//
+		// 			<Responsive as={Grid} maxWidth={Responsive.onlyTablet.maxWidth}>
+		// 				<Grid columns="equal">
+		// 					{games ? games.map(game => (
+		// 						<PsGameMobile key={game.game_id} game={game} filter={filter}/>
+		// 					)) : null}
+		// 				</Grid>
+		// 			</Responsive>
+		// 		</Scrollable>
+		// 	</Grid.Row>
+		// </Grid>
+		<div>PsList</div>
 	)
 }

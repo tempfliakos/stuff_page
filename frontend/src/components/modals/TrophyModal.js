@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import {Checkbox, Form, List, Modal, Segment} from "semantic-ui-react";
 import {Trophy} from "../views/playstation/Trophy";
 import styles from "../styles/game.module.css";
 import {getAchievementList} from "../../store/achievement/actions";
@@ -34,26 +33,27 @@ export function TrophyModal({trigger, game, open, setOpen, defaultState}) {
 	}
 
 	return (
-		<Modal open={open} trigger={trigger} onOpen={handleOpen} onClose={handleClose} basic closeIcon>
-			<Form size='large'>
-				<List.Item content={game.title + " - Trófeák"}/>
-				<Segment stacked inverted>
-					<Checkbox toggle onChange={handleEarnedToggle}
-					          label={{children: earned ? "Kész trófeák megjelenítve" : "Szűrés a kész trófeákra"}}
-					          className={styles.achievementToggle} defaultChecked={isDefaultChecked()}/>
-					<List>
-						{filterTrophies() ? filterTrophies().map(tropy => (
-							<>
-								{tropy.earned === earned ?
-									<div key={tropy.id}>
-										<Trophy game={game} trophy={tropy}/>
-									</div> : null
-								}
-							</>
-						)) : null}
-					</List>
-				</Segment>
-			</Form>
-		</Modal>
+		// <Modal open={open} trigger={trigger} onOpen={handleOpen} onClose={handleClose} basic closeIcon>
+		// 	<Form size='large'>
+		// 		<List.Item content={game.title + " - Trófeák"}/>
+		// 		<Segment stacked inverted>
+		// 			<Checkbox toggle onChange={handleEarnedToggle}
+		// 			          label={{children: earned ? "Kész trófeák megjelenítve" : "Szűrés a kész trófeákra"}}
+		// 			          className={styles.achievementToggle} defaultChecked={isDefaultChecked()}/>
+		// 			<List>
+		// 				{filterTrophies() ? filterTrophies().map(tropy => (
+		// 					<>
+		// 						{tropy.earned === earned ?
+		// 							<div key={tropy.id}>
+		// 								<Trophy game={game} trophy={tropy}/>
+		// 							</div> : null
+		// 						}
+		// 					</>
+		// 				)) : null}
+		// 			</List>
+		// 		</Segment>
+		// 	</Form>
+		// </Modal>
+		<div>TrophyModal</div>
 	)
 }

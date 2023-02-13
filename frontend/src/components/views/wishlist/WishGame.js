@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "../../styles/game.module.css";
-import {Button, Card, Icon, Image} from "semantic-ui-react";
 import {useDispatch} from "react-redux";
 import {removeGame} from "../../../store/game/actions";
 
@@ -22,17 +21,18 @@ export function WishGame({game}) {
         }
     }
 
-    return <Card as="a" className={getHover()}>
-        <Image src={game.picture} ui={false} wrapped/>
-        <Card.Content className={styles.textContent}>
-            <Card.Header>{game.title}</Card.Header>
-            <Button animated='vertical' color="red" size="tiny"
-                    onClick={handleDelete} fluid>
-                <Button.Content hidden>Törlés</Button.Content>
-                <Button.Content visible>
-                    <Icon name='trash'/>
-                </Button.Content>
-            </Button>
-        </Card.Content>
-    </Card>
+    return <div>WishGame</div>
+    // <Card as="a" className={getHover()}>
+    //     <Image src={game.picture} ui={false} wrapped/>
+    //     <Card.Content className={styles.textContent}>
+    //         <Card.Header>{game.title}</Card.Header>
+    //         <Button animated='vertical' color="red" size="tiny"
+    //                 onClick={handleDelete} fluid>
+    //             <Button.Content hidden>Törlés</Button.Content>
+    //             <Button.Content visible>
+    //                 <Icon name='trash'/>
+    //             </Button.Content>
+    //         </Button>
+    //     </Card.Content>
+    // </Card>
 }

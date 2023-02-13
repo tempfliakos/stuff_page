@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import {Grid, Icon, Image, Label} from "semantic-ui-react";
 import styles from "../../styles/movie.module.css";
 import gameStyles from "../../styles/game.module.css";
 import {filterGame} from "../../../utils/FilterUtil";
@@ -33,29 +32,30 @@ export function XboxGameMobile({game, filter}) {
     }
 
     const trigger = (
-        <Grid.Row>
-            <Grid.Column className={styles.movieMobile}>
-                {
-                    isDone() ?
-                        <Label corner="right" color="green" onClick={cardClick}>
-                            <Icon name="trophy"/>
-                        </Label> : null
-                }
-                {
-                    <Label corner="left" size="huge" className={styles.labelAdded}
-                           onClick={starClicked}>
-                        <Icon name="star" color={isStar() ? "yellow" : "grey"} className={gameStyles.iconClick}/>
-                    </Label>
-                }
-                <Image src={game.picture} size='small' verticalAlign='middle' onClick={cardClick}/>{' '}
-                <span className={styles.movieMobileText} onClick={cardClick}>
-                                {game.title}
-                            </span>
-                <div style={{display: "flex", padding: "25px"}} onClick={cardClick}>
-                    {getAchievementData()}
-                </div>
-            </Grid.Column>
-        </Grid.Row>
+        // <Grid.Row>
+        //     <Grid.Column className={styles.movieMobile}>
+        //         {
+        //             isDone() ?
+        //                 <Label corner="right" color="green" onClick={cardClick}>
+        //                     <Icon name="trophy"/>
+        //                 </Label> : null
+        //         }
+        //         {
+        //             <Label corner="left" size="huge" className={styles.labelAdded}
+        //                    onClick={starClicked}>
+        //                 <Icon name="star" color={isStar() ? "yellow" : "grey"} className={gameStyles.iconClick}/>
+        //             </Label>
+        //         }
+        //         <Image src={game.picture} size='small' verticalAlign='middle' onClick={cardClick}/>{' '}
+        //         <span className={styles.movieMobileText} onClick={cardClick}>
+        //                         {game.title}
+        //                     </span>
+        //         <div style={{display: "flex", padding: "25px"}} onClick={cardClick}>
+        //             {getAchievementData()}
+        //         </div>
+        //     </Grid.Column>
+        // </Grid.Row>
+        <div>XboxGameMobile</div>
     )
     return <>
         {

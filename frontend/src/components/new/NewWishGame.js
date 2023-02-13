@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import {Button, Card, Form, Grid, Input, Responsive} from "semantic-ui-react";
 import {AddGame} from "./AddGame";
 import {AddGameMobile} from "./AddGameMobile";
 import {getDataFromEndpoint} from "../../services/axios";
@@ -34,33 +33,35 @@ export function NewWishGame({games}) {
 	}
 
 	return (
-		<Form inverted>
-			<Form.Field>
-				<Input placeholder="Játék hozzáadása..." onChange={handleInputChange}
-				       value={searchInput}
-				       action={<Button onClick={handleSearch} content="Keresés" color="green" icon="search"
-				                       loading={loading} disabled={loading}/>}/>
-			</Form.Field>
-			{results ?
-				<>
-					<Responsive minWidth={Responsive.onlyTablet.minWidth}>
-						<Card.Group relaxed="very" columns="equal" padded="vertically" centered
-						            itemsPerRow={window.screen.width > 800 ? 4 : 1}
-						            style={{backgroundColor: '#6f6f6f', borderRadius: '21px'}}>
-							{results.map(r =>
-								<AddGame key={r.game_id} game={r} alreadyAdded={contains(r.game_id)} wish={true}/>
-							)}
-						</Card.Group>
-					</Responsive>
-
-					<Responsive as={Grid} {...Responsive.onlyMobile}>
-						<Grid columns="equal" style={{backgroundColor: '#6f6f6f', borderRadius: '21px'}}>
-							{results.map(r =>
-								<AddGameMobile key={r.game_id} game={r} alreadyAdded={contains(r.game_id)}/>
-							)}
-						</Grid>
-					</Responsive>
-				</>
-				: null}
-		</Form>)
+		// <Form inverted>
+		// 	<Form.Field>
+		// 		<Input placeholder="Játék hozzáadása..." onChange={handleInputChange}
+		// 		       value={searchInput}
+		// 		       action={<Button onClick={handleSearch} content="Keresés" color="green" icon="search"
+		// 		                       loading={loading} disabled={loading}/>}/>
+		// 	</Form.Field>
+		// 	{results ?
+		// 		<>
+		// 			<Responsive minWidth={Responsive.onlyTablet.minWidth}>
+		// 				<Card.Group relaxed="very" columns="equal" padded="vertically" centered
+		// 				            itemsPerRow={window.screen.width > 800 ? 4 : 1}
+		// 				            style={{backgroundColor: '#6f6f6f', borderRadius: '21px'}}>
+		// 					{results.map(r =>
+		// 						<AddGame key={r.game_id} game={r} alreadyAdded={contains(r.game_id)} wish={true}/>
+		// 					)}
+		// 				</Card.Group>
+		// 			</Responsive>
+		//
+		// 			<Responsive as={Grid} {...Responsive.onlyMobile}>
+		// 				<Grid columns="equal" style={{backgroundColor: '#6f6f6f', borderRadius: '21px'}}>
+		// 					{results.map(r =>
+		// 						<AddGameMobile key={r.game_id} game={r} alreadyAdded={contains(r.game_id)}/>
+		// 					)}
+		// 				</Grid>
+		// 			</Responsive>
+		// 		</>
+		// 		: null}
+		// </Form>
+		<div>NewWishGame</div>
+	)
 }

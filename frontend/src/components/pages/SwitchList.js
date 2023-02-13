@@ -1,5 +1,4 @@
 import React, {useCallback, useEffect, useState} from "react";
-import {Card, Grid, Input, Responsive} from "semantic-ui-react";
 import {useDispatch, useSelector} from "react-redux";
 import {getGames} from "../../store/game/selectors";
 import {getGameList, initGameList} from "../../store/game/actions";
@@ -63,40 +62,41 @@ export function SwitchList() {
 	}
 
 	return (
-		<Grid columns="equal" className="gridFull">
-			<Grid.Row>
-				<Grid.Column>
-					<Input placeholder='Játék címe...' fluid onChange={handleTitleSearch}/>
-				</Grid.Column>
-
-			</Grid.Row>
-
-			<Grid.Row>
-				<Grid.Column>
-					<NewSwitchGame games={games}/>
-				</Grid.Column>
-			</Grid.Row>
-
-			<Grid.Row>
-				<Scrollable func={handleScroll}>
-					<Responsive minWidth={Responsive.onlyComputer.minWidth}>
-						<Card.Group relaxed="very" columns="equal" padded="vertically" centered
-						            itemsPerRow={window.screen.width > 800 ? 4 : 1} className="gridFull">
-							{games ? games.map(game => (
-								<SwitchGame key={game.game_id} game={game} filter={filter}/>
-							)) : null}
-						</Card.Group>
-					</Responsive>
-
-					<Responsive as={Grid} maxWidth={Responsive.onlyTablet.maxWidth}>
-						<Grid columns="equal">
-							{games ? games.map(game => (
-								<SwitchGameMobile key={game.game_id} game={game} filter={filter}/>
-							)) : null}
-						</Grid>
-					</Responsive>
-				</Scrollable>
-			</Grid.Row>
-		</Grid>
+	// 	<Grid columns="equal" className="gridFull">
+	// 		<Grid.Row>
+	// 			<Grid.Column>
+	// 				<Input placeholder='Játék címe...' fluid onChange={handleTitleSearch}/>
+	// 			</Grid.Column>
+	//
+	// 		</Grid.Row>
+	//
+	// 		<Grid.Row>
+	// 			<Grid.Column>
+	// 				<NewSwitchGame games={games}/>
+	// 			</Grid.Column>
+	// 		</Grid.Row>
+	//
+	// 		<Grid.Row>
+	// 			<Scrollable func={handleScroll}>
+	// 				<Responsive minWidth={Responsive.onlyComputer.minWidth}>
+	// 					<Card.Group relaxed="very" columns="equal" padded="vertically" centered
+	// 					            itemsPerRow={window.screen.width > 800 ? 4 : 1} className="gridFull">
+	// 						{games ? games.map(game => (
+	// 							<SwitchGame key={game.game_id} game={game} filter={filter}/>
+	// 						)) : null}
+	// 					</Card.Group>
+	// 				</Responsive>
+	//
+	// 				<Responsive as={Grid} maxWidth={Responsive.onlyTablet.maxWidth}>
+	// 					<Grid columns="equal">
+	// 						{games ? games.map(game => (
+	// 							<SwitchGameMobile key={game.game_id} game={game} filter={filter}/>
+	// 						)) : null}
+	// 					</Grid>
+	// 				</Responsive>
+	// 			</Scrollable>
+	// 		</Grid.Row>
+	// 	</Grid>
+		<div>SwitchList</div>
 	)
 }

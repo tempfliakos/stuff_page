@@ -1,5 +1,4 @@
 import React from "react";
-import {Button, Grid, Icon, Image} from "semantic-ui-react";
 import {useDispatch} from "react-redux";
 import {removeMovie, update} from "../../../store/movie/actions";
 import {getYear} from "../../../utils/dateUtil"
@@ -54,31 +53,31 @@ export function MovieMobile({movie, filter}) {
         return Date.parse(movie.release_date) > new Date().getTime();
     }
 
-    return (
-        <>
-            {
-                isShown() ?
-                    <Grid.Row>
-                        <Grid.Column className={styles.movieMobile}>
-                            <Image src={picture()} size='small' verticalAlign='middle'/>{' '}
-                            <span className={styles.movieMobileText}>
-                                {movie.title + '(' + getYear(movie.release_date) + ')'}
-                            </span>
+    return <div>MovieMobile</div>
+        // <>
+        //     {
+        //         isShown() ?
+        //             <Grid.Row>
+        //                 <Grid.Column className={styles.movieMobile}>
+        //                     <Image src={picture()} size='small' verticalAlign='middle'/>{' '}
+        //                     <span className={styles.movieMobileText}>
+        //                         {movie.title + '(' + getYear(movie.release_date) + ')'}
+        //                     </span>
+        //
+        //                     <span>
+        //                         {releaseInTheFuture() ? <Icon name="clock" color="yellow"/> : null}
+        //                         <Icon name="download" color={movie.owned ? "red" : "grey"} onClick={handleOwned}/>
+        //                         <Icon name="eye" color={movie.seen ? "green" : "grey"} onClick={handleSeen}/>
+        //                         <Icon name="paw" color={movie.liza ? "black" : "grey"} onClick={handleLiza}/>
+        //                     </span>
+        //                     <Button color="red" size="tiny" circular icon="trash" floated="right"
+        //                             className={styles.movieMobileTorles} onClick={handleDelete} disabled={movie.seen}/>
+        //                 </Grid.Column>
+        //             </Grid.Row>
+        //             : null}
+        // </>
 
-                            <span>
-                                {releaseInTheFuture() ? <Icon name="clock" color="yellow"/> : null}
-                                <Icon name="download" color={movie.owned ? "red" : "grey"} onClick={handleOwned}/>
-                                <Icon name="eye" color={movie.seen ? "green" : "grey"} onClick={handleSeen}/>
-                                <Icon name="paw" color={movie.liza ? "black" : "grey"} onClick={handleLiza}/>
-                            </span>
-                            <Button color="red" size="tiny" circular icon="trash" floated="right"
-                                    className={styles.movieMobileTorles} onClick={handleDelete} disabled={movie.seen}/>
-                        </Grid.Column>
-                    </Grid.Row>
-                    : null}
-        </>
 
-    )
 
 
 }

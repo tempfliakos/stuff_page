@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import {Card, Grid, Icon, Responsive} from "semantic-ui-react";
 import {makeGetRequest} from "../../services/axios";
 import {Movie} from "../views/movie/Movie";
 import {MovieMobile} from "../views/movie/MovieMobile";
@@ -53,47 +52,48 @@ export function Options() {
 	}
 
 	return (
-		<Grid columns="equal">
-			<Grid.Row>
-				<Grid.Column>
-					<a onClick={handleAppleDownload}
-					   href="https://drive.google.com/u/0/uc?id=1zrNZCnHI7_zorussVvAWrFmYdRw7LvsF&export=download">
-						<Icon name="apple" size="massive" color="black"/>
-					</a>
-				</Grid.Column>
-				<Grid.Column>
-					<a onClick={handleAndroidDownload}
-					   href="https://drive.google.com/u/0/uc?id=1zrNZCnHI7_zorussVvAWrFmYdRw7LvsF&export=download">
-						<Icon name="android" size="massive" color="green"/>
-					</a>
-				</Grid.Column>
-				<Grid.Column>
-					<Icon name="play" size="massive" color="green" onClick={handleUpdateJob}/>
-				</Grid.Column>
-			</Grid.Row>
-
-			{
-				movieList ?
-					<Grid.Row>
-						<Responsive minWidth={Responsive.onlyTablet.minWidth}>
-							<Card.Group relaxed="very" columns="equal" padded="vertically" centered
-							            itemsPerRow={window.screen.width > 800 ? 4 : 1} className="gridFull">
-								{movieList.map(movie =>
-									<Movie key={movie.movie_id} movie={movie} filter={defaultFilter}/>
-								)}
-							</Card.Group>
-						</Responsive>
-
-						<Responsive as={Grid} {...Responsive.onlyMobile}>
-							<Grid columns="equal">
-								{movieList.map(movie =>
-									<MovieMobile key={movie.movie_id} movie={movie} filter={defaultFilter}/>
-								)}
-							</Grid>
-						</Responsive>
-					</Grid.Row>
-					: null
-			}
-		</Grid>
+		// <Grid columns="equal">
+		// 	<Grid.Row>
+		// 		<Grid.Column>
+		// 			<a onClick={handleAppleDownload}
+		// 			   href="https://drive.google.com/u/0/uc?id=1zrNZCnHI7_zorussVvAWrFmYdRw7LvsF&export=download">
+		// 				<Icon name="apple" size="massive" color="black"/>
+		// 			</a>
+		// 		</Grid.Column>
+		// 		<Grid.Column>
+		// 			<a onClick={handleAndroidDownload}
+		// 			   href="https://drive.google.com/u/0/uc?id=1zrNZCnHI7_zorussVvAWrFmYdRw7LvsF&export=download">
+		// 				<Icon name="android" size="massive" color="green"/>
+		// 			</a>
+		// 		</Grid.Column>
+		// 		<Grid.Column>
+		// 			<Icon name="play" size="massive" color="green" onClick={handleUpdateJob}/>
+		// 		</Grid.Column>
+		// 	</Grid.Row>
+		//
+		// 	{
+		// 		movieList ?
+		// 			<Grid.Row>
+		// 				<Responsive minWidth={Responsive.onlyTablet.minWidth}>
+		// 					<Card.Group relaxed="very" columns="equal" padded="vertically" centered
+		// 					            itemsPerRow={window.screen.width > 800 ? 4 : 1} className="gridFull">
+		// 						{movieList.map(movie =>
+		// 							<Movie key={movie.movie_id} movie={movie} filter={defaultFilter}/>
+		// 						)}
+		// 					</Card.Group>
+		// 				</Responsive>
+		//
+		// 				<Responsive as={Grid} {...Responsive.onlyMobile}>
+		// 					<Grid columns="equal">
+		// 						{movieList.map(movie =>
+		// 							<MovieMobile key={movie.movie_id} movie={movie} filter={defaultFilter}/>
+		// 						)}
+		// 					</Grid>
+		// 				</Responsive>
+		// 			</Grid.Row>
+		// 			: null
+		// 	}
+		// </Grid>
+		<div>Options</div>
 	)
 }

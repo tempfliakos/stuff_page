@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from "react";
-import {Button, Grid, Input, Image, Form, Label} from "semantic-ui-react";
 import logo from "../../resources/mi.jpg";
 import Cookies from "universal-cookie/lib";
-import {RadioButton} from "../views/RadioButton";
+import {RadioButton} from "../components/RadioButton";
 
 export function Birthday() {
 	const [secret1, setSecret1] = useState("");
@@ -79,151 +78,152 @@ export function Birthday() {
 	}
 
 	return (
-		<Grid columns="equal" className="gridFull">
-			<Grid.Row centered>
-				<Image src={logo}/>
-			</Grid.Row>
-			<Grid.Row>
-				<Grid.Column>
-					<Input placeholder='1. Titkos kód' fluid onChange={handleSecret1Change}/>
-				</Grid.Column>
-			</Grid.Row>
-			<Grid.Row>
-				<Grid.Column>
-					<Input placeholder='2. Titkos kód' fluid onChange={handleSecret2Change}/>
-				</Grid.Column>
-			</Grid.Row>
-			<Grid.Row>
-				<Grid.Column>
-					<Input placeholder='3. Titkos kód' fluid onChange={handleSecret3Change}/>
-				</Grid.Column>
-			</Grid.Row>
-			<Grid.Row>
-				<Grid.Column>
-					<Input placeholder='4. Titkos kód' fluid onChange={handleSecret4Change}/>
-				</Grid.Column>
-			</Grid.Row>
-			{
-				check() ? <Grid.Row>
-					<Form>
-						<Grid columns={"equal"}>
-							<Grid.Row>
-								<Label content="Ákos kedvenc videójátéka?"/>
-							</Grid.Row>
-							<Grid.Row>
-								<Grid.Column>
-									<RadioButton handleChange={handle1Change} label="God of War" value={'1'}
-									             selectedinGroup={elsoKerdes}/>
-								</Grid.Column>
-								<Grid.Column>
-									<RadioButton handleChange={handle1Change} label="Assassin's Creed" value={'1'}
-									             selectedinGroup={elsoKerdes}/>
-								</Grid.Column>
-								<Grid.Column>
-									<RadioButton handleChange={handle1Change} label="Dark Souls" value={'1'}
-									             selectedinGroup={elsoKerdes}/>
-								</Grid.Column>
-								<Grid.Column>
-									<RadioButton handleChange={handle1Change} label="Egyéb válasz" value={'1'}
-									             selectedinGroup={elsoKerdes}/>
-								</Grid.Column>
-							</Grid.Row>
-
-							<Grid.Row>
-								<Label content="Lizus és Ákos átlagául vett kedvenc videójáték cím?"/>
-							</Grid.Row>
-							<Grid.Row>
-								<Grid.Column>
-									<RadioButton handleChange={handle2Change} label="God of War" value={'2'}
-									             selectedinGroup={masodikKerdes}/>
-								</Grid.Column>
-								<Grid.Column>
-									<RadioButton handleChange={handle2Change} label="Assassin's Creed" value={'2'}
-									             selectedinGroup={masodikKerdes}/>
-								</Grid.Column>
-								<Grid.Column>
-									<RadioButton handleChange={handle2Change} label="Crash Bandicoot" value={'2'}
-									             selectedinGroup={masodikKerdes}/>
-								</Grid.Column>
-								<Grid.Column>
-									<RadioButton handleChange={handle2Change} label="Alan Wake" value={'2'}
-									             selectedinGroup={masodikKerdes}/>
-								</Grid.Column>
-							</Grid.Row>
-
-							<Grid.Row>
-								<Label content="A kapcsolat legjobb momentuma?"/>
-							</Grid.Row>
-							<Grid.Row>
-								<Grid.Column>
-									<RadioButton handleChange={handle3Change} label="Első randi" value={'3'}
-									             selectedinGroup={harmadikKerdes}/>
-								</Grid.Column>
-								<Grid.Column>
-									<RadioButton handleChange={handle3Change} label="Első csók" value={'3'}
-									             selectedinGroup={harmadikKerdes}/>
-								</Grid.Column>
-								<Grid.Column>
-									<RadioButton handleChange={handle3Change} label="Visegrád" value={'3'}
-									             selectedinGroup={harmadikKerdes}/>
-								</Grid.Column>
-								<Grid.Column>
-									<RadioButton handleChange={handle3Change} label="Ákos odaköltözése" value={'3'}
-									             selectedinGroup={harmadikKerdes}/>
-								</Grid.Column>
-							</Grid.Row>
-
-							<Grid.Row>
-								<Label content="A tökéletes nyaralás?"/>
-							</Grid.Row>
-							<Grid.Row>
-								<Grid.Column>
-									<RadioButton handleChange={handle4Change} label="Visegrád" value={'4'}
-									             selectedinGroup={negyedikKerdes}/>
-								</Grid.Column>
-								<Grid.Column>
-									<RadioButton handleChange={handle4Change} label="Otthon pihizni egy hetet"
-									             value={'4'}
-									             selectedinGroup={negyedikKerdes}/>
-								</Grid.Column>
-								<Grid.Column>
-									<RadioButton handleChange={handle4Change} label="London és Koppenhága" value={'4'}
-									             selectedinGroup={negyedikKerdes}/>
-								</Grid.Column>
-								<Grid.Column>
-									<RadioButton handleChange={handle4Change} label="1 hét Bugyi/Győr" value={'4'}
-									             selectedinGroup={negyedikKerdes}/>
-								</Grid.Column>
-							</Grid.Row>
-
-							<Grid.Row>
-								<Label content="Ákos leendő kutyájának a neve?"/>
-							</Grid.Row>
-							<Grid.Row>
-								<Grid.Column>
-									<RadioButton handleChange={handle5Change} label="Voldemort" value={'5'}
-									             selectedinGroup={otodikKerdes}/>
-								</Grid.Column>
-								<Grid.Column>
-									<RadioButton handleChange={handle5Change} label="Invito" value={'5'}
-									             selectedinGroup={otodikKerdes}/>
-								</Grid.Column>
-								<Grid.Column>
-									<RadioButton handleChange={handle5Change} label="Tabulátor" value={'5'}
-									             selectedinGroup={otodikKerdes}/>
-								</Grid.Column>
-								<Grid.Column>
-									<RadioButton handleChange={handle5Change} label="Úgyse lesz kutya" value={'5'}
-									             selectedinGroup={otodikKerdes}/>
-								</Grid.Column>
-							</Grid.Row>
-						</Grid>
-					</Form>
-					<Button content={button} onClick={checkTest}/>
-				</Grid.Row> : null
-			}
-
-
-		</Grid>
+		// <Grid columns="equal" className="gridFull">
+		// 	<Grid.Row centered>
+		// 		<Image src={logo}/>
+		// 	</Grid.Row>
+		// 	<Grid.Row>
+		// 		<Grid.Column>
+		// 			<Input placeholder='1. Titkos kód' fluid onChange={handleSecret1Change}/>
+		// 		</Grid.Column>
+		// 	</Grid.Row>
+		// 	<Grid.Row>
+		// 		<Grid.Column>
+		// 			<Input placeholder='2. Titkos kód' fluid onChange={handleSecret2Change}/>
+		// 		</Grid.Column>
+		// 	</Grid.Row>
+		// 	<Grid.Row>
+		// 		<Grid.Column>
+		// 			<Input placeholder='3. Titkos kód' fluid onChange={handleSecret3Change}/>
+		// 		</Grid.Column>
+		// 	</Grid.Row>
+		// 	<Grid.Row>
+		// 		<Grid.Column>
+		// 			<Input placeholder='4. Titkos kód' fluid onChange={handleSecret4Change}/>
+		// 		</Grid.Column>
+		// 	</Grid.Row>
+		// 	{
+		// 		check() ? <Grid.Row>
+		// 			<Form>
+		// 				<Grid columns={"equal"}>
+		// 					<Grid.Row>
+		// 						<Label content="Ákos kedvenc videójátéka?"/>
+		// 					</Grid.Row>
+		// 					<Grid.Row>
+		// 						<Grid.Column>
+		// 							<RadioButton handleChange={handle1Change} label="God of War" value={'1'}
+		// 							             selectedinGroup={elsoKerdes}/>
+		// 						</Grid.Column>
+		// 						<Grid.Column>
+		// 							<RadioButton handleChange={handle1Change} label="Assassin's Creed" value={'1'}
+		// 							             selectedinGroup={elsoKerdes}/>
+		// 						</Grid.Column>
+		// 						<Grid.Column>
+		// 							<RadioButton handleChange={handle1Change} label="Dark Souls" value={'1'}
+		// 							             selectedinGroup={elsoKerdes}/>
+		// 						</Grid.Column>
+		// 						<Grid.Column>
+		// 							<RadioButton handleChange={handle1Change} label="Egyéb válasz" value={'1'}
+		// 							             selectedinGroup={elsoKerdes}/>
+		// 						</Grid.Column>
+		// 					</Grid.Row>
+		//
+		// 					<Grid.Row>
+		// 						<Label content="Lizus és Ákos átlagául vett kedvenc videójáték cím?"/>
+		// 					</Grid.Row>
+		// 					<Grid.Row>
+		// 						<Grid.Column>
+		// 							<RadioButton handleChange={handle2Change} label="God of War" value={'2'}
+		// 							             selectedinGroup={masodikKerdes}/>
+		// 						</Grid.Column>
+		// 						<Grid.Column>
+		// 							<RadioButton handleChange={handle2Change} label="Assassin's Creed" value={'2'}
+		// 							             selectedinGroup={masodikKerdes}/>
+		// 						</Grid.Column>
+		// 						<Grid.Column>
+		// 							<RadioButton handleChange={handle2Change} label="Crash Bandicoot" value={'2'}
+		// 							             selectedinGroup={masodikKerdes}/>
+		// 						</Grid.Column>
+		// 						<Grid.Column>
+		// 							<RadioButton handleChange={handle2Change} label="Alan Wake" value={'2'}
+		// 							             selectedinGroup={masodikKerdes}/>
+		// 						</Grid.Column>
+		// 					</Grid.Row>
+		//
+		// 					<Grid.Row>
+		// 						<Label content="A kapcsolat legjobb momentuma?"/>
+		// 					</Grid.Row>
+		// 					<Grid.Row>
+		// 						<Grid.Column>
+		// 							<RadioButton handleChange={handle3Change} label="Első randi" value={'3'}
+		// 							             selectedinGroup={harmadikKerdes}/>
+		// 						</Grid.Column>
+		// 						<Grid.Column>
+		// 							<RadioButton handleChange={handle3Change} label="Első csók" value={'3'}
+		// 							             selectedinGroup={harmadikKerdes}/>
+		// 						</Grid.Column>
+		// 						<Grid.Column>
+		// 							<RadioButton handleChange={handle3Change} label="Visegrád" value={'3'}
+		// 							             selectedinGroup={harmadikKerdes}/>
+		// 						</Grid.Column>
+		// 						<Grid.Column>
+		// 							<RadioButton handleChange={handle3Change} label="Ákos odaköltözése" value={'3'}
+		// 							             selectedinGroup={harmadikKerdes}/>
+		// 						</Grid.Column>
+		// 					</Grid.Row>
+		//
+		// 					<Grid.Row>
+		// 						<Label content="A tökéletes nyaralás?"/>
+		// 					</Grid.Row>
+		// 					<Grid.Row>
+		// 						<Grid.Column>
+		// 							<RadioButton handleChange={handle4Change} label="Visegrád" value={'4'}
+		// 							             selectedinGroup={negyedikKerdes}/>
+		// 						</Grid.Column>
+		// 						<Grid.Column>
+		// 							<RadioButton handleChange={handle4Change} label="Otthon pihizni egy hetet"
+		// 							             value={'4'}
+		// 							             selectedinGroup={negyedikKerdes}/>
+		// 						</Grid.Column>
+		// 						<Grid.Column>
+		// 							<RadioButton handleChange={handle4Change} label="London és Koppenhága" value={'4'}
+		// 							             selectedinGroup={negyedikKerdes}/>
+		// 						</Grid.Column>
+		// 						<Grid.Column>
+		// 							<RadioButton handleChange={handle4Change} label="1 hét Bugyi/Győr" value={'4'}
+		// 							             selectedinGroup={negyedikKerdes}/>
+		// 						</Grid.Column>
+		// 					</Grid.Row>
+		//
+		// 					<Grid.Row>
+		// 						<Label content="Ákos leendő kutyájának a neve?"/>
+		// 					</Grid.Row>
+		// 					<Grid.Row>
+		// 						<Grid.Column>
+		// 							<RadioButton handleChange={handle5Change} label="Voldemort" value={'5'}
+		// 							             selectedinGroup={otodikKerdes}/>
+		// 						</Grid.Column>
+		// 						<Grid.Column>
+		// 							<RadioButton handleChange={handle5Change} label="Invito" value={'5'}
+		// 							             selectedinGroup={otodikKerdes}/>
+		// 						</Grid.Column>
+		// 						<Grid.Column>
+		// 							<RadioButton handleChange={handle5Change} label="Tabulátor" value={'5'}
+		// 							             selectedinGroup={otodikKerdes}/>
+		// 						</Grid.Column>
+		// 						<Grid.Column>
+		// 							<RadioButton handleChange={handle5Change} label="Úgyse lesz kutya" value={'5'}
+		// 							             selectedinGroup={otodikKerdes}/>
+		// 						</Grid.Column>
+		// 					</Grid.Row>
+		// 				</Grid>
+		// 			</Form>
+		// 			<Button content={button} onClick={checkTest}/>
+		// 		</Grid.Row> : null
+		// 	}
+		//
+		//
+		// </Grid>
+		<div>Birthday</div>
 	)
 }

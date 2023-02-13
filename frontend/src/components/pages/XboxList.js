@@ -1,5 +1,4 @@
 import React, {useCallback, useEffect, useState} from "react";
-import {Card, Checkbox, Grid, Input, Responsive} from "semantic-ui-react";
 import {NewXboxGame} from "../new/NewXboxGame";
 import {useDispatch, useSelector} from "react-redux";
 import {getGameList, getStarlist, initGameList} from "../../store/game/actions";
@@ -81,55 +80,56 @@ export function XboxList() {
 	}
 
 	return (
-		<Grid columns="equal" className="gridFull">
-			<Grid.Row>
-				<Grid.Column>
-					<Input placeholder='Játék címe...' fluid onChange={handleTitleSearch}/>
-				</Grid.Column>
-			</Grid.Row>
-
-			<Grid.Row>
-				<Grid.Column>
-					<Checkbox toggle onChange={handleDoneToggle}
-					          label={{children: doneFilter ? "Kész játékok megjelenítve" : "Szűrés a kész játékokra"}}
-					          className={styles.toggleButton}/>
-				</Grid.Column>
-			</Grid.Row>
-
-			<Grid.Row>
-				<Grid.Column>
-					<NewXboxGame games={games}/>
-				</Grid.Column>
-			</Grid.Row>
-
-			<Grid.Row>
-				<Grid.Column className={styles.overflow}>
-					{stars ? stars.map(game => (
-						<StarGame key={game.game_id} game={game}/>
-					)) : null}
-				</Grid.Column>
-			</Grid.Row>
-
-			<Grid.Row>
-				<Scrollable func={handleScroll}>
-					<Responsive minWidth={Responsive.onlyComputer.minWidth}>
-						<Card.Group relaxed="very" columns="equal" padded="vertically" centered
-						            itemsPerRow={window.screen.width > 800 ? 4 : 1} className="gridFull">
-							{games ? games.map(game => (
-								<XboxGame key={game.game_id} game={game} filter={filter}/>
-							)) : null}
-						</Card.Group>
-					</Responsive>
-
-					<Responsive as={Grid} maxWidth={Responsive.onlyTablet.maxWidth}>
-						<Grid columns="equal">
-							{games ? games.map(game => (
-								<XboxGameMobile key={game.game_id} game={game} filter={filter}/>
-							)) : null}
-						</Grid>
-					</Responsive>
-				</Scrollable>
-			</Grid.Row>
-		</Grid>
+		// <Grid columns="equal" className="gridFull">
+		// 	<Grid.Row>
+		// 		<Grid.Column>
+		// 			<Input placeholder='Játék címe...' fluid onChange={handleTitleSearch}/>
+		// 		</Grid.Column>
+		// 	</Grid.Row>
+		//
+		// 	<Grid.Row>
+		// 		<Grid.Column>
+		// 			<Checkbox toggle onChange={handleDoneToggle}
+		// 			          label={{children: doneFilter ? "Kész játékok megjelenítve" : "Szűrés a kész játékokra"}}
+		// 			          className={styles.toggleButton}/>
+		// 		</Grid.Column>
+		// 	</Grid.Row>
+		//
+		// 	<Grid.Row>
+		// 		<Grid.Column>
+		// 			<NewXboxGame games={games}/>
+		// 		</Grid.Column>
+		// 	</Grid.Row>
+		//
+		// 	<Grid.Row>
+		// 		<Grid.Column className={styles.overflow}>
+		// 			{stars ? stars.map(game => (
+		// 				<StarGame key={game.game_id} game={game}/>
+		// 			)) : null}
+		// 		</Grid.Column>
+		// 	</Grid.Row>
+		//
+		// 	<Grid.Row>
+		// 		<Scrollable func={handleScroll}>
+		// 			<Responsive minWidth={Responsive.onlyComputer.minWidth}>
+		// 				<Card.Group relaxed="very" columns="equal" padded="vertically" centered
+		// 				            itemsPerRow={window.screen.width > 800 ? 4 : 1} className="gridFull">
+		// 					{games ? games.map(game => (
+		// 						<XboxGame key={game.game_id} game={game} filter={filter}/>
+		// 					)) : null}
+		// 				</Card.Group>
+		// 			</Responsive>
+		//
+		// 			<Responsive as={Grid} maxWidth={Responsive.onlyTablet.maxWidth}>
+		// 				<Grid columns="equal">
+		// 					{games ? games.map(game => (
+		// 						<XboxGameMobile key={game.game_id} game={game} filter={filter}/>
+		// 					)) : null}
+		// 				</Grid>
+		// 			</Responsive>
+		// 		</Scrollable>
+		// 	</Grid.Row>
+		// </Grid>
+		<div>XboxList</div>
 	)
 }
