@@ -18,7 +18,7 @@ function App() {
 	const history = useHistory();
 	const [loggedIn, setLoggedIn] = useState(false);
 
-	const children = <div>App</div>
+	const children = <div class="wrapper">App</div>
 		// <Grid container columns="equal">
 	// 	<Switch>
 	// 		<Route exact path="/">
@@ -69,11 +69,11 @@ function App() {
 	;
 
 	return (
-		<>
+		<div>
 			{loggedIn ?
 				<Navigation children={children}/>
 				: <Login logged={setLoggedIn}/>}
-		</>
+		</div>
 	);
 }
 

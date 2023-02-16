@@ -1,0 +1,33 @@
+input {
+  border-radius: 20px;
+  padding: 1rem 1.25rem;
+  border: 3px solid $lightgrey;
+  margin: 10px;
+  background-color: transparent;
+
+  &:focus-visible {
+    outline: none;
+    border: 3px solid $lightgreen;
+  }
+}
+
+::placeholder {
+  color: $white;
+  opacity: 1;
+}
+
+button {
+  border-radius: 20px;
+  padding: 1rem 1.25rem;
+  border: none;
+  width: 100%;
+  margin: 10px;
+
+  &:hover {
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: transparent;
+    color: $white;
+    box-shadow: 0 0 10px 10px $darkgreen;
+  }
+}

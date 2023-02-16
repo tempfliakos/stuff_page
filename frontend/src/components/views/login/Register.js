@@ -3,8 +3,9 @@ import {RegisterModal} from "../../modals/RegisterModal";
 
 export function Register() {
     const trigger = (
-        <button>Regisztráció</button>
+        <button class="bg-light-grey c-white">Regisztráció</button>
     )
 
-    return <RegisterModal trigger={trigger}/>;
+    // return <RegisterModal trigger={trigger}/>;
+    return trigger;
 }

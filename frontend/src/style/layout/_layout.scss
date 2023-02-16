@@ -1,0 +1,28 @@
+body {
+  background-color: $lightblack;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-areas:
+    'header header header header header header'
+    'filter filter main main main main'
+    'main main main main main main';
+}
+
+.d-grid {
+  display: grid !important;
+}
+
+.d-flex {
+  display: flex !important;
+}
+
+.align-items-center {
+  align-items: center !important;
+}
+
+.justify-content-center {
+  justify-content: center !important;
+}
+
