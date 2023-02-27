@@ -4,6 +4,7 @@ input {
   border: 3px solid $lightgrey;
   margin: 10px;
   background-color: transparent;
+  transition: 800ms;
 
   &:focus-visible {
     outline: none;
@@ -22,6 +23,7 @@ button {
   border: none;
   width: 100%;
   margin: 10px;
+  transition: 800ms;
 
   &:hover {
     cursor: pointer;

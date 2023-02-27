@@ -71,7 +71,8 @@ function App() {
 	return (
 		<div>
 			{loggedIn ?
-				<Navigation children={children}/>
+				<div>Asd</div>
+				// <Navigation children={children}/>
 				: <Login logged={setLoggedIn}/>}
 		</div>
 	);

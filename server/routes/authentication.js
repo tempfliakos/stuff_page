@@ -14,7 +14,6 @@ router
 			if (!user) {
 				res.sendStatus(401);
 			}
-
 			if (bcrypt.compareSync(password, user.password)) {
 				const token = jwt.sign({"id": user.id, email: email.toLowerCase()}, process.env.SECRET, {algorithm: 'HS256'});
 				res.status(200).send({
