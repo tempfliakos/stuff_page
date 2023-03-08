@@ -18,41 +18,38 @@ function App() {
 	const history = useHistory();
 	const [loggedIn, setLoggedIn] = useState(false);
 
-	const children = <div class="wrapper">App</div>
-		// <Grid container columns="equal">
-	// 	<Switch>
-	// 		<Route exact path="/">
-	// 			<Dashboard/>
-	// 		</Route>
-	// 		<Route path="/movies">
-	// 			<MovieList/>
-	// 		</Route>
-	// 		<Route path="/books">
-	// 			<BookList/>
-	// 		</Route>
-	// 		<Route path="/xbox">
-	// 			<XboxList/>
-	// 		</Route>
-	// 		<Route path="/playstation">
-	// 			<PsList/>
-	// 		</Route>
-	// 		<Route path="/switch">
-	// 			<SwitchList/>
-	// 		</Route>
-	// 		<Route path="/wishlist">
-	// 			<Wishlist/>
-	// 		</Route>
-	// 		{/*            <Route path="/birthday">
-    //             <Birthday/>
-    //         </Route>*/}
-	// 		<Route path="/options">
-	// 			<Options/>
-	// 		</Route>
-	// 		<Route path="/logout">
-	// 			<Logout logged={setLoggedIn}/>
-	// 		</Route>
-	// 	</Switch>
-	// </Grid>
+	const children = <Switch>
+	 		<Route exact path="/">
+	 			<Dashboard/>
+	 		</Route>
+	 		<Route path="/movies">
+	 			<MovieList/>
+	 		</Route>
+	 		<Route path="/books">
+	 			<BookList/>
+	 		</Route>
+	 		<Route path="/xbox">
+	 			<XboxList/>
+	 		</Route>
+	 		<Route path="/playstation">
+	 			<PsList/>
+	 		</Route>
+	 		<Route path="/switch">
+	 			<SwitchList/>
+	 		</Route>
+	 		<Route path="/wishlist">
+	 			<Wishlist/>
+	 		</Route>
+	 		{/*            <Route path="/birthday">
+                 <Birthday/>
+             </Route>*/}
+	 		<Route path="/options">
+	 			<Options/>
+	 		</Route>
+	 		<Route path="/logout">
+	 			<Logout logged={setLoggedIn}/>
+	 		</Route>
+	 	</Switch>
 
 	useEffect(() => {
 			const cookies = new Cookies();
@@ -69,10 +66,9 @@ function App() {
 	;
 
 	return (
-		<div>
+		<div class="wrapper">
 			{loggedIn ?
-				<div>Asd</div>
-				// <Navigation children={children}/>
+				<Navigation children={children}/>
 				: <Login logged={setLoggedIn}/>}
 		</div>
 	);

@@ -24,11 +24,11 @@ export function RegisterForm({validateEmail, setIsRegister}) {
 	}
 
 	function handleRegister() {
-		setErrorMessage(null);
 		if(validateEmail(email)) {
 			if(password === rePassword) {
 				makePostRequest("auth/register", {email: email, password: password})
 					.then(res => {
+						setErrorMessage(null);
 						handleChangeToRegister();
 					}).catch(error => {
 					console.log(error);

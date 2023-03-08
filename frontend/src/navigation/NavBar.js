@@ -31,18 +31,11 @@ const NavBarMobile = ({children, leftItems, onPusherClick, onToggle, rightItems,
 );
 
 const NavBarDesktop = ({leftItems, rightItems}) => (
-    // <Menu fixed="top" inverted>
-    //     {_.map(leftItems, item => <Menu.Item {...item}/>)}
-    //     <Menu.Menu position="right">
-    //         {_.map(rightItems, item => <Menu.Item {...item}/>)}
-    //     </Menu.Menu>
-    // </Menu>
-    <div>NavBarDesktop</div>
-);
-
-const NavBarChildren = ({children}) => (
-    // <Container style={{marginTop: "5em"}}>{children}</Container>
-    <div>Children</div>
+    <nav class="d-grid">
+        <div class="d-flex">
+            {leftItems.map(item => item)}
+        </div>
+    </nav>
 );
 
 export class NavBar extends Component {
@@ -62,23 +55,25 @@ export class NavBar extends Component {
         const {visible} = this.state;
 
         return (
-            <div>
-                {/*<Responsive {...Responsive.onlyMobile}>*/}
-                {/*    <NavBarMobile*/}
-                {/*        leftItems={leftItems}*/}
-                {/*        onPusherClick={this.handlePusher}*/}
-                {/*        onToggle={this.handleToggle}*/}
-                {/*        rightItems={rightItems}*/}
-                {/*        visible={visible}*/}
-                {/*    >*/}
-                {/*        <NavBarChildren>{children}</NavBarChildren>*/}
-                {/*    </NavBarMobile>*/}
-                {/*</Responsive>*/}
-                {/*<Responsive minWidth={Responsive.onlyTablet.minWidth}>*/}
-                {/*    <NavBarDesktop leftItems={leftItems} rightItems={rightItems}/>*/}
-                {/*    <NavBarChildren>{children}</NavBarChildren>*/}
-                {/*</Responsive>*/}
-            </div>
+            <>
+                <NavBarDesktop leftItems={leftItems} rightItems={rightItems}/>
+                <div>{children}</div>
+            </>
+        /*<Responsive {...Responsive.onlyMobile}>
+            <NavBarMobile
+                leftItems={leftItems}
+                onPusherClick={this.handlePusher}
+                onToggle={this.handleToggle}
+                rightItems={rightItems}
+                visible={visible}
+            >
+                <NavBarChildren>{children}</NavBarChildren>
+            </NavBarMobile>
+        </Responsive>
+        <Responsive minWidth={Responsive.onlyTablet.minWidth}>
+            <NavBarDesktop leftItems={leftItems} rightItems={rightItems}/>
+            <NavBarChildren>{children}</NavBarChildren>
+        </Responsive>*/
         );
     }
 }

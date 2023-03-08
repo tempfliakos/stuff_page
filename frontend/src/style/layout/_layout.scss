@@ -5,9 +5,10 @@ body {
 .wrapper {
   display: grid;
   grid-template-areas:
-    'header header header header header header'
-    'filter filter main main main main'
-    'main main main main main main';
+    'header header header header header header header'
+    'filter filter filter filter filter filter filter'
+    'main main main main main main main';
+  grid-gap: 10px;
 }
 
 .d-grid {

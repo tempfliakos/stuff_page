@@ -1,0 +1,22 @@
+nav {
+  grid-area: header;
+  grid-gap: 10px;
+
+  .nav-item {
+    color: $white;
+    text-decoration: none;
+    width: 100%;
+    line-height: 3rem;
+
+    .nav-item-container {
+      background-color: $darkgrey;
+      border-radius: 10px;
+      margin-right: 1rem;
+
+      &.active, &:hover {
+        //background-color: $darkgreen;
+        box-shadow: 0 0 10px 10px $lightgreen;
+      }
+    }
+  }
+}
