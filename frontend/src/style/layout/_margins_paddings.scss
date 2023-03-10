@@ -1,4 +1,7 @@
 /** MARGINS **/
+.m-0 {
+  margin: 0 !important;
+}
 .m-1 {
   margin: 1rem !important;
 }
@@ -19,7 +22,31 @@
   margin-left: 1rem !important;
 }
 
+.m-2 {
+  margin: 2rem !important;
+}
+
+.mt-2 {
+  margin-top: 2rem !important;
+}
+
+.mr-2 {
+  margin-right: 2rem !important;
+}
+
+.mb-2 {
+  margin-bottom: 2rem !important;
+}
+
+.ml-2 {
+  margin-left: 2rem !important;
+}
+
 /** PADDINGS **/
+.p-0 {
+  padding: 0 !important;
+}
+
 .p-1 {
   padding: 1rem;
 }

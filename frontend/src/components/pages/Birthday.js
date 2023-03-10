@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import logo from "../../resources/mi.jpg";
 import Cookies from "universal-cookie/lib";
-import {RadioButton} from "../components/RadioButton";
+import {RadioButton} from "../abstracts/RadioButton";
 
 export function Birthday() {
 	const [secret1, setSecret1] = useState("");

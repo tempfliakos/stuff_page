@@ -6,6 +6,9 @@ import {getYear} from "../../../utils/dateUtil"
 import styles from '../../styles/movie.module.css';
 import defaultPicture from "../../../resources/default-movie-back.jpg";
 import {filterMovie} from "../../../utils/FilterUtil";
+import {Card} from "../../abstracts/Card";
+import {Button} from "../../abstracts/Button";
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
 
 export function Movie({movie, filter}) {
 
@@ -67,56 +70,64 @@ export function Movie({movie, filter}) {
         setOpenDelete(!openDelete);
     }
 
-    return <div>Movie</div>
-        // <>
-        //     {
-        //         filterMovie(movie, filter) ?
-        //             <Card as="a" className={styles.card}>
-        //
-        //                 <Image src={picture()} ui={false} wrapped/>
-        //                 <Card.Content className={styles.textContent}>
-        //                     <Card.Header>{movie.title + '(' + getYear(movie.release_date) + ')'}</Card.Header>
-        //                 </Card.Content>
-        //
-        //                 <Card.Content textAlign="center" className={styles.iconContent}>
-        //                     {releaseInTheFuture() ? <Icon name="clock" size="large" color="yellow"/> : null}
-        //                     <Icon name="download" size="large" color={movie.owned ? "red": "grey"} onClick={handleOwned}/>
-        //                     <Icon name="eye" size="large" color={movie.seen ? "green": "grey"} onClick={showOrHide}/>
-        //                     <Icon name="paw" size="large" color={movie.liza ? "black": "grey"} onClick={handleLiza}/>
-        //                 </Card.Content>
-        //
-        //                 <Card.Content className={styles.buttonContent}>
-        //                     <Button animated='vertical' color="red" size="tiny" className={styles.button}
-        //                             onClick={showOrHideDelete} fluid disabled={movie.seen}>
-        //                         <Button.Content hidden>Törlés</Button.Content>
-        //                         <Button.Content visible>
-        //                             <Icon name='trash'/>
-        //                         </Button.Content>
-        //                     </Button>
-        //                     <Confirm
-        //                         content="Biztosan törli?"
-        //                         open={openDelete}
-        //                         basic
-        //                         cancelButton='Mégse'
-        //                         confirmButton="Rendben"
-        //                         onCancel={showOrHideDelete}
-        //                         onConfirm={handleDelete}
-        //                         size="mini"
-        //                     />
-        //                 </Card.Content>
-        //                 <Confirm
-        //                     content="Törli a megtekintést?"
-        //                     open={open}
-        //                     basic
-        //                     cancelButton='Mégse'
-        //                     confirmButton="Rendben"
-        //                     onCancel={showOrHide}
-        //                     onConfirm={handleSeen}
-        //                     size="mini"
-        //                 />
-        //             </Card>
-        //             : null}
-        // </>
+    function getReleaseDate() {
+        return new Date(Date.parse(movie.release_date)).getFullYear();
+    }
+
+    let buttons = [
+      // <Button classNames="m-0" text="Törlés" icon="delete" onClick={handleDelete}/>,
+      // <Button classNames="m-0" text="Törlés" icon="delete" onClick={handleDelete}/>,
+      // <Button classNames="m-0" text="Törlés" icon="delete" onClick={handleDelete}/>,
+      // <Button classNames="m-0" text="Törlés" icon="delete" onClick={handleDelete}/>
+        <FileDownloadIcon/>
+    ];
+
+    return filterMovie(movie, filter) ?
+                     <Card id={movie.id} imgSrc={picture()} title={movie.title+" ("+getReleaseDate()+")"} cardBackContent={buttons}>
+
+                         {/*<Image src={picture()} ui={false} wrapped/>*/}
+                         {/*<Card.Content className={styles.textContent}>*/}
+                         {/*    <Card.Header>{movie.title + '(' + getYear(movie.release_date) + ')'}</Card.Header>*/}
+                         {/*</Card.Content>*/}
+
+                         {/*<Card.Content textAlign="center" className={styles.iconContent}>*/}
+                         {/*    {releaseInTheFuture() ? <Icon name="clock" size="large" color="yellow"/> : null}*/}
+                         {/*    <Icon name="download" size="large" color={movie.owned ? "red": "grey"} onClick={handleOwned}/>*/}
+                         {/*    <Icon name="eye" size="large" color={movie.seen ? "green": "grey"} onClick={showOrHide}/>*/}
+                         {/*    <Icon name="paw" size="large" color={movie.liza ? "black": "grey"} onClick={handleLiza}/>*/}
+                         {/*</Card.Content>*/}
+
+                         {/*<Card.Content className={styles.buttonContent}>*/}
+                         {/*    <Button animated='vertical' color="red" size="tiny" className={styles.button}*/}
+                         {/*            onClick={showOrHideDelete} fluid disabled={movie.seen}>*/}
+                         {/*        <Button.Content hidden>Törlés</Button.Content>*/}
+                         {/*        <Button.Content visible>*/}
+                         {/*            <Icon name='trash'/>*/}
+                         {/*        </Button.Content>*/}
+                         {/*    </Button>*/}
+                         {/*    <Confirm*/}
+                         {/*        content="Biztosan törli?"*/}
+                         {/*        open={openDelete}*/}
+                         {/*        basic*/}
+                         {/*        cancelButton='Mégse'*/}
+                         {/*        confirmButton="Rendben"*/}
+                         {/*        onCancel={showOrHideDelete}*/}
+                         {/*        onConfirm={handleDelete}*/}
+                         {/*        size="mini"*/}
+                         {/*    />*/}
+                         {/*</Card.Content>*/}
+                         {/*<Confirm*/}
+                         {/*    content="Törli a megtekintést?"*/}
+                         {/*    open={open}*/}
+                         {/*    basic*/}
+                         {/*    cancelButton='Mégse'*/}
+                         {/*    confirmButton="Rendben"*/}
+                         {/*    onCancel={showOrHide}*/}
+                         {/*    onConfirm={handleSeen}*/}
+                         {/*    size="mini"*/}
+                         {/*/>*/}
+                     </Card>
+                     : null
 
 
 }
