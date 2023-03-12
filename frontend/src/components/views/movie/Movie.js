@@ -79,7 +79,7 @@ export function Movie({movie, filter}) {
       // <Button classNames="m-0" text="Törlés" icon="delete" onClick={handleDelete}/>,
       // <Button classNames="m-0" text="Törlés" icon="delete" onClick={handleDelete}/>,
       // <Button classNames="m-0" text="Törlés" icon="delete" onClick={handleDelete}/>
-        <FileDownloadIcon/>
+      //   <FileDownloadIcon/>
     ];
 
     return filterMovie(movie, filter) ?
