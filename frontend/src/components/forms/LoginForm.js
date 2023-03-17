@@ -2,14 +2,14 @@ import React, {useState} from "react";
 import {trackPromise} from "react-promise-tracker";
 import {makePostRequest} from "../../services/axios";
 import Cookies from "universal-cookie";
-import {useHistory} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 export function LoginForm({logged, validateEmail, setIsRegister}) {
 
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [errorMessage, setErrorMessage] = useState(null);
-	const history = useHistory();
+	const navigate = useNavigate();
 	const landingPage = "/movies";
 
 	function handleLogin(event) {
@@ -23,7 +23,7 @@ export function LoginForm({logged, validateEmail, setIsRegister}) {
 						const cookies = new Cookies();
 						cookies.set('stuffPages', accessToken, {path: '/'});
 						logged(true);
-						history.push(landingPage);
+						navigate(landingPage);
 						setErrorMessage(null);
 					}).catch(error => {
 					setErrorMessage("Hiba történt");

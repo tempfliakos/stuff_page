@@ -1,5 +1,6 @@
 import _ from "lodash";
 import React, {Component} from "react";
+import {NavLink} from "./NavLink";
 
 const NavBarMobile = ({children, leftItems, onPusherClick, onToggle, rightItems, visible}) => (
 	<div>Navbar</div>
@@ -33,7 +34,9 @@ const NavBarMobile = ({children, leftItems, onPusherClick, onToggle, rightItems,
 const NavBarDesktop = ({leftItems, rightItems}) => (
 	<div class="grid-area-menu">
 		<div class="d-flex align-items-center justify-content-center">
-			{leftItems.map(item => item)}
+			{leftItems.map(item =>
+				<NavLink key={item.path} path={item.path} content={item.content}/>
+			)}
 		</div>
 	</div>
 );

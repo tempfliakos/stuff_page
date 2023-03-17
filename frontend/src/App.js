@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {MovieList} from "./components/pages/MovieList";
 import {Navigation} from "./navigation/Navigation";
-import {Route, Switch, useHistory} from "react-router-dom";
+import {Route, Routes, useNavigate} from "react-router-dom";
 import {Login} from "./components/pages/Login";
 import Cookies from 'universal-cookie';
 import {XboxList} from "./components/pages/XboxList";
@@ -15,53 +15,37 @@ import {BookList} from "./components/pages/BookList";
 
 function App() {
 
-	const history = useHistory();
+	const navigate = useNavigate();
 	const [loggedIn, setLoggedIn] = useState(false);
 
-	const children = <Switch>
-	 		<Route exact path="/">
-	 			<Dashboard/>
-	 		</Route>
-	 		<Route path="/movies">
-	 			<MovieList/>
-	 		</Route>
-	 		<Route path="/books">
-	 			<BookList/>
-	 		</Route>
-	 		<Route path="/xbox">
-	 			<XboxList/>
-	 		</Route>
-	 		<Route path="/playstation">
-	 			<PsList/>
-	 		</Route>
-	 		<Route path="/switch">
-	 			<SwitchList/>
-	 		</Route>
-	 		<Route path="/wishlist">
-	 			<Wishlist/>
-	 		</Route>
-	 		{/*            <Route path="/birthday">
-                 <Birthday/>
-             </Route>*/}
-	 		<Route path="/options">
-	 			<Options/>
-	 		</Route>
-	 		<Route path="/logout">
-	 			<Logout logged={setLoggedIn}/>
-	 		</Route>
-	 	</Switch>
+	const children = <Routes>
+		<Route exact path="/" element={<Dashboard/>}/>
+		<Route path="/movies" element={<MovieList/>}/>
+		<Route path="/books" element={<BookList/>}/>
+		<Route path="/xbox" element={<XboxList/>}/>
+		<Route path="/playstation" element={<PsList/>}/>
+		<Route path="/switch" element={<SwitchList/>}/>
+		<Route path="/wishlist" element={<Wishlist/>}/>
+		{/*
+		<Route path="/birthday" element={<Birthday/>}/>}
+		*/}
+		<Route path="/options" element={<Options/>}/>
+		<Route path="/logout" element={<Logout logged={setLoggedIn}/>}/>
+
+
+	</Routes>
 
 	useEffect(() => {
 			const cookies = new Cookies();
 			if (!cookies.get("stuffPages")) {
 				setLoggedIn(false);
-				history.push("/");
+				navigate("/");
 			} else {
 				setLoggedIn(true);
 			}
 		}
 		,
-		[loggedIn, history]
+		[loggedIn, navigate]
 	)
 	;
 

@@ -1,5 +1,5 @@
 import React from "react";
-import {Polar} from "react-chartjs-2";
+import {PolarArea} from "react-chartjs-2";
 
 export function PolarChart({labels, values, backgroundColor, hoverColor = backgroundColor}) {
 
@@ -7,13 +7,12 @@ export function PolarChart({labels, values, backgroundColor, hoverColor = backgr
 		labels: labels,
 		datasets: [{
 			data: values,
-			backgroundColor: backgroundColor,
-			hoverBackgroundColor: hoverColor,
+			backgroundColor: backgroundColor
 		}]
 	};
 
 	return (
-		<Polar
+		<PolarArea
 			width={200}
 			height={200}
 			data={data}

@@ -1,8 +1,5 @@
 import React, {useState} from "react";
-import {trackPromise} from "react-promise-tracker";
 import {makePostRequest} from "../../services/axios";
-import Cookies from "universal-cookie";
-import {useHistory} from "react-router-dom";
 
 export function RegisterForm({validateEmail, setIsRegister}) {
 
