@@ -113,7 +113,10 @@ export function MovieList() {
 	}
 
 	return <div class="grid-area-main">
-		<div class="d-flex align-items-center justify-content-center flex-wrap gap-10 mr-2 ml-2">
+		<div>
+			<NewMovie movies={movies}/>
+		</div>
+		<div class="d-flex align-items-center justify-content-center flex-wrap gap-3 mx-2 pt-1">
 			{movies ? movies.map(movie => (
 				<Movie key={movie.id} movie={movie} filter={filter}/>
 			)) : null}

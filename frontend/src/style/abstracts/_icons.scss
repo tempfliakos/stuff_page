@@ -1,0 +1,42 @@
+$search: '\e8b6';
+$eye: '\e8f4';
+$download: '\f090';
+$star: '\e838';
+$trash: '\e872';
+$clock: '\e923';
+
+.icon-search {
+  &:before {
+    content: $search;
+  }
+}
+
+.icon-eye {
+  &:before {
+    content: $eye;
+  }
+}
+
+.icon-download {
+  &:before {
+    content: $download;
+  }
+}
+
+.icon-star {
+  &:before {
+    content: $star;
+  }
+}
+
+.icon-trash {
+  &:before {
+    content: $trash;
+  }
+}
+
+.icon-clock {
+  &:before {
+    content: $clock;
+  }
+}

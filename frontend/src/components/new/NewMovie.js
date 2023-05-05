@@ -2,13 +2,16 @@ import React, {useState} from "react";
 import {AddMovie} from "./AddMovie";
 import {getDataFromEndpoint} from "../../services/axios";
 import {AddMovieMobile} from "./AddMovieMobile";
+import {Button} from "../abstracts/Button";
 
 export function NewMovie({movies}) {
+
+	const [searchText, setSearchText] = useState("");
 	const [results, setResults] = useState([]);
 
-	function handleSearch(event) {
-		if (event.target.value.length >= 3) {
-			getDataFromEndpoint('movies', event.target.value).then(
+	function handleSearch() {
+		if (searchText.length >= 3) {
+			getDataFromEndpoint('movies', searchText).then(
 				res => {
 					setResults(res.data);
 				}
@@ -26,34 +29,23 @@ export function NewMovie({movies}) {
 		return {alreadyAdded: false, seen: false};
 	}
 
-	return (
-		// <Form inverted>
-		// 	<Form.Field>
-		// 		<Input placeholder="Film hozzáadása..." onChange={handleSearch}/>
-		// 	</Form.Field>
-		// 	{results ?
-		// 		<>
-		// 			<Responsive minWidth={Responsive.onlyTablet.minWidth}>
-		// 				<Card.Group relaxed="very" columns="equal" padded="vertically" centered
-		// 				            itemsPerRow={window.screen.width > 800 ? 4 : 1}
-		// 				            style={{backgroundColor: '#6f6f6f', borderRadius: '21px'}}>
-		// 					{results.map(r =>
-		// 						<AddMovie key={r.id} movie={r} movieAttributes={contains(r.id.toString())}/>
-		// 					)}
-		// 				</Card.Group>
-		// 			</Responsive>
-		//
-		// 			<Responsive as={Grid} {...Responsive.onlyMobile}>
-		// 				<Grid columns="equal" style={{backgroundColor: '#6f6f6f', borderRadius: '21px'}}>
-		// 					{results.map(r =>
-		// 						<AddMovieMobile key={r.id} movie={r} movieAttributes={contains(r.id.toString())}/>
-		// 					)}
-		// 				</Grid>
-		// 			</Responsive>
-		// 		</>
-		// 		: null}
-		// </Form>
-		<div>NewMovie</div>
-	);
+	return <div>
+		<div class="d-flex align-items-center justify-content-center">
+			<input placeholder="Film hozzáadása" class="bg-dark-grey c-white w-100"
+			       onChange={(event) => setSearchText(event.target.value)}/>
+			<Button onClick={handleSearch} classNames="add" icon="icon-search"/>
+		</div>
+		<div class="d-flex align-items-center justify-content-center gap-3 flex-wrap">
+			{
+				results ?
+					<>
+						{results.map(r =>
+							<AddMovie key={r.id} movie={r} movieAttributes={contains(r.id.toString())}/>
+						)}
+					</>
+					: null
+			}
+		</div>
+	</div>
 
 }

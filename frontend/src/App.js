@@ -50,7 +50,7 @@ function App() {
 	;
 
 	return (
-		<div class="wrapper">
+		<div class="wrapper mt-3 mx-5">
 			{loggedIn ?
 				<Navigation children={children}/>
 				: <Login logged={setLoggedIn}/>}

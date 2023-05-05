@@ -12,6 +12,18 @@ input {
   }
 }
 
+i {
+  font-family: 'Material Icons' !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  margin-inline: 0.25rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 ::placeholder {
   color: $white;
   opacity: 1;
@@ -25,11 +37,31 @@ button {
   margin: 10px;
   transition: 800ms;
 
+  &.add {
+    max-width: 3rem;
+    max-height: 3rem;
+    padding: 1rem;
+  }
+
   &:hover {
     cursor: pointer;
     border-radius: 10px;
     background-color: transparent;
     color: $white;
     box-shadow: 0 0 10px 10px $darkgreen;
+  }
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.cursor-not-allowed {
+  cursor: not-allowed;
+}
+
+.hover-opacity-50 {
+  &:hover {
+    opacity: 0.5;
   }
 }

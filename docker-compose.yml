@@ -11,6 +11,7 @@ services:
       - ${FRONTEND_PORT}:${FRONTEND_PORT}
     environment:
       - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
       - REACT_APP_SERVER_LINK=${REACT_APP_SERVER_LINK}
       - REACT_APP_TMDB_IMG_LINK=${REACT_APP_TMDB_IMG_LINK}
       - PORT=${FRONTEND_PORT}
@@ -20,24 +21,25 @@ services:
     depends_on:
       - server
     networks:
-      - eb
+      - stuff_network
 
   server:  
     build: ./server
     restart: always
     container_name: server
     ports:
-      - ${SERVER_PORT}:3001
+      - ${SERVER_PORT}:${SERVER_PORT}
     environment:
       - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
       - SERVER_PORT=${SERVER_PORT}
       - FRONTEND_LINK=${FRONTEND_LINK}
       - NODE_ENV=${SERVER_STATUS}
       - SECRET=${SECRET}
-      - PGHOST=${PGHOST}
+      - PGHOST=${DB_CONTAINER_NAME}
       - PGDATABASE=${PGDATABASE}
       - PGUSER=${PGUSER}
-      - PGPORT=${PGPORT}
+      - PGPORT=5432
       - PGPASS=${PGPASS}
       - TMDB_LINK=${TMDB_LINK}
       - TMDB_IMG_LINK=${TMDB_IMG_LINK}
@@ -49,12 +51,12 @@ services:
     depends_on:
       - db
     networks:
-      - eb
+      - stuff_network
 
   db:
     image: postgres:10.13
     restart: always
-    container_name: db
+    container_name: ${DB_CONTAINER_NAME}
     ports:
       - ${PGPORT}:5432
     user: ${PGUSER}
@@ -70,9 +72,9 @@ services:
       - ./db/books_table.sql:/docker-entrypoint-initdb.d/05_book.sql
       - ./db/c_console.sql:/docker-entrypoint-initdb.d/06_game.sql
     networks:
-      - eb
+      - stuff_network
       
 networks:
-  eb:
-    name: eb
+  stuff_network:
+    name: stuff_network
     
