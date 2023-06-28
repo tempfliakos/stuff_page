@@ -16,7 +16,7 @@ router
 				if(!result) {
 					throw new Error(`Az adott játék nem található!`);
 				}
-				res.status(200).send(result[0]['trophies']);
+				res.status(200).send(result[0].trophies);
 			}
 		} catch (e) {
 			const errorMessage = new ErrorMessage("Hiba!", e.message);
