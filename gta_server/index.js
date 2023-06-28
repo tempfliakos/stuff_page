@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 const express = require("express");
-const port = process.env.PORT || process.env.GTA_SERVER_PORT || 5000;
+const port = process.env.PORT || process.env.SERVER_PORT;
 
 const app = express();
 const bodyParser = require("body-parser");
@@ -14,13 +14,13 @@ app.use((req, res, next) => {
 });
 
 const gamesRouter = require('./routes/games.js');
-// const achievementRouter = require('./routes/achievement.js');
+const achievementRouter = require('./routes/achievements.js');
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 app.use('/games', gamesRouter);
-// app.use('/achievements', achievementRouter);
+app.use('/achievements', achievementRouter);
 
 app.get("/", (req, res) => {
 });

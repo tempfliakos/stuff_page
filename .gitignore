@@ -9,3 +9,5 @@ frontend/package-lock.json
 icons/
 
 gta_server/package-lock.json
+
+server/package-lock.json

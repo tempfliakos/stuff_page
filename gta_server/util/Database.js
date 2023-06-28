@@ -1,4 +1,4 @@
-const {MongoClient} = require('mongodb');
+const {MongoClient, ObjectId} = require('mongodb');
 const database = "crawler";
 const collection = "console";
 
@@ -19,8 +19,12 @@ class Database {
 		console.log("Connection closed.");
 	}
 
-	async find(console) {
-		return this.collection.find({console: console}).toArray();
+	async find(console, title) {
+		return this.collection.find({console: console, title: {'$regex' : title, '$options' : 'i'}}).toArray();
+	}
+
+	async findById(id) {
+		return this.collection.find({_id: new ObjectId(id)}).toArray();
 	}
 }
 
