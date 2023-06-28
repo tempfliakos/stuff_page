@@ -6,7 +6,7 @@ services:
     build: ./frontend
     restart: always
     stdin_open: true
-    container_name: frontend
+    container_name: stuff_frontend
     ports:
       - ${FRONTEND_PORT}:${FRONTEND_PORT}
     environment:
@@ -23,10 +23,10 @@ services:
     networks:
       - stuff_network
 
-  server:  
+  server:
     build: ./server
     restart: always
-    container_name: server
+    container_name: stuff_server
     ports:
       - ${SERVER_PORT}:${SERVER_PORT}
     environment:
@@ -54,7 +54,7 @@ services:
       - stuff_network
 
   db:
-    image: postgres:10.13
+    image: postgres:15
     restart: always
     container_name: ${DB_CONTAINER_NAME}
     ports:
@@ -71,6 +71,24 @@ services:
       - ./db/todo_table.sql:/docker-entrypoint-initdb.d/04_todo.sql
       - ./db/books_table.sql:/docker-entrypoint-initdb.d/05_book.sql
       - ./db/c_console.sql:/docker-entrypoint-initdb.d/06_game.sql
+    networks:
+      - stuff_network
+
+  gta_server:
+    build: ./gta_server
+    restart: always
+    container_name: gta_server
+    ports:
+      - ${GTA_SERVER_PORT}:${GTA_SERVER_PORT}
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
+      - SECRET=${SECRET}
+      - SERVER_PORT=${GTA_SERVER_PORT}
+      - GTA_CONNECTION_STRING=${GTA_CONNECTION_STRING}
+    volumes:
+      - ./gta_server:/app
+      - /app/node_modules
     networks:
       - stuff_network
       

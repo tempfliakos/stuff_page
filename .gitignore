@@ -7,3 +7,7 @@ frontend/package-lock.json
 .idea/
 
 icons/
+
+gta_server/package-lock.json
+
+server/package-lock.json
