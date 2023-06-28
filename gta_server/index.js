@@ -19,6 +19,11 @@ const achievementRouter = require('./routes/achievements.js');
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
+app.use("/", function (req, res, next) {
+	const date = new Date();
+	console.log(`A new request received at ${date.getDate()}-${date.getMonth()}-${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`);
+	next();
+});
 app.use('/games', gamesRouter);
 app.use('/achievements', achievementRouter);
 

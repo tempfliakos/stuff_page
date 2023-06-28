@@ -1,5 +1,6 @@
 class ErrorMessage {
-	constructor(title, description) {
+	constructor(code, title, description) {
+		this.code = code;
 		this.title = title;
 		this.description = description;
 	}

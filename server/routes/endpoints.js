@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const axios = require("axios");
+const ErrorMessage = require("../utils/ErrorMessage");
 
 const router = express.Router();
 
@@ -44,19 +45,39 @@ router
 	})
 	.get("/xbox/:query", async (req, res) => {
 		const query = req.params.query.split('=')[1].normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-		await getIGDBGame("Xbox", query, res);
+		const result = await getGTAGame("Xbox", query);
+		if(result.code) {
+			res.status(result.code).send(result);
+		} else {
+			res.status(200).send(result);
+		}
 	})
 	.get("/playstation/:query", async (req, res) => {
 		const query = req.params.query.split('=')[1].normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-		await getIGDBGame("Playstation", query, res);
+		const result = await getGTAGame("Playstation", query);
+		if(result.code) {
+			res.status(result.code).send(result);
+		} else {
+			res.status(200).send(result);
+		}
 	})
 	.get("/switch/:query", async (req, res) => {
 		const query = req.params.query.split('=')[1].normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-		await getIGDBGame("Switch", query, res);
+		const result = await getIGDBGame("Switch", query, res);
+		if(result.code) {
+			res.status(result.code).send(result);
+		} else {
+			res.status(200).send(result);
+		}
 	})
 	.get("/wish/:query", async (req, res) => {
 		const query = req.params.query.split('=')[1].normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-		await getIGDBGame(null, query, res);
+		const  result = await getIGDBGame(null, query, res);
+		if(result.code) {
+			res.status(result.code).send(result);
+		} else {
+			res.status(200).send(result);
+		}
 	});
 
 async function sendToEndpoint(link, res) {
@@ -70,9 +91,9 @@ async function sendToEndpoint(link, res) {
 	});
 }
 
-async function getIGDBGame(console, query, res) {
+async function getIGDBGame(console, query) {
 	try {
-		await sendToIGDB(query, res, true).then(r => {
+		return await sendToIGDB(query, true).then(r => {
 			const result = [];
 			for (let game of r.data) {
 				result.push({
@@ -83,16 +104,14 @@ async function getIGDBGame(console, query, res) {
 					wish: console == null
 				})
 			}
-			res.status(200).send(result);
+			return result;
 		});
 	} catch (e) {
-		res.status(400).send({
-			message: e.message,
-		});
+		return new ErrorMessage(400, "Hiba!", e.message);
 	}
 }
 
-async function sendToIGDB(title, res, isRefreshable) {
+async function sendToIGDB(title, isRefreshable) {
 	const headers = {
 		"Content-Type": "application/json;charset=utf-8",
 		"Client-ID": `${process.env.IGDB_CLIENT}`,
@@ -105,11 +124,9 @@ async function sendToIGDB(title, res, isRefreshable) {
 	}).catch(async e => {
 		if (isRefreshable) {
 			IGDBToken = await getIGDBNewToken();
-			return await sendToIGDB(title, res, false);
+			return await sendToIGDB(title, false);
 		}
-		res.status(400).send({
-			message: e.message,
-		});
+		return new ErrorMessage(400, "Hiba!", e.message);
 	});
 }
 
@@ -127,7 +144,48 @@ async function getIGDBNewToken() {
 	}).then(response => {
 		return response.data['access_token'];
 	}).catch(e => {
-		console.error(e.message);
+		return new ErrorMessage(400, "Hiba!", e.message);
+	});
+}
+
+async function getGTAGame(console, query) {
+	try {
+		return await requestGTA(query, console).then(r => {
+			if(r.code) {
+				return r;
+			} else {
+				const result = [];
+				for (let game of r) {
+					result.push({
+						game_id: game._id,
+						title: game.title,
+						picture: game.img,
+						console: console,
+						wish: false,
+						totalTrophies: game.totalTrophies,
+						trophies: game.trophies,
+					})
+				}
+				return result;
+			}
+		});
+	} catch (e) {
+		return new ErrorMessage(400, "Hiba!", e.message);
+	}
+}
+
+async function requestGTA(title, console) {
+	const url = `${process.env.GTA_SERVER_LINK}games?console=${console.toLowerCase()}&q=${title}`;
+	const config = {
+		url: url,
+		headers: {
+			"Content-Type": "application/json;charset=utf-8",
+		},
+	};
+	return await axios.get(url, config).then(response => {
+		return response.data;
+	}).catch(e => {
+		return new ErrorMessage(400, "Hiba!", e.message);
 	});
 }
 

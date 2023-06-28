@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const Database = require("../util/Database");
-const ErrorMessage = require("../util/Error");
+const ErrorMessage = require("../util/ErrorMessage");
 const router = express.Router();
 const database = new Database();
 
@@ -19,8 +19,8 @@ router
 				res.status(200).send(result[0].trophies);
 			}
 		} catch (e) {
-			const errorMessage = new ErrorMessage("Hiba!", e.message);
-			res.status(400).send(errorMessage);
+			const errorMessage = new ErrorMessage(400,"Hiba!", e.message);
+			res.status(errorMessage.code).send(errorMessage);
 		}
 
 	})
