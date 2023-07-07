@@ -35,6 +35,7 @@ services:
       - SERVER_PORT=${SERVER_PORT}
       - FRONTEND_LINK=${FRONTEND_LINK}
       - GTA_SERVER_LINK=${GTA_SERVER_LINK}
+      - GTA_AUTH=${GTA_AUTH}
       - NODE_ENV=${SERVER_STATUS}
       - SECRET=${SECRET}
       - PGHOST=${DB_CONTAINER_NAME}
@@ -88,6 +89,7 @@ services:
       - SECRET=${SECRET}
       - SERVER_PORT=${GTA_SERVER_PORT}
       - GTA_CONNECTION_STRING=${GTA_CONNECTION_STRING}
+      - GTA_AUTH=${GTA_AUTH}
     volumes:
       - ./gta_server:/app
       - /app/node_modules

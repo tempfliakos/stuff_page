@@ -20,7 +20,7 @@ class Database {
 	}
 
 	async find(console, title) {
-		return this.collection.find({console: console, title: {'$regex' : title, '$options' : 'i'}}).toArray();
+		return this.collection.find({console: {'$regex' : console, '$options' : 'i'}, title: {'$regex' : title, '$options' : 'i'}}).toArray();
 	}
 
 	async findById(id) {

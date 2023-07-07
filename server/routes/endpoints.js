@@ -161,6 +161,7 @@ async function getGTAGame(console, query) {
 						title: game.title,
 						picture: game.img,
 						console: console,
+						subConsole: game.subConsole,
 						wish: false,
 						totalTrophies: game.totalTrophies,
 						trophies: game.trophies,
@@ -175,11 +176,12 @@ async function getGTAGame(console, query) {
 }
 
 async function requestGTA(title, console) {
-	const url = `${process.env.GTA_SERVER_LINK}games?console=${console.toLowerCase()}&q=${title}`;
+	const url = `${process.env.GTA_SERVER_LINK}games?console=${console}&q=${title}`;
 	const config = {
 		url: url,
 		headers: {
 			"Content-Type": "application/json;charset=utf-8",
+			"Authorization": process.env.GTA_AUTH
 		},
 	};
 	return await axios.get(url, config).then(response => {
