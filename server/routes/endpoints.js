@@ -113,7 +113,7 @@ async function getIGDBGame(console, query) {
 
 async function sendToIGDB(title, isRefreshable) {
 	const headers = {
-		"Content-Type": "application/json;charset=utf-8",
+		"Content-Type": "text/plain;charset=utf-8",
 		"Client-ID": `${process.env.IGDB_CLIENT}`,
 		"Authorization": `Bearer ${IGDBToken}`,
 	};
