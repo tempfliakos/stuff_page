@@ -4,6 +4,8 @@ import {useDispatch} from "react-redux";
 import {addToGames} from "../../store/game/actions";
 import defaultGamePicture from "../../resources/gamer_default_icon.svg"
 import {WishModal} from "../modals/WishModal";
+import {Card} from "../abstracts/Card";
+import {getYear} from "../../utils/dateUtil";
 
 export function AddGame({game, alreadyAdded, wish}) {
 
@@ -47,7 +49,10 @@ export function AddGame({game, alreadyAdded, wish}) {
 	// 		<Card.Header>{game.title}</Card.Header>
 	// 	</Card.Content>
 	// </Card>
-		<div>AddGame</div>
+		<div onClick={addGame}>
+			<Card id={game.id} classNames={alreadyAdded ? "marked" : ""}
+				  imgSrc={picture()} title={game.title}/>
+		</div>
 	);
 
 	return <>

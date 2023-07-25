@@ -4,7 +4,7 @@ create table user_game
 (
     id          numeric default nextval('public.user_game_id_seq') not null,
     user_id      numeric     not null,
-    game_id      numeric     not null,
+    game_id      varchar(32)     not null,
     console      varchar(20) not null,
     title        text,
     picture      text,
@@ -23,7 +23,7 @@ create table user_achievement
 (
     id          numeric default nextval('public.user_achievement_id_seq') not null,
     user_id     numeric                                                   not null,
-    game_id     numeric                                                   not null,
+    game_id     varchar(32)                                               not null,
     title       text,
     description text,
     secret      boolean,

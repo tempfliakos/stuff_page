@@ -11,7 +11,7 @@ export function NavLink({path, content}) {
 	return <Link key={path} to={path} active={isActive()}
 		      class="nav-item">
 			<div
-				className={"nav-item-container d-flex align-items-center justify-content-center " + (isActive() ? "active" : "")}>
+				className={"nav-item-container d-flex align-items-center justify-content-center px-5 " + (isActive() ? "active" : "")}>
 				{content}
 			</div>
 		</Link>

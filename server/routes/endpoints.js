@@ -2,10 +2,13 @@ require('dotenv').config();
 const express = require('express');
 const axios = require("axios");
 const ErrorMessage = require("../utils/ErrorMessage");
+const GTAUtil = require("../utils/GTAUtil");
 
 const router = express.Router();
 
 let IGDBToken = 't4zqj4xp60ehhjtj62rpcrb6knyzx1';
+
+const gtaUtil = new GTAUtil();
 
 router
 	.get("/movies/:query", async (req, res) => {
@@ -80,6 +83,7 @@ router
 		}
 	});
 
+
 async function sendToEndpoint(link, res) {
 	const headers = {
 		"Content-Type": "application/json;charset=utf-8",
@@ -150,7 +154,7 @@ async function getIGDBNewToken() {
 
 async function getGTAGame(console, query) {
 	try {
-		return await requestGTA(query, console).then(r => {
+		return await gtaUtil.requestGTAGame(query, console).then(r => {
 			if(r.code) {
 				return r;
 			} else {
@@ -173,22 +177,6 @@ async function getGTAGame(console, query) {
 	} catch (e) {
 		return new ErrorMessage(400, "Hiba!", e.message);
 	}
-}
-
-async function requestGTA(title, console) {
-	const url = `${process.env.GTA_SERVER_LINK}games?console=${console}&q=${title}`;
-	const config = {
-		url: url,
-		headers: {
-			"Content-Type": "application/json;charset=utf-8",
-			"Authorization": process.env.GTA_AUTH
-		},
-	};
-	return await axios.get(url, config).then(response => {
-		return response.data;
-	}).catch(e => {
-		return new ErrorMessage(400, "Hiba!", e.message);
-	});
 }
 
 module.exports = router;

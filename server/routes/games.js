@@ -4,6 +4,9 @@ const jwtMiddleware = require('express-jwt');
 const {UserGames, UserAchievements} = require('../models');
 const cors = require('cors');
 const {Op} = require("sequelize");
+const {requestGTA, requestGTAAchievement} = require("../utils/GTAUtil");
+const ErrorMessage = require("../utils/ErrorMessage");
+const GTAUtil = require("../utils/GTAUtil");
 
 const jwtOptions = {
 	secret: process.env.SECRET,
@@ -13,6 +16,8 @@ const jwtOptions = {
 const pageLimit = 10;
 
 const router = express.Router();
+
+const gtaUtil = new GTAUtil();
 
 router
 	.get("/:console&:page&:title", jwtMiddleware(jwtOptions), cors(), async (req, res) => {
@@ -83,6 +88,7 @@ router
 			body.star = false;
 
 			const game = await UserGames.create(body);
+			const achievements = await createUserAchievements(body.user_id, game.game_id);
 			res.status(200).send(await convertGame(game, body.user_id));
 		} catch (e) {
 			res.status(400).send({
@@ -237,4 +243,37 @@ function calculateOffset(pageNumber) {
 	return (pageNumber - 1) * pageLimit;
 }
 
+async function createUserAchievements(userId, gameId) {
+	const achievements = await getAchievements(userId, gameId);
+	for(let achievement of achievements) {
+		await UserAchievements.create(achievement);
+	}
+}
+
+async function getAchievements(userId, gameId) {
+	try {
+		return await gtaUtil.requestGTAAchievement(gameId).then(r => {
+			if(r.code) {
+				return r;
+			} else {
+				const result = [];
+				for (let achievement of r) {
+					result.push({
+						user_id: userId,
+						game_id: gameId,
+						title: achievement.title,
+						description: achievement.description,
+						secret: achievement.secret,
+						picture: achievement.img,
+						value: achievement.value,
+						earned: false
+					});
+				}
+				return result;
+			}
+		});
+	} catch (e) {
+		return new ErrorMessage(400, "Hiba!", e.message);
+	}
+}
 module.exports = router;

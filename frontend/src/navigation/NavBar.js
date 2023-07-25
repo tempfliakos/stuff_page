@@ -33,7 +33,7 @@ const NavBarMobile = ({children, leftItems, onPusherClick, onToggle, rightItems,
 
 const NavBarDesktop = ({leftItems, rightItems}) => (
 	<div class="grid-area-menu">
-		<div class="d-flex align-items-center justify-content-center">
+		<div class="d-flex align-items-center justify-content-center flex-wrap gap-3">
 			{leftItems.map(item =>
 				<NavLink key={item.path} path={item.path} content={item.content}/>
 			)}

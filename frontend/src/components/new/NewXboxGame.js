@@ -2,17 +2,19 @@ import React, {useState} from "react";
 import {getDataFromEndpoint} from "../../services/axios";
 import {AddGame} from "./AddGame";
 import {AddGameMobile} from "./AddGameMobile";
+import {Button} from "../abstracts/Button";
+import {AddMovie} from "./AddMovie";
 
 export function NewXboxGame({games}) {
 
-    const [searchInput, setSearchInput] = useState("");
+    const [searchText, setSearchText] = useState("");
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(false);
 
     function handleSearch() {
-        if (searchInput.length >= 3) {
+        if (searchText.length >= 3) {
             setLoading(true);
-            getDataFromEndpoint('xbox', searchInput).then(
+            getDataFromEndpoint('xbox', searchText).then(
                 res => {
                     setResults(res.data);
                     setLoading(false);
@@ -28,11 +30,25 @@ export function NewXboxGame({games}) {
         return !!game;
     }
 
-    function handleSearchInputChange(event) {
-        setSearchInput(event.target.value);
-    }
+    return <div>
+        <div class="d-flex align-items-center justify-content-center">
+            <input placeholder="Játék hozzáadása" class="bg-dark-grey c-white w-100"
+                   onChange={(event) => setSearchText(event.target.value)}/>
+            <Button onClick={handleSearch} classNames="add" icon="icon-search"/>
+        </div>
+        <div class="d-flex align-items-center justify-content-center gap-3 flex-wrap">
+            {
+                results ?
+                    <>
+                        {results.map(r =>
+                            <AddGame key={r.game_id} game={r} alreadyAdded={contains(r.game_id)}/>
+                        )}
+                    </>
+                    : null
+            }
+        </div>
+    </div>
 
-    return (
         // <Form inverted>
         //     <Form.Field>
         //         <Input placeholder="Játék hozzáadása..." onChange={handleSearchInputChange} value={searchInput}
@@ -60,6 +76,4 @@ export function NewXboxGame({games}) {
         //         </>
         //         : null}
         // </Form>
-        <div>NewXboxGame</div>
-    )
 }
