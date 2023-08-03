@@ -4,7 +4,6 @@ const jwtMiddleware = require('express-jwt');
 const {UserGames, UserAchievements} = require('../models');
 const cors = require('cors');
 const {Op} = require("sequelize");
-const {requestGTA, requestGTAAchievement} = require("../utils/GTAUtil");
 const ErrorMessage = require("../utils/ErrorMessage");
 const GTAUtil = require("../utils/GTAUtil");
 
@@ -86,9 +85,9 @@ router
 				body.wish = false;
 			}
 			body.star = false;
-
+			console.log(body.game_id)
 			const game = await UserGames.create(body);
-			const achievements = await createUserAchievements(body.user_id, game.game_id);
+			const achievements = await createUserAchievements(body.user_id, game.game_id, game.id);
 			res.status(200).send(await convertGame(game, body.user_id));
 		} catch (e) {
 			res.status(400).send({
@@ -243,16 +242,18 @@ function calculateOffset(pageNumber) {
 	return (pageNumber - 1) * pageLimit;
 }
 
-async function createUserAchievements(userId, gameId) {
-	const achievements = await getAchievements(userId, gameId);
+async function createUserAchievements(userId, gtaGameId, gameId) {
+	console.log("before")
+	const achievements = await getAchievements(userId, gtaGameId, gameId);
 	for(let achievement of achievements) {
 		await UserAchievements.create(achievement);
 	}
+	console.log("after")
 }
 
-async function getAchievements(userId, gameId) {
+async function getAchievements(userId, gtaGameId, gameId) {
 	try {
-		return await gtaUtil.requestGTAAchievement(gameId).then(r => {
+		return await gtaUtil.requestGTAAchievement(gtaGameId).then(r => {
 			if(r.code) {
 				return r;
 			} else {

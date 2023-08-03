@@ -23,7 +23,7 @@ create table user_achievement
 (
     id          numeric default nextval('public.user_achievement_id_seq') not null,
     user_id     numeric                                                   not null,
-    game_id     varchar(32)                                               not null,
+    game_id     numeric                                                   not null,
     title       text,
     description text,
     secret      boolean,
@@ -36,3 +36,6 @@ create table user_achievement
 
 create unique index user_achievement_uindex
     on user_achievement (id);
+
+ALTER TABLE "user_achievement" ADD CONSTRAINT "ua_game_id"
+    FOREIGN KEY ("game_id") REFERENCES user_game ("id")
