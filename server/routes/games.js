@@ -188,7 +188,7 @@ async function generateGamesList(games, userId) {
 async function convertGame(game, userId) {
 	const achievements = await UserAchievements.findAll({
 		where: {
-			game_id: game.game_id,
+			game_id: game.id,
 			user_id: userId,
 		}
 	});
