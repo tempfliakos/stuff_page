@@ -50,14 +50,23 @@ router
 	.post("/", jwtMiddleware(jwtOptions), async (req, res) => {
 		try {
 			const data = req.body;
+			console.log(req.body)
 			const {id} = req.user;
 			let movie = await Movies.findByPk(data.id);
-			if (!movie) {
-				movie = await Movies.create(data);
+			if (movie) {
+				movie = await movie.update(data);
 			} else {
-				movie = await Movies.update(data);
+				movie = await Movies.create(data);
 			}
-			await UserMovies.create({user_id: id, movie_id: movie.id});
+			let userMovie = await UserMovies.findOne({
+				where: {
+					user_id: id,
+					movie_id: movie.id,
+				}
+			});
+			if(!userMovie) {
+				await UserMovies.create({user_id: id, movie_id: movie.id});
+			}
 			res.status(200).send(movie);
 		} catch (e) {
 			res.status(400).send({
