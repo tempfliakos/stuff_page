@@ -10,6 +10,7 @@
     "chart.js": "^4.2.1",
     "jquery": "^3.6.4",
     "lodash": "^4.17.21",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-dnd": "^16.0.1",
@@ -33,7 +34,6 @@
     "build": "react-scripts build",
     "install-serve": "npm install -g serve",
     "serve": "serve -s build",
-    "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "heroku-postbuild": "npm run build"
   },

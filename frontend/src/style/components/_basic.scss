@@ -52,16 +52,3 @@ button {
   }
 }
 
-.cursor-pointer {
-  cursor: pointer;
-}
-
-.cursor-not-allowed {
-  cursor: not-allowed;
-}
-
-.hover-opacity-50 {
-  &:hover {
-    opacity: 0.5;
-  }
-}

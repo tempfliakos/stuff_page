@@ -1,0 +1,33 @@
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+.cursor-not-allowed {
+  cursor: not-allowed !important;
+}
+
+.hover-opacity-50 {
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+.aspect-ratio-3-2 {
+  aspect-ratio: 3/2 !important;
+}
+
+.object-fit-contain {
+  object-fit: contain !important;
+}
+
+.height-4 {
+  height: 4rem !important;
+}
+
+.width-10 {
+  width: 10rem;
+}
+
+.border-radius-20-px {
+  border-radius: 20px;
+}

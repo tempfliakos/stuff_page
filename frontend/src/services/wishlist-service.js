@@ -1,6 +1,6 @@
-import {ApiService} from "../utils/api-service";
+import {ApiParent} from "../utils/ApiParent";
 
-class WishlistService extends ApiService {
+class WishlistService extends ApiParent {
 	constructor() {
 		super("games/wishlist");
 	}

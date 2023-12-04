@@ -1,6 +1,6 @@
-import {ApiService} from "../utils/api-service";
+import {ApiParent} from "../utils/ApiParent";
 
-class BookService extends ApiService {
+class BookService extends ApiParent {
     constructor() {
         super("books");
     }
