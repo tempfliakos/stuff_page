@@ -2,7 +2,6 @@ input {
   border-radius: 20px;
   padding: 1rem 1.25rem;
   border: 3px solid $lightgrey;
-  margin: 10px;
   background-color: transparent;
   transition: 800ms;
 
@@ -34,14 +33,7 @@ button {
   padding: 1rem 1.25rem;
   border: none;
   width: 100%;
-  margin: 10px;
   transition: 800ms;
-
-  &.add {
-    max-width: 3rem;
-    max-height: 3rem;
-    padding: 1rem;
-  }
 
   &:hover {
     cursor: pointer;
@@ -50,5 +42,11 @@ button {
     color: $white;
     box-shadow: 0 0 10px 10px $darkgreen;
   }
+}
+
+.longtext-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 

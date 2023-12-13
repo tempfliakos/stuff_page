@@ -13,7 +13,7 @@ import {SwitchList} from "./components/pages/SwitchList";
 import {Dashboard} from "./components/pages/Dashboard";
 import {BookList} from "./components/pages/BookList";
 
-function App() {
+export default function App() {
 
 	const navigate = useNavigate();
 	const [loggedIn, setLoggedIn] = useState(false);
@@ -50,12 +50,10 @@ function App() {
 	;
 
 	return (
-		<div class="wrapper mt-3 mx-5">
+		<div className="wrapper p-3">
 			{loggedIn ?
 				<Navigation children={children}/>
 				: <Login logged={setLoggedIn}/>}
 		</div>
 	);
 }
-
-export default App;

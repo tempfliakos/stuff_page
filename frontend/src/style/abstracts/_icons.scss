@@ -1,9 +1,11 @@
 $search: '\e8b6';
 $eye: '\e8f4';
-$download: '\f090';
+$save: '\e161';
 $star: '\e838';
 $trash: '\e872';
 $clock: '\e923';
+$paw: '\e91d';
+$back: '\e2ea';
 
 .icon-search {
   &:before {
@@ -17,9 +19,9 @@ $clock: '\e923';
   }
 }
 
-.icon-download {
+.icon-save {
   &:before {
-    content: $download;
+    content: $save;
   }
 }
 
@@ -38,5 +40,17 @@ $clock: '\e923';
 .icon-clock {
   &:before {
     content: $clock;
+  }
+}
+
+.icon-paw {
+  &:before {
+    content: $paw;
+  }
+}
+
+.icon-back {
+  &:before {
+    content: $back;
   }
 }

@@ -10,7 +10,7 @@ import {Scrollable} from "../components/Scrollable";
 import $ from "jquery";
 import {trackPromise} from "react-promise-tracker";
 import {StarGame} from "../views/StarGame";
-import {NewMovie} from "../new/NewMovie";
+import {NewMovie} from "../views/movie/NewMovie";
 import {Movie} from "../views/movie/Movie";
 
 export function XboxList() {

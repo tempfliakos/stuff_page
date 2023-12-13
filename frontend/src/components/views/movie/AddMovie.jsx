@@ -1,11 +1,11 @@
 import {useDispatch} from "react-redux";
-import {addToMovies, updateMovieObject} from "../../store/movie/actions";
-import styles from "../styles/movie.module.css";
-import defaultPicture from "../../resources/default-movie-back.jpg";
-import {getYear} from "../../utils/DateUtil";
-import {tmdbConverter} from "../../utils/TransformMovieUtil";
-import {Movie} from "../views/movie/Movie";
-import {Card} from "../abstracts/Card";
+import {addToMovies, updateMovieObject} from "../../../store/movie/actions";
+import styles from "../../styles/movie.module.css";
+import defaultPicture from "../../../resources/default-movie-back.jpg";
+import {getYear} from "../../../utils/DateUtil";
+import {tmdbConverter} from "../../../utils/TransformMovieUtil";
+import {Movie} from "./Movie";
+import {Card} from "../../abstracts/Card";
 
 export function AddMovie({movie, movieAttributes}) {
 
@@ -33,6 +33,6 @@ export function AddMovie({movie, movieAttributes}) {
 
 	return <div onClick={addFilm}>
 			<Card id={movie.id} classNames={movieAttributes.alreadyAdded ? "marked" : ""}
-			      imgSrc={picture()} title={movie.title + '(' + getYear(movie.release_date) + ')'}/>
+			      imgSrc={picture()} title={movie.title} description={getYear(movie.release_date)}/>
 		</div>
 }

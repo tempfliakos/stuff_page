@@ -11,9 +11,9 @@ export function Login({logged}) {
 		return /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(mail);
 	}
 
-	return <div class="login-container">
-		<div class="d-grid justify-content-center">
-			<img src="/logo.svg" alt="Stuff Pages Logo" class="logo pt-1"/>
+	return <div className="login-container">
+		<div className="d-grid justify-content-center">
+			<img src="/logo.svg" alt="Stuff Pages Logo" className="logo pt-1"/>
 		</div>
 
 		{isRegister ?

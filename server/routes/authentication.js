@@ -13,16 +13,18 @@ router
 			const user = await Users.findOne({where: {email: email.toLowerCase()}});
 			if (!user) {
 				res.sendStatus(401);
-			}
-			if (bcrypt.compareSync(password, user.password)) {
-				const token = jwt.sign({"id": user.id, email: email.toLowerCase()}, process.env.SECRET, {algorithm: 'HS256'});
-				res.status(200).send({
-					accessToken: token,
-					user: sendUser(user),
-				});
 			} else {
-				res.status(401).send("Rossz email és jelszó pár!");
+				if (bcrypt.compareSync(password, user.password)) {
+					const token = jwt.sign({"id": user.id, email: email.toLowerCase()}, process.env.SECRET, {algorithm: 'HS256'});
+					res.status(200).send({
+						accessToken: token,
+						user: sendUser(user),
+					});
+				} else {
+					res.status(401).send("Rossz email és jelszó pár!");
+				}
 			}
+
 		} catch (e) {
 			res.status(400).send({
 				message: e.message,

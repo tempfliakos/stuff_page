@@ -3,7 +3,7 @@ import {getDataFromEndpoint} from "../../services/axios";
 import {AddGame} from "./AddGame";
 import {AddGameMobile} from "./AddGameMobile";
 import {Button} from "../abstracts/Button";
-import {AddMovie} from "./AddMovie";
+import {AddMovie} from "../views/movie/AddMovie";
 
 export function NewXboxGame({games}) {
 
@@ -31,12 +31,12 @@ export function NewXboxGame({games}) {
     }
 
     return <div>
-        <div class="d-flex align-items-center justify-content-center">
-            <input placeholder="Játék hozzáadása" class="bg-dark-grey c-white w-100"
+        <div className="d-flex align-items-center justify-content-center">
+            <input placeholder="Játék hozzáadása" className="bg-dark-grey c-white w-100"
                    onChange={(event) => setSearchText(event.target.value)}/>
-            <Button onClick={handleSearch} classNames="add" icon="icon-search"/>
+            <Button onClick={handleSearch} additionalClassNames="add" icon="icon-search"/>
         </div>
-        <div class="d-flex align-items-center justify-content-center gap-3 flex-wrap">
+        <div className="d-flex align-items-center justify-content-center gap-3 flex-wrap">
             {
                 results ?
                     <>

@@ -1,7 +1,5 @@
 import {useState} from "react";
 import {makeGetRequest} from "../../services/axios";
-import {Movie} from "../views/movie/Movie";
-import {MovieMobile} from "../views/movie/MovieMobile";
 import {genres} from "../../store/catalogs/genres";
 
 export function Options() {
