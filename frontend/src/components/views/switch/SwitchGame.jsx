@@ -1,4 +1,3 @@
-import styles from "../../styles/game.module.css";
 import {filterGame} from "../../../utils/FilterUtil";
 
 export function SwitchGame({game, filter}) {

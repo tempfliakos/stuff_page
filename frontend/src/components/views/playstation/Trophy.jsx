@@ -1,5 +1,4 @@
 import {useState} from "react";
-import styles from "../../styles/game.module.css";
 import {useDispatch} from "react-redux";
 import {setDone} from "../../../store/achievement/actions";
 import defaultTrophy from "../../../resources/locked_trophy.svg";

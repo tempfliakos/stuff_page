@@ -16,7 +16,8 @@ export function AddContainer({handleSearch, children}) {
 	return <div className="bg-light-grey mb-3 p-3 border-radius-20-px">
 		<div className="d-flex align-items-center justify-content-center gap-3 mb-3">
 			<input placeholder="Keresés..." className="bg-dark-grey c-white w-100"
-			       onChange={(event) => setSearchText(event.target.value)} onKeyDown={handleKeyDown}/>
+			       onChange={(event) => setSearchText(event.target.value)}
+			       onKeyDown={handleKeyDown}/>
 			<Button onClick={() => handleSearch(searchText)} additionalClassNames="width-5" icon="icon-search"/>
 		</div>
 		<div className="d-flex align-items-center justify-content-center gap-3 flex-wrap">

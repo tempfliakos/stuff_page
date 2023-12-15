@@ -1,15 +1,9 @@
 import {useCallback, useEffect, useState} from "react";
-import styles from "../styles/game.module.css";
-import {NewPsGame} from "../new/NewPsGame";
 import {useDispatch, useSelector} from "react-redux";
 import {getGames, getStars} from "../../store/game/selectors";
 import {getGameList, getStarlist, initGameList} from "../../store/game/actions";
-import {PsGame} from "../views/playstation/PsGame";
-import {PsGameMobile} from "../views/playstation/PsGameMobile";
-import {Scrollable} from "../components/Scrollable";
 import $ from "jquery";
 import {trackPromise} from "react-promise-tracker";
-import {StarGame} from "../views/StarGame";
 
 export function PsList() {
 

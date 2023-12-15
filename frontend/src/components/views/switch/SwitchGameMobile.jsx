@@ -1,4 +1,3 @@
-import styles from "../../styles/movie.module.css";
 import {filterGame} from "../../../utils/FilterUtil";
 
 export function SwitchGameMobile({game, filter}) {

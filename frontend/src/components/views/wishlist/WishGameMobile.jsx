@@ -1,4 +1,3 @@
-import styles from "../../styles/movie.module.css";
 import {useDispatch} from "react-redux";
 import {removeGame} from "../../../store/game/actions";
 

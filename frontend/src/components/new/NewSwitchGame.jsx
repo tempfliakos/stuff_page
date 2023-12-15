@@ -1,6 +1,5 @@
 import {useState} from "react";
 import {AddGame} from "./AddGame";
-import {AddGameMobile} from "./AddGameMobile";
 import {getDataFromEndpoint} from "../../services/axios";
 
 export function NewSwitchGame({games}) {

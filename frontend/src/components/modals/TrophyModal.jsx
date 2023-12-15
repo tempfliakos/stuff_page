@@ -1,6 +1,4 @@
 import {useState} from "react";
-import {Trophy} from "../views/playstation/Trophy";
-import styles from "../styles/game.module.css";
 import {getAchievementList} from "../../store/achievement/actions";
 import {useDispatch, useSelector} from "react-redux";
 import {getAchievements} from "../../store/achievement/selectors";

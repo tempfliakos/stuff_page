@@ -1,5 +1,4 @@
 import {useState} from "react";
-import styles from "../styles/game.module.css";
 import {useDispatch} from "react-redux";
 import {addToGames} from "../../store/game/actions";
 

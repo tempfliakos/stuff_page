@@ -1,4 +1,3 @@
-import styles from "../../styles/game.module.css";
 import {useDispatch} from "react-redux";
 import {removeGame} from "../../../store/game/actions";
 
@@ -8,16 +7,6 @@ export function WishGame({game}) {
 
     function handleDelete() {
         dispatch(removeGame(game));
-    }
-
-    function getHover() {
-        if(game.console === "Xbox") {
-            return styles.xboxcard;
-        } else if(game.console === "Playstation") {
-            return styles.pscard;
-        } else if(game.console === "Switch") {
-            return styles.switchcard;
-        }
     }
 
     return <div>WishGame</div>

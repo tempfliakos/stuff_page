@@ -1,5 +1,4 @@
 import {useState} from "react";
-import styles from "../../styles/game.module.css";
 import {filterGame} from "../../../utils/FilterUtil";
 import defaultGamePicture from "../../../resources/gamer_default_icon.svg";
 import {TrophyModal} from "../../modals/TrophyModal";

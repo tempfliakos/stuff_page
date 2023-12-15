@@ -1,5 +1,4 @@
 import {useState} from "react";
-import styles from "../../styles/game.module.css";
 import {useDispatch} from "react-redux";
 import {setDone} from "../../../store/achievement/actions";
 import gamerscore from "../../../resources/gamer_score.svg";
@@ -45,46 +44,63 @@ export function Achievement({game, achievement}) {
 		return true;
 	}
 
-	return <div>Achievement</div>
-		// <>
-		// 	<List.Item as="a" className={styles.achievement}>
-		// 		<Image src={achievement.earned ? achievement.picture : defaultAchievement} size='tiny'
-		// 		       onClick={achievement.earned ? handleSee : handleDone}/>
-		// 		<List.Content className={styles.plus}>
-		// 			<List.Header style={{color: "white"}} onClick={handleDone}>
-		// 				{isShowable() ? achievement.title.concat(" ") : secretTitle}
-		// 				<span>
-        //                 <Image avatar src={gamerscore} size="mini" style={{width: "15px"}}/>
-		// 					{achievement.value}
-        //             </span>
-		//
-		// 			</List.Header>
-		// 			<List.Description style={{color: "white"}}>
-		// 				<List.Item onClick={handleDone}>
-		// 					{isShowable() ? achievement.description : secretDescription}
-		// 				</List.Item>
-		// 				<List.Item className={styles.achievementButtons}>
-		// 					<a href={getYoutubeLink()} target="_blank" rel="noopener noreferrer"
-		// 					   style={{padding: "5px"}}>
-		// 						<Icon name="youtube" size="large" color="red"/>
-		// 					</a>
-		//
-		// 					<a href={getGoogleLink()} target="_blank" rel="noopener noreferrer"
-		// 					   style={{padding: "5px"}}>
-		// 						<Image avatar src={google} style={{width: "20px"}}/>
-		// 					</a>
-		//
-		// 					{achievement.secret && !achievement.earned ?
-		// 						<List.Item onClick={handleShowSecret}>
-		// 							<Icon name={showSecret ? "eye" : "eye slash"} size="large" color="blue"/>
-		// 						</List.Item> : null}
-		// 				</List.Item>
-		// 			</List.Description>
-		// 		</List.Content>
-		// 	</List.Item>
-		// 	<Modal open={isOpen} onClose={handleSee} basic closeIcon>
-		// 		<Image src={achievement.picture}/>
-		// 	</Modal>
-		{/*	<Divider/>*/}
-		{/*</>*/}
+	return <div className="d-flex align-items-center justify-content-between">
+		<div className="d-flex align-items-center gap-3">
+			<div className="d-flex justify-content-center h-50 mb-3">
+				<img className="border-radius-20-px" src={achievement.picture} alt={achievement.title}/>
+			</div>
+			<div className="d-flex flex-column">
+				<strong>{achievement.title}</strong>
+				<p>{achievement.description}</p>
+			</div>
+		</div>
+
+		<div className="d-flex align-items-center gap-1">
+			<img src={gamerscore} alt="Gamerscore" style={{width: "15px"}}/>
+			{achievement.value}
+		</div>
+	</div>
+	// <>
+	// 	<List.Item as="a" className={styles.achievement}>
+	// 		<Image src={achievement.earned ? achievement.picture : defaultAchievement} size='tiny'
+	// 		       onClick={achievement.earned ? handleSee : handleDone}/>
+	// 		<List.Content className={styles.plus}>
+	// 			<List.Header style={{color: "white"}} onClick={handleDone}>
+	// 				{isShowable() ? achievement.title.concat(" ") : secretTitle}
+	// 				<span>
+	//                 <Image avatar src={gamerscore} size="mini" style={{width: "15px"}}/>
+	// 					{achievement.value}
+	//             </span>
+	//
+	// 			</List.Header>
+	// 			<List.Description style={{color: "white"}}>
+	// 				<List.Item onClick={handleDone}>
+	// 					{isShowable() ? achievement.description : secretDescription}
+	// 				</List.Item>
+	// 				<List.Item className={styles.achievementButtons}>
+	// 					<a href={getYoutubeLink()} target="_blank" rel="noopener noreferrer"
+	// 					   style={{padding: "5px"}}>
+	// 						<Icon name="youtube" size="large" color="red"/>
+	// 					</a>
+	//
+	// 					<a href={getGoogleLink()} target="_blank" rel="noopener noreferrer"
+	// 					   style={{padding: "5px"}}>
+	// 						<Image avatar src={google} style={{width: "20px"}}/>
+	// 					</a>
+	//
+	// 					{achievement.secret && !achievement.earned ?
+	// 						<List.Item onClick={handleShowSecret}>
+	// 							<Icon name={showSecret ? "eye" : "eye slash"} size="large" color="blue"/>
+	// 						</List.Item> : null}
+	// 				</List.Item>
+	// 			</List.Description>
+	// 		</List.Content>
+	// 	</List.Item>
+	// 	<Modal open={isOpen} onClose={handleSee} basic closeIcon>
+	// 		<Image src={achievement.picture}/>
+	// 	</Modal>
+	{/*	<Divider/>*/
+	}
+	{/*</>*/
+	}
 }

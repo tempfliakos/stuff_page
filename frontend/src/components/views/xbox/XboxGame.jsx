@@ -1,11 +1,10 @@
 import {useState} from "react";
-import styles from "../../styles/game.module.css";
-import {AchievementModal} from "../../modals/AchievementModal";
 import {filterGame} from "../../../utils/FilterUtil";
 import {useDispatch} from "react-redux";
 import {update} from "../../../store/game/actions";
+import {Card} from "../../abstracts/Card";
 
-export function XboxGame({game, filter}) {
+export function XboxGame({game, filter, setSelected}) {
 
 	const [open, setOpen] = useState(false);
 	const dispatch = useDispatch();
@@ -29,6 +28,12 @@ export function XboxGame({game, filter}) {
 	function starClicked() {
 		game.star = !game.star;
 		dispatch(update(game));
+	}
+
+	function handleClick() {
+		if (setSelected) {
+			setSelected(game);
+		}
 	}
 
 	const trigger = (
@@ -64,7 +69,8 @@ export function XboxGame({game, filter}) {
 	)
 	return <>{
 		filterGame(game, filter, isDone()) ?
-			<AchievementModal key={game.game_id} trigger={trigger} game={game} open={open} setOpen={setOpen}/>
+			<Card id={game.id} title={game.title} description={getAchievementData()}
+			      imgSrc={game.picture} onClick={handleClick}/>
 			: null
 	}
 	</>

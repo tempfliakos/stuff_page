@@ -1,10 +1,8 @@
-import styles from "../styles/game.module.css";
 import {useDispatch} from "react-redux";
 import {addToGames} from "../../store/game/actions";
 import defaultGamePicture from "../../resources/gamer_default_icon.svg"
 import {WishModal} from "../modals/WishModal";
 import {Card} from "../abstracts/Card";
-import {getYear} from "../../utils/DateUtil";
 
 export function AddGame({game, alreadyAdded, wish}) {
 
@@ -22,16 +20,6 @@ export function AddGame({game, alreadyAdded, wish}) {
 			if (!alreadyAdded) {
 				dispatch(addToGames(game));
 			}
-		}
-	}
-
-	function getHover() {
-		if (game.console === "Xbox") {
-			return styles.xboxcard;
-		} else if (game.console === "Playstation") {
-			return styles.pscard;
-		} else if (game.console === "Switch") {
-			return styles.switchcard;
 		}
 	}
 

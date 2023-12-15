@@ -2,6 +2,7 @@ import {Button} from "../abstracts/Button";
 
 export function DetailContainer({title, poster, posterSubText, genres, children, extraBlock, closeFunction}) {
 	return <div className="d-flex flex-column bg-light-grey p-3 border-radius-20-px overflow-hidden">
+		<Button icon="icon-back" text="Vissza" additionalClassNames="position-absolute w-auto" onClick={() => closeFunction()}/>
 		<div className="d-flex align-items-center justify-content-center">
 			<h1>{title}</h1>
 		</div>
@@ -27,6 +28,5 @@ export function DetailContainer({title, poster, posterSubText, genres, children,
 		<div className="detail-similar d-flex align-items-center gap-3 h-100">
 			{extraBlock}
 		</div>
-		<Button icon="icon-back" text="Vissza" additionalClassNames="position-absolute w-auto" onClick={() => closeFunction()}/>
 	</div>
 }

@@ -4,7 +4,6 @@ import {PieChart} from "../charts/PieChart";
 import {BarChart} from "../charts/BarChart";
 import {DoughnutChart} from "../charts/DoughnutChart";
 import {PolarChart} from "../charts/PolarChart";
-import styles from "../styles/movie.module.css";
 import {trackPromise} from "react-promise-tracker";
 
 export function Dashboard() {

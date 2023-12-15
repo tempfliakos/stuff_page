@@ -1,6 +1,5 @@
 import {useDispatch} from "react-redux";
 import {addToMovies, updateMovieObject} from "../../../store/movie/actions";
-import styles from "../../styles/movie.module.css";
 import defaultPicture from "../../../resources/default-movie-back.jpg";
 import {getYear} from "../../../utils/DateUtil";
 import {tmdbConverter} from "../../../utils/TransformMovieUtil";

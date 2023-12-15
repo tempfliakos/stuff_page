@@ -1,11 +1,9 @@
 import {useState} from "react";
-import styles from "../../styles/movie.module.css";
 import {filterGame} from "../../../utils/FilterUtil";
 import defaultGamePicture from "../../../resources/gamer_default_icon.svg";
 import {TrophyModal} from "../../modals/TrophyModal";
 import {useDispatch} from "react-redux";
 import {update} from "../../../store/game/actions";
-import gameStyles from "../../styles/game.module.css";
 
 export function PsGameMobile({game, filter}) {
 
