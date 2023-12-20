@@ -23,29 +23,13 @@ export function AddGame({game, alreadyAdded, wish}) {
 		}
 	}
 
-	const gameCard = (
-	// 	<Card onClick={addGame} className={getHover()}>
-	// 	{
-	// 		alreadyAdded ? <Label corner="right" color="green" size="huge" className={styles.labelAdded}>
-	// 			<Icon name="check square"/>
-	// 		</Label> : null
-	// 	}
-	// 	<Image src={picture()} wrapped/>
-	//
-	// 	<Card.Content className={styles.textContent}>
-	// 		<Card.Header>{game.title}</Card.Header>
-	// 	</Card.Content>
-	// </Card>
-		<div onClick={addGame}>
-			<Card id={game.id} classNames={alreadyAdded ? "marked" : ""}
-				  imgSrc={picture()} title={game.title}/>
-		</div>
-	);
-
 	return <>
 		{
-			wish ? <WishModal game={game} trigger={gameCard} alreadyAdded={alreadyAdded}/>
-				: gameCard
+			wish ? <WishModal game={game} alreadyAdded={alreadyAdded}/>
+				: <div onClick={addGame}>
+					<Card id={game.id} additionalClassNames={alreadyAdded ? "marked" : ""}
+					      imgSrc={picture()} title={game.title}/>
+				</div>
 		}
 	</>
 }

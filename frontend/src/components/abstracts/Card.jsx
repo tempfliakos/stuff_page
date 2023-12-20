@@ -1,10 +1,10 @@
-export function Card({id, classNames = "", imgSrc, title, description, onClick}) {
+export function Card({id, additionalClassNames = "", imgSrc, title, description, onClick}) {
 
-	return <div key={id} id={id} className={"card " + classNames}>
+	return <div key={id} id={id} className={"card " + additionalClassNames}>
 		<div className="card-content">
 			<div className="d-grid align-items-center justify-content-center w-100 h-100 card-front" onClick={onClick}>
 				<div>
-					<img src={imgSrc} alt={title + " logo"} className="logo w-100 aspect-ratio-3-2 object-fit-contain"/>
+					<img src={imgSrc} alt={title + " logo"} className="logo w-100 aspect-ratio-3-2 object-fit-contain border-radius-20-px"/>
 				</div>
 				<div className="d-grid mt-1">
 					<p className="c-white font-size-18 longtext-ellipsis width-15 m-0">{title}</p>

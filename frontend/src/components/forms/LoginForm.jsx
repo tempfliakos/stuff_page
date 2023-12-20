@@ -3,6 +3,7 @@ import {trackPromise} from "react-promise-tracker";
 import {makePostRequest} from "../../services/axios";
 import Cookies from "universal-cookie";
 import {useNavigate} from "react-router-dom";
+import {Button} from "../abstracts/Button";
 
 export function LoginForm({logged, validateEmail, setIsRegister}) {
 
@@ -47,24 +48,24 @@ export function LoginForm({logged, validateEmail, setIsRegister}) {
 	}
 
 	return <>
-	<form onSubmit={handleLogin}>
-		<div className="d-grid justify-content-center">
-			<h1 className="c-light-green">Bejelentkezés</h1>
-		</div>
-		<div className="d-grid">
-			<input placeholder="Email cím" onChange={handleEmailChange} type="email" className="c-white"/>
-			<input placeholder="Jelszó" onChange={handlePasswordChange} type="password" className="c-white"/>
-		</div>
-		<div className="d-flex align-items-center justify-content-center">
-			<div className="mr-1">
-
-					<button type="submit" className="bg-dark-green c-white">Bejelentkezés</button>
-
+		<form onSubmit={handleLogin}>
+			<div className="d-grid justify-content-center">
+				<h1 className="c-light-green">Bejelentkezés</h1>
 			</div>
-			<div>
-				<button type="reset" className="bg-light-grey c-white" onClick={handleChangeToRegister}>Regisztráció</button>
+			<div className="d-grid gap-3 mb-3">
+				<input placeholder="Email cím" onChange={handleEmailChange} type="email" className="c-white mx-3"/>
+				<input placeholder="Jelszó" onChange={handlePasswordChange} type="password" className="c-white mx-3"/>
 			</div>
-		</div>
-	</form>
+
+			<div className="d-flex align-items-center justify-content-center gap-3">
+				<div>
+					<Button type="submit" additionalClassNames="bg-dark-green c-white" text="Bejelentkezés"/>
+				</div>
+				<div>
+					<Button type="reset" additionalClassNames="bg-light-grey c-black" text="Regisztráció"
+					        onClick={handleChangeToRegister}/>
+				</div>
+			</div>
+		</form>
 	</>
 }

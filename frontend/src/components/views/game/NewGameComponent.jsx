@@ -6,7 +6,7 @@ import {AddMovie} from "../movie/AddMovie";
 import {AddBook} from "../book/AddBook";
 import {AddContainer} from "../../components/AddContainer";
 
-export function NewXboxGame({games}) {
+export function NewGameComponent({games, consoleConstant}) {
 
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -14,7 +14,7 @@ export function NewXboxGame({games}) {
     function handleSearch(searchText) {
         if (searchText.length >= 3) {
             setLoading(true);
-            getDataFromEndpoint('xbox', searchText).then(
+            getDataFromEndpoint(consoleConstant.addEndpoint, searchText).then(
                 res => {
                     setResults(res.data);
                     setLoading(false);

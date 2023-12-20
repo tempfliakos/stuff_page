@@ -21,10 +21,11 @@ export function Loading() {
 			}
 		}
 	}
+
 	const timeOut = setTimeout(animate, 100);
 
 	function isPromiseInProgress() {
-		if(promiseInProgress) {
+		if (promiseInProgress) {
 			return true;
 		} else {
 			clearTimeout(timeOut);
@@ -32,9 +33,9 @@ export function Loading() {
 		}
 	}
 
-	return (isPromiseInProgress() &&
-		// <Dimmer active>
-		<img src='/logo.svg' style={{height: "200px", width: "200px", opacity: opacity}} alt="logo"/>
-	//</Dimmer>
-	)
+	return isPromiseInProgress() &&
+		<div className="d-flex justify-content-center">
+			<img src='/logo.svg' style={{height: "200px", width: "200px", opacity: opacity}} alt="logo"/>
+		</div>
+	
 }

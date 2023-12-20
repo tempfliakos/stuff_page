@@ -1,14 +1,14 @@
 import {useState} from "react";
 import {func} from "prop-types";
 
-export function Button({additionalClassNames, text, icon, onClick, hasApprove}) {
+export function Button({type="button", additionalClassNames, text, icon, onClick, hasApprove}) {
 
 	const [isApprove, setIsApprove] = useState(false);
 
 	function handleOnClick() {
 		if(hasApprove) {
 			setIsApprove(true);
-		} else {
+		} else if(onClick) {
 			onClick();
 		}
 	}
@@ -27,8 +27,8 @@ export function Button({additionalClassNames, text, icon, onClick, hasApprove}) 
 				<button onClick={() => setIsApprove(false)}>Nem</button>
 			</div>
 		</div> :
-		<button className={"d-flex align-items-center justify-content-center " + additionalClassNames} onClick={handleOnClick}>
+		<button type={type} className={"d-flex align-items-center justify-content-center " + additionalClassNames} onClick={handleOnClick}>
 		{icon ?	<i className={icon}/> : null}
-		<span>{text}</span>
+		<span className={icon ? "d-lg-block d-none" : ""}>{text}</span>
 	</button>
 }

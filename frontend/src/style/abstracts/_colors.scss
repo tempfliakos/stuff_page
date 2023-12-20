@@ -42,29 +42,57 @@ $lightgrey: #c5c6c7;
 }
 
 .bg-white {
-  background-color: $white;
+  background-color: $white !important;
 }
 
 .bg-black {
-  background-color: $black;
+  background-color: $black !important;
 }
 
 .bg-dark-green {
-  background-color: $darkgreen;
+  background-color: $darkgreen !important;
 }
 
 .bg-light-green {
-  background-color: $lightgreen;
+  background-color: $lightgreen !important;
 }
 
 .bg-light-black {
-  background-color: $lightblack;
+  background-color: $lightblack !important;
 }
 
 .bg-dark-grey {
-  background-color: $darkgrey;
+  background-color: $darkgrey !important;
 }
 
 .bg-light-grey {
+  background-color: $lightgrey !important;
+}
+
+.bg-white-hover:hover {
+  background-color: $white;
+}
+
+.bg-black-hover:hover {
+  background-color: $black;
+}
+
+.bg-dark-green-hover:hover {
+  background-color: $darkgreen;
+}
+
+.bg-light-green-hover:hover {
+  background-color: $lightgreen;
+}
+
+.bg-light-black-hover:hover {
+  background-color: $lightblack;
+}
+
+.bg-dark-grey-hover:hover {
+  background-color: $darkgrey;
+}
+
+.bg-light-grey-hover:hover {
   background-color: $lightgrey;
 }

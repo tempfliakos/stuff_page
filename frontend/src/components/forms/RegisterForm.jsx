@@ -1,5 +1,6 @@
 import {useState} from "react";
 import {makePostRequest} from "../../services/axios";
+import {Button} from "../abstracts/Button";
 
 export function RegisterForm({validateEmail, setIsRegister}) {
 
@@ -48,20 +49,17 @@ export function RegisterForm({validateEmail, setIsRegister}) {
 		<div className="d-grid justify-content-center">
 			<h1 className="c-light-green">Regisztráció</h1>
 		</div>
-		<div className="d-grid">
-			<input placeholder="Email cím" onChange={handleEmailChange} type="email" className="c-white"/>
-			<input placeholder="Jelszó" onChange={handlePasswordChange} type="password" className="c-white"/>
-			<input placeholder="Jelszó újra" onChange={handleRePasswordChange} type="password" className="c-white"/>
+		<div className="d-grid gap-3 mb-3">
+			<input placeholder="Email cím" onChange={handleEmailChange} type="email" className="c-white mx-3"/>
+			<input placeholder="Jelszó" onChange={handlePasswordChange} type="password" className="c-white mx-3"/>
+			<input placeholder="Jelszó újra" onChange={handleRePasswordChange} type="password" className="c-white mx-3"/>
 		</div>
-		<div className="d-flex align-items-center justify-content-center">
-			<div className="mr-1">
-				<form>
-					<button type="submit" className="bg-dark-green c-white" onClick={handleRegister}>Regisztáció
-					</button>
-				</form>
+		<div className="d-flex align-items-center justify-content-center gap-3">
+			<div>
+					<Button type="submit" additionalClassNames="bg-dark-green c-white" text="Bejelentkezés" onClick={handleRegister}/>
 			</div>
 			<div>
-				<button type="reset" onClick={handleChangeToRegister}>Mégse</button>
+				<Button type="reset" additionalClassNames="bg-light-grey c-black" text="Mégse" onClick={handleChangeToRegister}/>
 			</div>
 		</div>
 	</>

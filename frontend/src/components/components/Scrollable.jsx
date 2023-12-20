@@ -1,11 +1,11 @@
-import $ from "jquery";
 
-export function Scrollable(props) {
+export function Scrollable({scrollFunction, children}) {
 
 	const paneDidMount = () => {
-		$(document).off('scroll');
-		$(document).on('scroll',props.func);
+		document.addEventListener("scroll", () => {
+			scrollFunction();
+		});
 	}
 
-	return <div ref={paneDidMount}>{props.children}</div>;
+	return <div ref={paneDidMount}>{children}</div>;
 }

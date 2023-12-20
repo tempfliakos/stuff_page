@@ -3,7 +3,6 @@ import {addToMovies, updateMovieObject} from "../../../store/movie/actions";
 import defaultPicture from "../../../resources/default-movie-back.jpg";
 import {getYear} from "../../../utils/DateUtil";
 import {tmdbConverter} from "../../../utils/TransformMovieUtil";
-import {Movie} from "./Movie";
 import {Card} from "../../abstracts/Card";
 
 export function AddMovie({movie, movieAttributes}) {
@@ -31,7 +30,7 @@ export function AddMovie({movie, movieAttributes}) {
 	}
 
 	return <div onClick={addFilm}>
-			<Card id={movie.id} classNames={movieAttributes.alreadyAdded ? "marked" : ""}
+			<Card id={movie.id} additionalClassNames={movieAttributes.alreadyAdded ? "marked" : ""}
 			      imgSrc={picture()} title={movie.title} description={getYear(movie.release_date)}/>
 		</div>
 }

@@ -25,7 +25,7 @@ export function DetailContainer({title, poster, posterSubText, genres, children,
 			{children}
 		</div>
 
-		<div className="detail-similar d-flex align-items-center gap-3 h-100">
+		<div className="d-flex align-items-center gap-3 overflow-auto hide-scrollbar h-100">
 			{extraBlock}
 		</div>
 	</div>

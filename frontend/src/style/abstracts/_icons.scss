@@ -6,6 +6,12 @@ $trash: '\e872';
 $clock: '\e923';
 $paw: '\e91d';
 $back: '\e2ea';
+$lock: '\e897';
+$openLock: '\e898';
+$expandOff: '\e5ce';
+$expandOn: '\e5cf';
+$done: '\e86c';
+$doneRemove: '\f236';
 
 .icon-search {
   &:before {
@@ -54,3 +60,62 @@ $back: '\e2ea';
     content: $back;
   }
 }
+
+.icon-lock {
+  &:before {
+    content: $lock;
+  }
+}
+
+.icon-open-lock {
+  &:before {
+    content: $openLock;
+  }
+}
+
+.icon-expand-on {
+  &:before {
+    content: $expandOn;
+  }
+}
+
+.icon-expand-off {
+  &:before {
+    content: $expandOff;
+  }
+}
+
+.icon-done {
+  &:before {
+    content: $done;
+  }
+}
+
+.icon-done-remove {
+  &:before {
+    content: $doneRemove;
+  }
+}
+
+.icon-file {
+  width: 1rem;
+
+  &.icon-gamer-score {
+    &:before {
+      content: url("../../resources/gamer_score.svg");
+    }
+  }
+
+  &.icon-google {
+    &:before {
+      content: url("../../resources/google.svg");
+    }
+  }
+
+  &.icon-youtube {
+    &:before {
+      content: url("../../resources/youtube.svg");
+    }
+  }
+}
+

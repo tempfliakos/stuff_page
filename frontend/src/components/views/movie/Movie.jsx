@@ -15,7 +15,6 @@ export function Movie({movie, filter, setSelected}) {
 		return new Date(Date.parse(movie.release_date)).getFullYear();
 	}
 
-
 	function handleOnClick() {
 		if (setSelected) {
 			setSelected(movie);
@@ -24,6 +23,7 @@ export function Movie({movie, filter, setSelected}) {
 
 	return filterMovie(movie, filter) ?
 		<Card id={movie.id} imgSrc={picture()}
+		      additionalClassNames={movie.seen ? "bg-dark-green" : ""}
 		      title={movie.title} description={getReleaseDate()}
 		      onClick={handleOnClick}/>
 		: null

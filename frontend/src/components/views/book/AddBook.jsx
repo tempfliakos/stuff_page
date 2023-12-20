@@ -21,7 +21,7 @@ export function AddBook({book, alreadyAdded}) {
 	}
 
 	return <div onClick={addBook}>
-		<Card id={book.id} classNames={alreadyAdded ? "marked" : ""}
+		<Card id={book.id} additionalClassNames={alreadyAdded ? "marked" : ""}
 		      imgSrc={picture()} title={book.title} description={book.author}/>
 	</div>
 }

@@ -1,0 +1,9 @@
+.star {
+  transition: transform 1s;
+  transform: scale(0.7);
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0 0 10px 10px $lightgreen;
+    transform: scale(0.6);
+  }
+}

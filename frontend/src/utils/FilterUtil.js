@@ -60,9 +60,9 @@ export function filterMovie(paramMovie, paramFilter) {
 	return filterWithTitleMovie() && filterWithGenre() && filterWithSeen() && filterWithOwned() && filterWithRelease() && filterWithLiza();
 }
 
-export function filterGame(paramGame, paramFilter, done) {
+export function filterGame(paramGame, paramFilter) {
 	obj = paramGame;
 	filter = paramFilter;
-	return filterWithTitle() && filterWithDone(done);
+	return filterWithTitle();
 
 }

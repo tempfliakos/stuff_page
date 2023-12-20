@@ -110,7 +110,7 @@ export function Dashboard() {
 	//
 	// 			<Card as="a">
 	// 				<Card.Content className={styles.textContent}>
-	// 					<Card.Header>Achievement és Trófea teljesítési megoszlás</Card.Header>
+	// 					<Card.Header>AchievementTrophyComponent és Trófea teljesítési megoszlás</Card.Header>
 	// 				</Card.Content>
 	// 				<Card.Content>
 	// 					<PolarChart
