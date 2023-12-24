@@ -3,7 +3,7 @@ import {AddMovie} from "./AddMovie";
 import {getDataFromEndpoint} from "../../../services/axios";
 import {AddContainer} from "../../components/AddContainer";
 
-export function NewMovie({movies}) {
+export function NewMovie({movies, addView, setAddView}) {
 
 	const [results, setResults] = useState([]);
 	const [alreadySearched, setAlreadySearched] = useState(false);
@@ -29,7 +29,7 @@ export function NewMovie({movies}) {
 		return {alreadyAdded: false, seen: false};
 	}
 
-	return <AddContainer handleSearch={handleSearch}>
+	return <AddContainer handleSearch={handleSearch} addView={addView} setAddView={setAddView}>
 		{
 			results ?
 				<>

@@ -42,6 +42,15 @@ button {
     color: $white;
     box-shadow: 0 0 10px 10px $darkgreen;
   }
+
+  &.floating-button {
+    position: fixed;
+    width: 4rem;
+    height: 4rem;
+    left: calc(100vw - 5rem);
+    top: calc(100vh - 5rem);
+    z-index: 1;
+  }
 }
 
 .longtext-ellipsis {

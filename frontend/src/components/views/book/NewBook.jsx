@@ -3,7 +3,7 @@ import {getDataFromEndpoint} from "../../../services/axios";
 import {AddBook} from "./AddBook";
 import {AddContainer} from "../../components/AddContainer";
 
-export function NewBook({books}) {
+export function NewBook({books, addView, setAddView}) {
 
 	const [results, setResults] = useState([]);
 	const [loading, setLoading] = useState(false);
@@ -25,7 +25,7 @@ export function NewBook({books}) {
 		return !!book;
 	}
 
-	return <AddContainer handleSearch={handleSearch}>
+	return <AddContainer handleSearch={handleSearch} addView={addView} setAddView={setAddView}>
 		{
 			results ?
 				<>

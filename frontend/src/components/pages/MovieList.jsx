@@ -11,8 +11,6 @@ import {MovieDetail} from "../views/movie/MovieDetail";
 
 export function MovieList() {
 
-	const dispatch = useDispatch();
-	const movies = useSelector(getMovies);
 	const [titleFilter, setTitleFilter] = useState("");
 	const [genresFilter, setGenresFilter] = useState(initGenres());
 	const [seenFilter, setSeenFilter] = useState(null);
@@ -20,7 +18,11 @@ export function MovieList() {
 	const [releaseFilter, setReleaseFilter] = useState(false);
 	const [lizaFilter, setLizaFilter] = useState(false);
 	const [filterExpand, setFilterExpand] = useState(false);
+	const [addView, setAddView] = useState(false);
 	const [selected, setSelected] = useState(null);
+
+	const dispatch = useDispatch();
+	const movies = useSelector(getMovies);
 
 	let defaultFilter = {
 		title: "",
@@ -114,18 +116,17 @@ export function MovieList() {
 	}
 
 	return <div className="grid-area-main">
-		{selected ?
-			<MovieDetail movie={selected} setMovie={setSelected} movies={movies}/> :
-			<>
-				<div>
-					<NewMovie movies={movies}/>
-				</div>
-				<div className="d-flex align-items-center justify-content-center flex-wrap gap-3 mx-2 pt-1">
-					{movies ? movies.map(movie => (
-						<Movie key={movie.id} movie={movie} filter={filter} setSelected={setSelected}/>
-					)) : null}
-				</div>
-			</>
+		<NewMovie movies={movies} addView={addView} setAddView={setAddView}/>
+		{!addView ?
+			selected ?
+				<MovieDetail movie={selected} setMovie={setSelected} movies={movies}/> :
+				<>
+					<div className="d-flex align-items-center justify-content-center flex-wrap gap-3 mx-2 pt-1">
+						{movies ? movies.map(movie => (
+							<Movie key={movie.id} movie={movie} filter={filter} setSelected={setSelected}/>
+						)) : null}
+					</div>
+				</> : null
 		}
 	</div>
 

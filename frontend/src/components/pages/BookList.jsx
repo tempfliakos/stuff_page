@@ -10,6 +10,7 @@ import {BookDetail} from "../views/book/BookDetail";
 
 export function BookList() {
 
+	const [addView, setAddView] = useState(false);
 	const [selected, setSelected] = useState(null);
 
 	const books = useSelector(getBooks);
@@ -25,16 +26,16 @@ export function BookList() {
 	}, [dispatch]);
 
 	return <div className="grid-area-main">
-		{selected ? <BookDetail book={selected} setBook={setSelected}/>
-			: <>
-				<div>
-					<NewBook books={books}/>
-				</div>
-				<div className="d-flex align-items-center justify-content-center flex-wrap gap-3 mx-2 pt-1">
-					{books ? books.map(book => (
-						<Book key={book.book_id} book={book} type={type} setSelected={setSelected}/>
-					)) : null}
-				</div>
-			</>}
+		<NewBook books={books} addView={addView} setAddView={setAddView}/>
+		{!addView ?
+			selected ? <BookDetail book={selected} setBook={setSelected}/>
+				: <>
+					<div className="d-flex align-items-center justify-content-center flex-wrap gap-3 mx-2 pt-1">
+						{books ? books.map(book => (
+							<Book key={book.book_id} book={book} type={type} setSelected={setSelected}/>
+						)) : null}
+					</div>
+				</> : null
+		}
 	</div>
 }

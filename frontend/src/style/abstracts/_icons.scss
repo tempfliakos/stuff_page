@@ -12,6 +12,7 @@ $expandOff: '\e5ce';
 $expandOn: '\e5cf';
 $done: '\e86c';
 $doneRemove: '\f236';
+$close: '\e5cd';
 
 .icon-search {
   &:before {
@@ -94,6 +95,12 @@ $doneRemove: '\f236';
 .icon-done-remove {
   &:before {
     content: $doneRemove;
+  }
+}
+
+.icon-close {
+  &:before {
+    content: $close;
   }
 }
 

@@ -19,6 +19,7 @@ export function AchievementGameList({consoleConstant}) {
 	const [filter, setFilter] = useState(defaultFilter);
 	const [titleFilter, setTitleFilter] = useState("");
 	const [page, setPage] = useState(1);
+	const [addView, setAddView] = useState(false);
 	const [selected, setSelected] = useState(null);
 
 	const games = useSelector(getGames);
@@ -63,25 +64,24 @@ export function AchievementGameList({consoleConstant}) {
 	}
 
 	return <div className="grid-area-main">
-		{selected ? <GameDetail game={selected} closeFunction={() => setSelected(null)}/> : <>
-			<div>
-				<NewGameComponent games={games} consoleConstant={consoleConstant}/>
-			</div>
-			<div className="d-flex align-items-center overflow-auto hide-scrollbar mx-2 mb-3 pt-1">
-				{
-					stars ? stars.map((star) =>
-						<StarGame key={star.game_id} game={star} setSelected={setSelected}/>
-					) : null
-				}
-			</div>
-			<Scrollable scrollFunction={handleScroll}>
-				<div className="d-flex align-items-center justify-content-center flex-wrap gap-3 mx-2 pt-1">
-					{games ? games.map(game => (
-						<GameComponent key={game.game_id} game={game} filter={filter} setSelected={setSelected}/>
-					)) : null}
+		<NewGameComponent games={games} consoleConstant={consoleConstant} addView={addView} setAddView={setAddView}/>
+		{!addView ?
+			selected ? <GameDetail game={selected} closeFunction={() => setSelected(null)}/> : <>
+				<div className="d-flex align-items-center overflow-auto hide-scrollbar mx-2 mb-3 pt-1">
+					{
+						stars ? stars.map((star) =>
+							<StarGame key={star.game_id} game={star} setSelected={setSelected}/>
+						) : null
+					}
 				</div>
-			</Scrollable>
-		</>
+				<Scrollable scrollFunction={handleScroll}>
+					<div className="d-flex align-items-center justify-content-center flex-wrap gap-3 mx-2 pt-1">
+						{games ? games.map(game => (
+							<GameComponent key={game.game_id} game={game} filter={filter} setSelected={setSelected}/>
+						)) : null}
+					</div>
+				</Scrollable>
+			</> : null
 		}
 	</div>
 }

@@ -10,6 +10,7 @@ body {
     'main main main main'
     'main main main main';
   grid-gap: 10px;
+  justify-items: center;
 }
 
 @media screen and (max-width: 992px) {
@@ -42,6 +43,7 @@ body {
 .grid-area-main {
   display: grid;
   grid-area: main;
+  margin: 0 20rem;
 }
 
 .grid-area-empty {

@@ -6,7 +6,7 @@ import {AddMovie} from "../movie/AddMovie";
 import {AddBook} from "../book/AddBook";
 import {AddContainer} from "../../components/AddContainer";
 
-export function NewGameComponent({games, consoleConstant}) {
+export function NewGameComponent({games, consoleConstant, addView, setAddView}) {
 
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -30,7 +30,7 @@ export function NewGameComponent({games, consoleConstant}) {
         return !!game;
     }
 
-    return <AddContainer handleSearch={handleSearch}>
+    return <AddContainer handleSearch={handleSearch} addView={addView} setAddView={setAddView}>
         {
             results ?
                 <>
