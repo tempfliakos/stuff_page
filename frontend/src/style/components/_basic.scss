@@ -47,9 +47,17 @@ button {
     position: fixed;
     width: 4rem;
     height: 4rem;
-    left: calc(100vw - 5rem);
-    top: calc(100vh - 5rem);
     z-index: 1;
+
+    &.menu {
+      left: 1rem;
+      top: 1rem;
+    }
+
+    &.add {
+      left: calc(100vw - 6rem);
+      top: calc(100vh - 5rem);
+    }
   }
 }
 

@@ -1,7 +1,6 @@
 import {useState} from "react";
-import {func} from "prop-types";
 
-export function Button({type="button", additionalClassNames, text, icon, onClick, hasApprove}) {
+export function Button({type="button", additionalClassNames = "", text = "", icon, onClick, hasApprove}) {
 
 	const [isApprove, setIsApprove] = useState(false);
 

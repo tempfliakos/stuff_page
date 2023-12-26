@@ -18,13 +18,6 @@ function filterWithGenre() {
 	return false;
 }
 
-function filterWithDone(done) {
-	if (filter.done) {
-		return done === filter.done;
-	}
-	return true;
-}
-
 function filterWithSeen() {
 	if (filter.seen) {
 		return !obj.seen === filter.seen;

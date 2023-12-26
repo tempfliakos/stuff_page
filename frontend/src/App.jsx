@@ -18,18 +18,6 @@ export default function App() {
 	const navigate = useNavigate();
 	const [loggedIn, setLoggedIn] = useState(false);
 
-	const children = <Routes>
-		<Route exact path="/" element={<Dashboard/>}/>
-		<Route path="/movies" element={<MovieList/>}/>
-		<Route path="/books" element={<BookList/>}/>
-		<Route path="/xbox" element={<XboxList/>}/>
-		<Route path="/playstation" element={<PlaystationList/>}/>
-		<Route path="/switch" element={<SwitchList/>}/>
-		<Route path="/wishlist" element={<Wishlist/>}/>
-		<Route path="/options" element={<Options/>}/>
-		<Route path="/logout" element={<Logout logged={setLoggedIn}/>}/>
-	</Routes>
-
 	useEffect(() => {
 			const cookies = new Cookies();
 			if (!cookies.get("stuffPages")) {
@@ -47,7 +35,19 @@ export default function App() {
 	return (
 		<div className="wrapper p-3">
 			{loggedIn ?
-				<Navigation children={children}/>
+				<Navigation>
+					<Routes>
+						<Route exact path="/" element={<Dashboard/>}/>
+						<Route path="/movies" element={<MovieList/>}/>
+						<Route path="/books" element={<BookList/>}/>
+						<Route path="/xbox" element={<XboxList/>}/>
+						<Route path="/playstation" element={<PlaystationList/>}/>
+						<Route path="/switch" element={<SwitchList/>}/>
+						<Route path="/wishlist" element={<Wishlist/>}/>
+						<Route path="/options" element={<Options/>}/>
+						<Route path="/logout" element={<Logout logged={setLoggedIn}/>}/>
+					</Routes>
+				</Navigation>
 				: <Login logged={setLoggedIn}/>}
 		</div>
 	);

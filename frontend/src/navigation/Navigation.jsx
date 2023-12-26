@@ -2,7 +2,7 @@ import {NavBar} from "./NavBar";
 
 export function Navigation({children}) {
 
-	const leftItems = [
+	const items = [
 		{path: "", content:"Dashboard"},
 		{path: "movies", content: "Filmek"},
 		{path: "books", content: "Könyvek"},
@@ -13,11 +13,8 @@ export function Navigation({children}) {
 		{path: "options", content: "Beállítások"},
 		{path: "logout", content: "Kijelentkezés"},
 	];
-	const rightItems = [
 
-	];
-
-	return <NavBar leftItems={leftItems} rightItems={rightItems}>
+	return <NavBar items={items}>
 		{children}
 	</NavBar>
 }

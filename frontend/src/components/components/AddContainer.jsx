@@ -23,5 +23,5 @@ export function AddContainer({handleSearch, children, addView, setAddView}) {
 				{children}
 			</div>
 		</div> :
-		<Button onClick={() => setAddView(true)} additionalClassNames="floating-button font-size-32" text="+"/>
+		<Button onClick={() => setAddView(true)} additionalClassNames="floating-button add font-size-32" text="+"/>
 }

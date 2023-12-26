@@ -1,3 +1,4 @@
+$menu: '\e5d2';
 $search: '\e8b6';
 $eye: '\e8f4';
 $save: '\e161';
@@ -13,6 +14,12 @@ $expandOn: '\e5cf';
 $done: '\e86c';
 $doneRemove: '\f236';
 $close: '\e5cd';
+
+.icon-menu {
+  &:before {
+    content: $menu;
+  }
+}
 
 .icon-search {
   &:before {
