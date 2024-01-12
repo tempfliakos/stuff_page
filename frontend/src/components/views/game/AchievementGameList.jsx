@@ -19,6 +19,8 @@ export function AchievementGameList({consoleConstant}) {
 	const [filter, setFilter] = useState(defaultFilter);
 	const [titleFilter, setTitleFilter] = useState("");
 	const [page, setPage] = useState(1);
+	const [count, setCount] = useState(-1);
+	const [scrollable, setScrollable] = useState(true);
 	const [addView, setAddView] = useState(false);
 	const [selected, setSelected] = useState(null);
 
@@ -47,11 +49,17 @@ export function AchievementGameList({consoleConstant}) {
 			await getStarredGames();
 		}
 
-		setData();
+		setData().then(() => {
+			if(games.length === count) {
+				setScrollable(false);
+			} else {
+				setCount(games.length);
+			}
+		});
 	}, [page, titleFilter]);
 
 	function handleScroll() {
-		if ((window.scrollY + 1 + window.innerHeight) >= document.documentElement.offsetHeight) {
+		if (scrollable && (window.scrollY + 1 + window.innerHeight) >= document.documentElement.offsetHeight) {
 			setPage(page + 1);
 		}
 	}

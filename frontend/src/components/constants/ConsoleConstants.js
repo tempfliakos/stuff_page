@@ -11,3 +11,10 @@ export const PLAYSTATION = {
 	secretTitle: "Hidden Trophy",
 	secretDescription: ""
 }
+
+export const SWITCH = {
+	addEndpoint: "switch",
+	gameType: "Switch",
+	secretTitle: "",
+	secretDescription: ""
+}

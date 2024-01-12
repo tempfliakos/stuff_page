@@ -4,7 +4,10 @@ import {Card} from "../../abstracts/Card";
 export function GameComponent({game, filter, setSelected}) {
 
 	function getAchievementData() {
-		return game.earned + "/" + game.sum;
+		if(game.sum !== 0) {
+			return game.earned + "/" + game.sum;
+		}
+		return "";
 	}
 
 	function handleClick() {
@@ -15,7 +18,7 @@ export function GameComponent({game, filter, setSelected}) {
 
 	return filterGame(game, filter) ?
 			<Card id={game.id} title={game.title} description={getAchievementData()}
-			      additionalClassNames={game.earned === game.sum ? "bg-dark-green" : ""}
+			      additionalClassNames={game.earned === game.sum && game.sum !== 0 ? "bg-dark-green" : ""}
 			      imgSrc={game.picture} onClick={handleClick}/>
 			: null
 }

@@ -1,102 +1,69 @@
-import {useCallback, useEffect, useState} from "react";
+import {Scrollable} from "../components/Scrollable";
+import {SWITCH} from "../constants/ConsoleConstants";
+import {NewGameComponent} from "../views/game/NewGameComponent";
+import {GameComponent} from "../views/game/GameComponent";
 import {useDispatch, useSelector} from "react-redux";
 import {getGames} from "../../store/game/selectors";
-import {getGameList, initGameList} from "../../store/game/actions";
-import {SwitchGame} from "../views/switch/SwitchGame";
-import {SwitchGameMobile} from "../views/switch/SwitchGameMobile";
-import {NewSwitchGame} from "../new/NewSwitchGame";
-import $ from "jquery";
-import {Scrollable} from "../components/Scrollable";
+import {useEffect, useState} from "react";
 import {trackPromise} from "react-promise-tracker";
+import {getGameList, initGameList} from "../../store/game/actions";
 
 export function SwitchList() {
 
-	const games = useSelector(getGames);
-	const dispatch = useDispatch();
-	const [page, setPage] = useState(1);
+    let defaultFilter = {
+        title: '',
+        console: SWITCH.gameType,
+    };
 
-	const sendCreate = useCallback(async () => {
-		const pageNumber = page + 1;
-		setPage(pageNumber);
-		trackPromise(dispatch(createList()));
-	}, [dispatch, updateList, setPage, page]);
+    const [filter, setFilter] = useState(defaultFilter);
+    const [titleFilter, setTitleFilter] = useState("");
+    const [page, setPage] = useState(1);
+    const [count, setCount] = useState(-1);
+    const [scrollable, setScrollable] = useState(true);
+    const [addView, setAddView] = useState(false);
 
-	const sendUpdate = useCallback(async () => {
-		const pageNumber = page + 1;
-		setPage(pageNumber);
-		trackPromise(dispatch(updateList()));
-	}, [dispatch, updateList, setPage, page]);
+    const games = useSelector(getGames);
 
-	useEffect(() => {
-		sendCreate();
-	}, [dispatch]);
+    const dispatch = useDispatch();
 
-	function handleScroll(event) {
-		if (($(window).scrollTop() + 1) + $(window).height() >= $(document).height()) {
-			sendUpdate();
-		}
-	}
+    useEffect(() => {
+        async function getGames() {
+            if (page === 1) {
+                return trackPromise(dispatch(initGameList(SWITCH.gameType, page, titleFilter)));
+            } else {
+                return trackPromise(dispatch(getGameList(SWITCH.gameType, page, titleFilter)));
+            }
+        }
 
-	const [titleFilter, setTitleFilter] = useState("");
+        async function setData() {
+            await getGames();
+        }
 
-	let defaultFilter = {
-		title: "",
-		done: null,
-		console: 'Switch',
-	};
-	const [filter, setFilter] = useState(defaultFilter);
+        setData().then(() => {
+            if(games.length === count) {
+                setScrollable(false);
+            } else {
+                setCount(games.length);
+            }
+        });
+    }, [page, titleFilter]);
 
-	function createList() {
-		return initGameList('Switch', page, titleFilter);
-	}
+    function handleScroll() {
+        if (scrollable && (window.scrollY + 1 + window.innerHeight) >= document.documentElement.offsetHeight) {
+            setPage(page + 1);
+        }
+    }
 
-	function updateList() {
-		return getGameList('Switch', page, titleFilter);
-	}
-
-	function handleTitleSearch(event, data) {
-		defaultFilter.title = data.value;
-		setTitleFilter(defaultFilter.title);
-		setFilter(defaultFilter);
-		sendUpdate();
-	}
-
-	return (
-	// 	<Grid columns="equal" className="gridFull">
-	// 		<Grid.Row>
-	// 			<Grid.Column>
-	// 				<Input placeholder='Játék címe...' fluid onChange={handleTitleSearch}/>
-	// 			</Grid.Column>
-	//
-	// 		</Grid.Row>
-	//
-	// 		<Grid.Row>
-	// 			<Grid.Column>
-	// 				<NewSwitchGame games={games}/>
-	// 			</Grid.Column>
-	// 		</Grid.Row>
-	//
-	// 		<Grid.Row>
-	// 			<Scrollable func={handleScroll}>
-	// 				<Responsive minWidth={Responsive.onlyComputer.minWidth}>
-	// 					<Card.Group relaxed="very" columns="equal" padded="vertically" centered
-	// 					            itemsPerRow={window.screen.width > 800 ? 4 : 1} className="gridFull">
-	// 						{games ? games.map(game => (
-	// 							<SwitchGame key={game.game_id} game={game} filter={filter}/>
-	// 						)) : null}
-	// 					</Card.Group>
-	// 				</Responsive>
-	//
-	// 				<Responsive as={Grid} maxWidth={Responsive.onlyTablet.maxWidth}>
-	// 					<Grid columns="equal">
-	// 						{games ? games.map(game => (
-	// 							<SwitchGameMobile key={game.game_id} game={game} filter={filter}/>
-	// 						)) : null}
-	// 					</Grid>
-	// 				</Responsive>
-	// 			</Scrollable>
-	// 		</Grid.Row>
-	// 	</Grid>
-		<div>SwitchList</div>
-	)
+    return <div className="grid-area-main">
+        <NewGameComponent games={games} consoleConstant={SWITCH} addView={addView} setAddView={setAddView}/>
+        {!addView ?
+            <Scrollable scrollFunction={handleScroll}>
+                <div className="d-flex align-items-center justify-content-center flex-wrap gap-3 mx-2 pt-1">
+                    {games ? games.map(game => (
+                        <GameComponent key={game.game_id} game={game} filter={filter}/>
+                    )) : null}
+                </div>
+            </Scrollable> : null
+        }
+    </div>
 }
