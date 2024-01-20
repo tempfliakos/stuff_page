@@ -36,10 +36,18 @@
     }
   }
 
-  &:hover {
-    cursor: pointer;
+  @mixin active {
     box-shadow: 0 0 10px 10px $lightgreen;
     transform: scale(0.9);
+  }
+
+  &:hover {
+    cursor: pointer;
+    @include active;
+  }
+
+  &.active {
+    @include active;
   }
 
   &.flipped {

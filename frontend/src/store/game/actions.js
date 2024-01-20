@@ -73,11 +73,8 @@ export function getStarlist(console) {
 	}
 }
 
-export function removeGame(game) {
-	return async (dispatch) => {
-		await wishlistService.remove(game.id);
-		dispatch(deleteGame(game));
-	}
+export async function removeGame(game) {
+	return
 }
 
 export function update(game) {

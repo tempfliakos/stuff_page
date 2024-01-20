@@ -1,7 +1,7 @@
 import {filterGame} from "../../../utils/FilterUtil";
 import {Card} from "../../abstracts/Card";
 
-export function GameComponent({game, filter, setSelected}) {
+export function GameComponent({game, filter, onClick}) {
 
 	function getAchievementData() {
 		if(game.sum !== 0) {
@@ -11,8 +11,8 @@ export function GameComponent({game, filter, setSelected}) {
 	}
 
 	function handleClick() {
-		if (setSelected) {
-			setSelected(game);
+		if (onClick) {
+			onClick(game);
 		}
 	}
 

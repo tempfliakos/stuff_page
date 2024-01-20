@@ -1,26 +1,45 @@
 import {useDispatch} from "react-redux";
 import {removeGame} from "../../../store/game/actions";
+import {GameComponent} from "../game/GameComponent";
+import {useState} from "react";
+import {Card} from "../../abstracts/Card";
+import {Modal} from "../../abstracts/Modal";
+import {Button} from "../../abstracts/Button";
+import {wishlistService} from "../../../services/wishlist-service";
 
-export function WishGame({game}) {
+export function WishGame({game, deleteFunc}) {
 
-    const dispatch = useDispatch();
+	const [open, setOpen] = useState(false);
 
-    function handleDelete() {
-        dispatch(removeGame(game));
-    }
+	const defaultFilter = {
+		title: ''
+	}
 
-    return <div>WishGame</div>
-    // <Card as="a" className={getHover()}>
-    //     <Image src={game.picture} ui={false} wrapped/>
-    //     <Card.Content className={styles.textContent}>
-    //         <Card.Header>{game.title}</Card.Header>
-    //         <Button animated='vertical' color="red" size="tiny"
-    //                 onClick={handleDelete} fluid>
-    //             <Button.Content hidden>Törlés</Button.Content>
-    //             <Button.Content visible>
-    //                 <Icon name='trash'/>
-    //             </Button.Content>
-    //         </Button>
-    //     </Card.Content>
-    // </Card>
+	function handleDelete() {
+		deleteFunc(game.id).then(() => handleCloseModal());
+	}
+
+	function handleOpenModal() {
+		console.log(game)
+		setOpen(true);
+		document.body.style.overflowY = "hidden";
+	}
+
+	function handleCloseModal() {
+		setOpen(false);
+		document.body.style.overflowY = "auto";
+	}
+
+	return <>
+		<Modal title="Játék törlése" open={open} setOpen={setOpen}>
+			<div className="d-grid justify-content-center">
+				<span className="c-white font-size-18">{game.title}-t tényleg törlöd?</span>
+				<div className="d-flex gap-5 mt-3">
+					<Button text="Igen" onClick={() => handleDelete()}/>
+					<Button text="Nem" onClick={() => handleCloseModal()}/>
+				</div>
+			</div>
+		</Modal>
+		<GameComponent game={game} filter={defaultFilter} onClick={() => handleOpenModal()}/>
+	</>
 }

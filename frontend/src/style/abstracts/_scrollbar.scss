@@ -1,8 +1,17 @@
-.hide-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
 
-  &::-webkit-scrollbar {
-    display: none;
-  }
+::-webkit-scrollbar-track {
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $darkgrey;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $lightgreen;
 }

@@ -70,12 +70,11 @@ export function AchievementGameList({consoleConstant}) {
 		setTitleFilter(defaultFilter.title);
 		setFilter(defaultFilter);
 	}
-
 	return <div className="grid-area-main">
 		<NewGameComponent games={games} consoleConstant={consoleConstant} addView={addView} setAddView={setAddView}/>
 		{!addView ?
 			selected ? <GameDetail game={selected} closeFunction={() => setSelected(null)}/> : <>
-				<div className="d-flex align-items-center overflow-auto hide-scrollbar mx-2 mb-3 pt-1">
+				<div className="d-flex align-items-center overflow-auto mx-2 mb-3 pt-1">
 					{
 						stars ? stars.map((star) =>
 							<StarGame key={star.game_id} game={star} setSelected={setSelected}/>
@@ -85,7 +84,7 @@ export function AchievementGameList({consoleConstant}) {
 				<Scrollable scrollFunction={handleScroll}>
 					<div className="d-flex align-items-center justify-content-center flex-wrap gap-3 mx-2 pt-1">
 						{games ? games.map(game => (
-							<GameComponent key={game.game_id} game={game} filter={filter} setSelected={setSelected}/>
+							<GameComponent key={game.game_id} game={game} filter={filter} onClick={setSelected}/>
 						)) : null}
 					</div>
 				</Scrollable>
