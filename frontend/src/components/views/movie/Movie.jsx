@@ -4,7 +4,7 @@ import {Card} from "../../abstracts/Card";
 
 export function Movie({movie, filter, setSelected}) {
 	function picture() {
-		if (movie.backdrop_path) {
+		if (movie.backdrop_path && !movie.backdrop_path.endsWith("null")) {
 			return process.env.REACT_APP_TMDB_IMG_LINK + movie.backdrop_path;
 		} else {
 			return defaultPicture;

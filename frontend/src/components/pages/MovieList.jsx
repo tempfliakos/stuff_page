@@ -8,6 +8,8 @@ import {genres} from "../../store/catalogs/genres";
 import Cookies from "universal-cookie/lib";
 import {trackPromise} from "react-promise-tracker";
 import {MovieDetail} from "../views/movie/MovieDetail";
+import {TextSearch} from "../components/TextSearch";
+import {SearchContainer} from "../components/SearchContainer";
 
 export function MovieList() {
 
@@ -45,8 +47,8 @@ export function MovieList() {
 		return genres.map(g => g.text);
 	}
 
-	function handleTitleSearch(event, data) {
-		defaultFilter.title = data.value;
+	function handleTitleSearch(searchText) {
+		defaultFilter.title = searchText;
 		defaultFilter.genre = genresFilter;
 		defaultFilter.seen = seenFilter;
 		defaultFilter.owned = ownedFilter;
@@ -121,7 +123,12 @@ export function MovieList() {
 			selected ?
 				<MovieDetail movie={selected} setMovie={setSelected} movies={movies}/> :
 				<>
+					<SearchContainer>
+						<TextSearch handleSearch={handleTitleSearch}/>
+					</SearchContainer>
+
 					<div className="d-flex align-items-center justify-content-center flex-wrap gap-3 mx-2 pt-1">
+
 						{movies ? movies.map(movie => (
 							<Movie key={movie.id} movie={movie} filter={filter} setSelected={setSelected}/>
 						)) : null}

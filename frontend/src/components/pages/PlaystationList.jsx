@@ -1,6 +1,6 @@
 import {AchievementGameList} from "../views/game/AchievementGameList";
-import {PLAYSTATION} from "../constants/ConsoleConstants";
+import {PLAYSTATION} from "../constants/PlatformConstants";
 
 export function PlaystationList() {
-	return <AchievementGameList consoleConstant={PLAYSTATION}/>
+	return <AchievementGameList platformConstant={PLAYSTATION}/>
 }

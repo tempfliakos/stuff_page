@@ -1,12 +1,9 @@
 import {useState} from "react";
 import {getDataFromEndpoint} from "../../../services/axios";
 import {AddGame} from "../../new/AddGame";
-import {Button} from "../../abstracts/Button";
-import {AddMovie} from "../movie/AddMovie";
-import {AddBook} from "../book/AddBook";
 import {AddContainer} from "../../components/AddContainer";
 
-export function NewGameComponent({games, consoleConstant, addView, setAddView}) {
+export function NewGameComponent({games, platformConstant, addView, setAddView, wish}) {
 
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -14,11 +11,19 @@ export function NewGameComponent({games, consoleConstant, addView, setAddView}) 
     function handleSearch(searchText) {
         if (searchText.length >= 3) {
             setLoading(true);
-            getDataFromEndpoint(consoleConstant.addEndpoint, searchText).then(
-                res => {
-                    setResults(res.data);
-                    setLoading(false);
-                });
+            if(wish) {
+                getDataFromEndpoint("wish", searchText).then(
+                    res => {
+                        setResults(res.data);
+                        setLoading(false);
+                    });
+            } else {
+                getDataFromEndpoint(platformConstant.addEndpoint, searchText).then(
+                    res => {
+                        setResults(res.data);
+                        setLoading(false);
+                    });
+            }
         } else {
             setLoading(false);
             setResults([]);
@@ -27,7 +32,7 @@ export function NewGameComponent({games, consoleConstant, addView, setAddView}) 
 
     function contains(id) {
         const game = games.filter(g => g.game_id.toString() === id.toString())[0];
-        return !!game;
+        return game !== undefined;
     }
 
     return <AddContainer handleSearch={handleSearch} addView={addView} setAddView={setAddView}>
@@ -35,7 +40,7 @@ export function NewGameComponent({games, consoleConstant, addView, setAddView}) 
             results ?
                 <>
                     {results.map(r =>
-                        <AddGame key={r.game_id} game={r} alreadyAdded={contains(r.game_id)}/>
+                        <AddGame key={r.game_id} game={r} alreadyAdded={contains(r.game_id)} wish={wish}/>
                     )}
                 </>
                 : null

@@ -1,11 +1,7 @@
-import {useDispatch} from "react-redux";
-import {removeGame} from "../../../store/game/actions";
 import {GameComponent} from "../game/GameComponent";
 import {useState} from "react";
-import {Card} from "../../abstracts/Card";
 import {Modal} from "../../abstracts/Modal";
 import {Button} from "../../abstracts/Button";
-import {wishlistService} from "../../../services/wishlist-service";
 
 export function WishGame({game, deleteFunc}) {
 
@@ -20,7 +16,6 @@ export function WishGame({game, deleteFunc}) {
 	}
 
 	function handleOpenModal() {
-		console.log(game)
 		setOpen(true);
 		document.body.style.overflowY = "hidden";
 	}

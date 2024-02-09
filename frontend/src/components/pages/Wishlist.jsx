@@ -2,15 +2,16 @@ import {useEffect, useState} from "react";
 import {WishGame} from "../views/wishlist/WishGame";
 import {trackPromise} from "react-promise-tracker";
 import {Card} from "../abstracts/Card";
-import {PLAYSTATION, XBOX} from "../constants/ConsoleConstants";
+import {PLAYSTATION, XBOX} from "../constants/PlatformConstants";
 import {NewGameComponent} from "../views/game/NewGameComponent";
 import {wishlistService} from "../../services/wishlist-service";
 import {sortByTitle} from "../../utils/SortUtil";
 import {deepCopy} from "../../utils/CopyUtil";
+import {GameContext} from "../../services/Contexts";
 
 export function Wishlist() {
 
-	const [machine, setMachine] = useState(XBOX.gameType);
+	const [platform, setPlatform] = useState(XBOX.gameType);
 	const [addView, setAddView] = useState(false);
 
 	const [games, setGames] = useState([]);
@@ -22,15 +23,14 @@ export function Wishlist() {
 
 		async function setData() {
 			let tempGames = await getGames();
-			tempGames = tempGames.sort((a, b) => sortByTitle(a, b));
 			setGames(tempGames);
 		}
 
 		trackPromise(setData());
 	}, []);
 
-	function getList(machineParam = machine) {
-		return games.filter(g => g.console === machineParam && g.wish === true);
+	function getList(platformParam = platform) {
+		return games.filter(g => g.console === platformParam && g.wish === true);
 	}
 
 	async function handleDeleteGame(id) {
@@ -48,25 +48,28 @@ export function Wishlist() {
 		return result;
 	}
 
-	return <div className="grid-area-main">
-		<NewGameComponent games={games} consoleConstant={machine} addView={addView} setAddView={setAddView}/>
-		{!addView ? <div className="d-flex flex-column gap-3 mt-3">
-			<div className="d-flex justify-content-center gap-3">
-				<Card title={XBOX.gameType}
-				      description={getList(XBOX.gameType).length + " db"}
-				      onClick={() => setMachine(XBOX.gameType)}
-				      additionalClassNames={machine === XBOX.gameType ? "active" : ""}/>
+	return <GameContext.Provider value={{games, setGames}}>
+		<div className="grid-area-main">
+			<NewGameComponent games={games} platformConstant={platform} addView={addView} setAddView={setAddView}
+			                  wish={true}/>
+			{!addView ? <div className="d-flex flex-column gap-3 mt-3">
+				<div className="d-flex justify-content-center gap-3">
+					<Card title={XBOX.gameType}
+					      description={getList(XBOX.gameType).length + " db"}
+					      onClick={() => setPlatform(XBOX.gameType)}
+					      additionalClassNames={platform === XBOX.gameType ? "active" : ""}/>
 
-				<Card title={PLAYSTATION.gameType}
-				      description={getList(PLAYSTATION.gameType).length + " db"}
-				      onClick={() => setMachine(PLAYSTATION.gameType)}
-				      additionalClassNames={machine === PLAYSTATION.gameType ? "active" : ""}/>
-			</div>
-			{machine ? <div className="d-flex align-items-center justify-content-center flex-wrap gap-3 mx-2 pt-1">
-				{getGameList()}
-			</div> : null
-			}
+					<Card title={PLAYSTATION.gameType}
+					      description={getList(PLAYSTATION.gameType).length + " db"}
+					      onClick={() => setPlatform(PLAYSTATION.gameType)}
+					      additionalClassNames={platform === PLAYSTATION.gameType ? "active" : ""}/>
+				</div>
+				{platform ? <div className="d-flex align-items-center justify-content-center flex-wrap gap-3 mx-2 pt-1">
+					{getGameList()}
+				</div> : null
+				}
 
-		</div> : null}
-	</div>
+			</div> : null}
+		</div>
+	</GameContext.Provider>
 }

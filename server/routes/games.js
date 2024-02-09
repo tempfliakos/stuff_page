@@ -12,7 +12,7 @@ const jwtOptions = {
 	algorithms: ['HS256'],
 }
 
-const pageLimit = 10;
+const pageLimit = 20;
 
 const router = express.Router();
 
@@ -85,9 +85,10 @@ router
 				body.wish = false;
 			}
 			body.star = false;
-			console.log(body.game_id)
 			const game = await UserGames.create(body);
-			const achievements = await createUserAchievements(body.user_id, game.game_id, game.id);
+			if(!game.wish && game.console !== "Switch") {
+				const achievements = await createUserAchievements(body.user_id, game.game_id, game.id);
+			}
 			res.status(200).send(await convertGame(game, body.user_id));
 		} catch (e) {
 			res.status(400).send({
@@ -122,6 +123,7 @@ router
 					user_id: userId,
 					wish: true,
 				},
+				order: [['title', 'ASC']]
 			});
 			res.status(200).send(await generateGamesList(games, userId));
 		} catch (e) {
@@ -157,6 +159,7 @@ router
 					console: consoleParam,
 					star: true,
 				},
+				order: [['title', 'ASC']]
 			});
 			res.status(200).send(await generateStarGamesList(games));
 		} catch (e) {
@@ -243,12 +246,10 @@ function calculateOffset(pageNumber) {
 }
 
 async function createUserAchievements(userId, gtaGameId, gameId) {
-	console.log("before")
 	const achievements = await getAchievements(userId, gtaGameId, gameId);
 	for(let achievement of achievements) {
 		await UserAchievements.create(achievement);
 	}
-	console.log("after")
 }
 
 async function getAchievements(userId, gtaGameId, gameId) {

@@ -6,11 +6,9 @@ body {
 .wrapper {
   display: grid;
   grid-template-areas:
-    'menu menu menu menu'
-    'main main main main'
-    'main main main main';
-  grid-gap: 10px;
-  justify-items: center;
+    'menu main main main empty'
+    'menu main main main empty'
+    'menu main main main empty';
 }
 
 @media screen and (max-width: 992px) {
@@ -38,6 +36,8 @@ body {
 .grid-area-menu {
   display: grid;
   grid-area: menu;
+  align-items: center;
+  margin-left: 4rem;
 }
 
 .grid-area-main {

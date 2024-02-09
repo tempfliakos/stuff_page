@@ -29,7 +29,6 @@ export function RegisterForm({validateEmail, setIsRegister}) {
 						setErrorMessage(null);
 						handleChangeToRegister();
 					}).catch(error => {
-					console.log(error);
 					setErrorMessage("Az adott email címmel rendlekezik felhasználó!");
 				})
 			} else {

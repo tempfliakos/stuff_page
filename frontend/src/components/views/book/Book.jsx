@@ -4,7 +4,7 @@ import {removeBook} from "../../../store/book/actions";
 import {Card} from "../../abstracts/Card";
 import defaultPicture from "../../../resources/default-movie-back.jpg";
 
-export function Book({book, type, setSelected}) {
+export function Book({book, setSelected, filter}) {
 
 	const dispatch = useDispatch();
 
@@ -32,8 +32,13 @@ export function Book({book, type, setSelected}) {
 		}
 	}
 
+	function isShowable() {
+		return book.title.toLowerCase().includes(filter.toLowerCase()) ||
+			book.author.toLowerCase().includes(filter.toLowerCase());
+	}
 
-	return <Card id={book.id} imgSrc={picture()} title={book.priority + ". " + book.title}
-	             description={book.author} onClick={handleOnClick}/>
+
+	return isShowable() ? <Card id={book.id} imgSrc={picture()} title={book.priority + ". " + book.title}
+	             description={book.author} onClick={handleOnClick}/> : null
 
 }

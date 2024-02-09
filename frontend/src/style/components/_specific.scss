@@ -47,3 +47,7 @@
 .max-height-20 {
   max-height: 20rem;
 }
+
+.min-width-10-rem {
+  min-width: calc(100vw - 10rem);
+}

@@ -2,8 +2,7 @@ import {useState} from "react";
 import {useDispatch} from "react-redux";
 import {setDone} from "../../../store/achievement/actions";
 import locked_img from "../../../resources/locked_trophy.svg";
-import {updateGame} from "../../../store/game/actions";
-import {PLAYSTATION, XBOX} from "../../constants/ConsoleConstants";
+import {PLAYSTATION, XBOX} from "../../constants/PlatformConstants";
 
 export function AchievementTrophyComponent({game, achievement, earned}) {
 
@@ -25,7 +24,6 @@ export function AchievementTrophyComponent({game, achievement, earned}) {
 		achievement.earned = !achievement.earned;
 		dispatch(setDone(achievement));
 		game.earned = achievement.earned ? game.earned + 1 : game.earned - 1;
-		dispatch(updateGame(game));
 	}
 
 	function handleShowSecret() {

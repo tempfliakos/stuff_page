@@ -1,35 +1,31 @@
-import {useDispatch} from "react-redux";
-import {addToGames} from "../../store/game/actions";
-import defaultGamePicture from "../../resources/gamer_default_icon.svg"
-import {WishModal} from "../modals/WishModal";
+import {NewWishGame} from "../modals/NewWishGame";
 import {Card} from "../abstracts/Card";
+import {gamePicture} from "../../utils/PictureUtil";
+import {useContext} from "react";
+import {GameContext} from "../../services/Contexts";
+import {gameService} from "../../services/game-service";
+import {deepCopy} from "../../utils/CopyUtil";
+import {sortByTitle} from "../../utils/SortUtil";
 
 export function AddGame({game, alreadyAdded, wish}) {
 
-	const dispatch = useDispatch();
+	const {games, setGames} = useContext(GameContext);
 
-	function picture() {
-		if (game.picture) {
-			return game.picture;
-		}
-		return defaultGamePicture;
-	}
-
-	function addGame() {
-		if(!wish) {
-			if (!alreadyAdded) {
-				dispatch(addToGames(game));
-			}
+	async function addGame() {
+		if (!alreadyAdded) {
+			let result = await gameService.insert(game);
+			let cloneGames = deepCopy(games);
+			cloneGames.push(result);
+			cloneGames = cloneGames.sort((a, b) => sortByTitle(a, b));
+			setGames(cloneGames);
 		}
 	}
 
 	return <>
 		{
-			wish ? <WishModal game={game} alreadyAdded={alreadyAdded}/>
-				: <div onClick={addGame}>
-					<Card id={game.id} additionalClassNames={alreadyAdded ? "marked" : ""}
-					      imgSrc={picture()} title={game.title}/>
-				</div>
+			wish ? <NewWishGame game={game} alreadyAdded={alreadyAdded}/>
+				: <Card id={game.id} additionalClassNames={alreadyAdded ? "marked" : ""}
+				        imgSrc={gamePicture(game)} title={game.title} onClick={addGame}/>
 		}
 	</>
 }

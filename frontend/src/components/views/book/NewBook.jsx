@@ -11,7 +11,6 @@ export function NewBook({books, addView, setAddView}) {
 
 
 	function handleSearch(searchInput) {
-		console.log(searchInput)
 		setLoading(true);
 		getDataFromEndpoint("books", searchInput).then(res => {
 			setResults(res.data);

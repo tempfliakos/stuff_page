@@ -1,10 +1,11 @@
 import {filterGame} from "../../../utils/FilterUtil";
 import {Card} from "../../abstracts/Card";
+import {gamePicture} from "../../../utils/PictureUtil";
 
-export function GameComponent({game, filter, onClick}) {
+export function GameComponent({game, filter, onClick, additionalClassNames = ""}) {
 
 	function getAchievementData() {
-		if(game.sum !== 0) {
+		if(game.sum && game.sum !== 0) {
 			return game.earned + "/" + game.sum;
 		}
 		return "";
@@ -16,9 +17,19 @@ export function GameComponent({game, filter, onClick}) {
 		}
 	}
 
+	function getAdditionalClasses() {
+		let result = additionalClassNames;
+		if(game.sum && game.earned) {
+			if(game.earned === game.sum && game.sum !== 0) {
+				result += " bg-dark-green";
+			}
+		}
+		return result;
+	}
+
 	return filterGame(game, filter) ?
 			<Card id={game.id} title={game.title} description={getAchievementData()}
-			      additionalClassNames={game.earned === game.sum && game.sum !== 0 ? "bg-dark-green" : ""}
-			      imgSrc={game.picture} onClick={handleClick}/>
+			      additionalClassNames={getAdditionalClasses()}
+			      imgSrc={gamePicture(game)} onClick={handleClick}/>
 			: null
 }

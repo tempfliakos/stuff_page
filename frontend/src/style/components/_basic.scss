@@ -49,14 +49,14 @@ button {
     height: 4rem;
     z-index: 1;
 
-    &.menu {
-      left: 1rem;
-      top: 1rem;
+    &.add {
+      right: 1rem;
+      bottom: 1rem;
     }
 
-    &.add {
-      left: calc(100vw - 6rem);
-      top: calc(100vh - 5rem);
+    &.search {
+      right: 1rem;
+      bottom: 1rem;
     }
   }
 }

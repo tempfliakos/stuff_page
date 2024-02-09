@@ -16,7 +16,6 @@ export function LoginForm({logged, validateEmail, setIsRegister}) {
 	function handleLogin(event) {
 		event.preventDefault();
 		if (validateEmail(email)) {
-			console.log(email)
 			trackPromise(
 				makePostRequest("auth/login", {email: email, password: password})
 					.then(res => {

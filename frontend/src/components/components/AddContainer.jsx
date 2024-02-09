@@ -11,7 +11,7 @@ export function AddContainer({handleSearch, children, addView, setAddView}) {
 		}
 	}
 
-	return addView ? <div className="bg-light-grey mb-3 p-3 border-radius-20-px">
+	return addView ? <div className="bg-light-black mb-3 p-3 border-radius-20-px">
 			<div className="d-flex align-items-center justify-content-center gap-3 mb-3">
 				<input placeholder="Keresés..." className="bg-dark-grey c-white w-100"
 				       onChange={(event) => setSearchText(event.target.value)}

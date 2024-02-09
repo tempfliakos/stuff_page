@@ -3,8 +3,8 @@ import {useEffect, useState} from "react";
 import {getAchievementList} from "../../../store/achievement/actions";
 import {Button} from "../../abstracts/Button";
 import {AchievementTrophyComponent} from "./AchievementTrophyComponent";
-import {update} from "../../../store/game/actions";
 import {sortByTitle} from "../../../utils/SortUtil";
+import {gameService} from "../../../services/game-service";
 
 export function GameDetail({game, closeFunction}) {
 
@@ -32,9 +32,9 @@ export function GameDetail({game, closeFunction}) {
 		}
 	}
 
-	function handleStarClicked() {
+	async function handleStarClicked() {
 		game.star = !game.star;
-		dispatch(update(game));
+		await gameService.update(game.id, game);
 	}
 
 	return <div className="d-flex flex-column bg-light-grey p-3 border-radius-20-px overflow-hidden">

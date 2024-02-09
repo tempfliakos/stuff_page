@@ -16,39 +16,36 @@ import {XboxList} from "./components/pages/XboxList";
 export default function App() {
 
 	const navigate = useNavigate();
-	const [loggedIn, setLoggedIn] = useState(false);
+	const [loggedIn, setLoggedIn] = useState(null);
 
 	useEffect(() => {
-			const cookies = new Cookies();
-			if (!cookies.get("stuffPages")) {
-				setLoggedIn(false);
-				navigate("/");
-			} else {
-				setLoggedIn(true);
-			}
+		const cookies = new Cookies();
+		if (cookies.get("stuffPages")) {
+			setLoggedIn(true);
+		} else {
+			setLoggedIn(false);
+			navigate("/");
 		}
-		,
-		[loggedIn, navigate]
-	)
-	;
+	}, [loggedIn, navigate]);
 
-	return (
-		<div className="wrapper p-3">
+	return loggedIn ? <div className="wrapper p-3">
 			{loggedIn ?
 				<Navigation>
-					<Routes>
-						<Route exact path="/" element={<Dashboard/>}/>
-						<Route path="/movies" element={<MovieList/>}/>
-						<Route path="/books" element={<BookList/>}/>
-						<Route path="/xbox" element={<XboxList/>}/>
-						<Route path="/playstation" element={<PlaystationList/>}/>
-						<Route path="/switch" element={<SwitchList/>}/>
-						<Route path="/wishlist" element={<Wishlist/>}/>
-						<Route path="/options" element={<Options/>}/>
-						<Route path="/logout" element={<Logout logged={setLoggedIn}/>}/>
-					</Routes>
+					<div className="grid-area-main">
+						<Routes>
+							<Route exact path="/" element={<Dashboard/>}/>
+							<Route path="/movies" element={<MovieList/>}/>
+							<Route path="/books" element={<BookList/>}/>
+							<Route path="/xbox" element={<XboxList/>}/>
+							<Route path="/playstation" element={<PlaystationList/>}/>
+							<Route path="/switch" element={<SwitchList/>}/>
+							<Route path="/wishlist" element={<Wishlist/>}/>
+							<Route path="/options" element={<Options/>}/>
+							<Route path="/logout" element={<Logout logged={setLoggedIn}/>}/>
+						</Routes>
+					</div>
+					<div className="grid-area-empty"></div>
 				</Navigation>
 				: <Login logged={setLoggedIn}/>}
-		</div>
-	);
+		</div> : null
 }

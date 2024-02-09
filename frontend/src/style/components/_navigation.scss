@@ -1,20 +1,25 @@
-  .nav-item {
-    color: $white;
-    text-decoration: none;
-    line-height: 3rem;
-    transition: all .2s ease-in-out;
-
-    &:hover {
+  #navBar {
+    position: fixed;
+    left: 1rem;
+    top: 1rem;
+    .nav-item {
       color: $white;
-    }
+      text-decoration: none;
+      line-height: 3rem;
+      transition: all .2s ease-in-out;
+      width: 100%;
+      &:hover {
+        color: $white;
+      }
 
-    .nav-item-container {
-      background-color: $darkgrey;
-      border-radius: 10px;
+      .nav-item-container {
+        background-color: $darkgrey;
+        border-radius: 10px;
 
-      &.active, &:hover {
-        //background-color: $darkgreen;
-        box-shadow: 0 0 10px 10px $lightgreen;
+        &.active, &:hover {
+          //background-color: $darkgreen;
+          box-shadow: 0 0 10px 10px $lightgreen;
+        }
       }
     }
   }
