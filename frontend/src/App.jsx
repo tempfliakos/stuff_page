@@ -44,7 +44,6 @@ export default function App() {
 							<Route path="/logout" element={<Logout logged={setLoggedIn}/>}/>
 						</Routes>
 					</div>
-					<div className="grid-area-empty"></div>
 				</Navigation>
 				: <Login logged={setLoggedIn}/>}
 		</div> : null

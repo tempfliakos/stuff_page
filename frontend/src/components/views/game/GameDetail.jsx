@@ -37,18 +37,18 @@ export function GameDetail({game, closeFunction}) {
 		await gameService.update(game.id, game);
 	}
 
-	return <div className="d-flex flex-column bg-light-grey p-3 border-radius-20-px overflow-hidden">
+	return <div className="d-flex flex-column bg-dark-grey p-3 border-radius-20-px overflow-hidden">
 			<div className="d-flex justify-content-between position-relative">
-				<Button icon="icon-back" text="Vissza" additionalClassNames="w-auto"
+				<Button icon="icon-back" text="Vissza" additionalClassNames="w-auto bg-light-black c-light-grey"
 				        onClick={() => closeFunction()}/>
 				{game.earned === undefined || game.earned !== game.sum ? <Button icon={earned ? "icon-lock" : "icon-open-lock"} text={earned ? "Hátralévők mutatása" : "Megszerzettek mutatása"}
-				                                    additionalClassNames="w-auto"
+				                                    additionalClassNames="w-auto bg-light-black c-light-grey"
 				                                    onClick={() => setEarned(!earned)}/>
 				: null}
 
 			</div>
 		<div className="d-flex align-items-center justify-content-center mb-3">
-			<h1>
+			<h1 className="c-light-grey">
 				{game.title}
 				<i className={"icon-star cursor-pointer " + (game.star ? "c-dark-green" : "c-white")}
 				onClick={() => handleStarClicked()}/>

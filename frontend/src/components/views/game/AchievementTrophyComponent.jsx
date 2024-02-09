@@ -38,7 +38,7 @@ export function AchievementTrophyComponent({game, achievement, earned}) {
 	}
 
 	return earned === achievement.earned ?
-		<div className={"mb-3 px-2 border-radius-20-px bg-white-hover cursor-pointer " + (expanded ? "bg-white" : "")}>
+		<div className={"mb-3 px-2 border-radius-20-px bg-light-black-hover c-light-grey cursor-pointer " + (expanded ? "bg-light-black" : "")}>
 			<div className="d-flex align-items-center justify-content-between">
 				<div className="d-flex align-items-center gap-3">
 					<div className="d-flex justify-content-center h-50 py-3">
@@ -88,14 +88,14 @@ export function AchievementTrophyComponent({game, achievement, earned}) {
 			{
 				expanded ? <div className="d-flex flex-column">
 						<a href={getGoogleLink()} target="_blank" rel="noreferrer"
-						   className="d-flex text-decoration-none bg-light-grey-hover border-radius-20-px p-2 mb-3">
+						   className="d-flex text-decoration-none bg-dark-grey-hover border-radius-20-px p-2 mb-3">
 							<i className="icon-file icon-google hover-opacity-50"/>
-							<p className="c-black m-0">Leirás keresése a Google-n</p>
+							<p className="c-light-grey m-0">Leirás keresése a Google-n</p>
 						</a>
 						<a href={getYoutubeLink()} target="_blank" rel="noreferrer"
-						   className="d-flex text-decoration-none bg-light-grey-hover border-radius-20-px p-2 mb-3">
+						   className="d-flex text-decoration-none bg-dark-grey-hover border-radius-20-px p-2 mb-3">
 							<i className="icon-file icon-youtube hover-opacity-50"/>
-							<p className="c-black m-0">Videó mutatása a Youtube-on</p>
+							<p className="c-light-grey m-0">Videó mutatása a Youtube-on</p>
 						</a>
 					</div>
 					: null

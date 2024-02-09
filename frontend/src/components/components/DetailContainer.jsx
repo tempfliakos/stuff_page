@@ -2,7 +2,7 @@ import {Button} from "../abstracts/Button";
 
 export function DetailContainer({title, poster, posterSubText, genres, children, extraBlock, closeFunction}) {
 	return <div className="d-flex flex-column bg-dark-grey p-3 border-radius-20-px overflow-hidden">
-		<Button icon="icon-back" text="Vissza" additionalClassNames="position-absolute w-auto" onClick={() => closeFunction()}/>
+		<Button icon="icon-back" text="Vissza" additionalClassNames="position-absolute w-auto bg-light-black c-light-grey" onClick={() => closeFunction()}/>
 		<div className="d-flex align-items-center justify-content-center">
 			<h1 className="c-light-grey">{title}</h1>
 		</div>

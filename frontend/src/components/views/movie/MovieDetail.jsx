@@ -76,22 +76,22 @@ export function MovieDetail({movie, setMovie, movies}) {
 	return <DetailContainer title={movie.title} poster={movie.poster_path}
 	                        posterSubText={movie.release_date.replaceAll('-', '.')}
 	                        genres={movie.genres} extraBlock={getSimilarBlock()} closeFunction={() => setMovie(null)}>
-		<Button additionalClassNames={"w-25 " + (movie.owned ? "bg-dark-grey c-white" : "")}
+		<Button additionalClassNames={"w-25 " + (movie.owned ? "bg-dark-green" : "bg-light-black c-light-grey")}
 		        onClick={handleOwned}
 		        icon="icon-save" text="Beszerzett"/>
 
-		{movie.owned ? <Button additionalClassNames={"w-25 " + (movie.seen ? "bg-light-green" : "")}
+		{movie.owned ? <Button additionalClassNames={"w-25 " + (movie.seen ? "bg-dark-green" : "bg-light-black c-light-grey")}
 		                       onClick={handleSeen}
 		                       icon="icon-eye"
 		                       text="Megnézett"/> : null
 		}
 
-		<Button additionalClassNames={"w-25 " + (movie.liza ? "bg-dark-green" : "")}
+		<Button additionalClassNames={"w-25 " + (movie.liza ? "bg-dark-green" : "bg-light-black c-light-grey")}
 		        onClick={handleLiza}
 		        icon="icon-star"
 		        text="Speciális"/>
 
-		<Button additionalClassNames={"w-25 bg-dark-green"}
+		<Button additionalClassNames={"w-25 bg-light-black c-light-grey"}
 		        onClick={handleDelete}
 		        hasApprove={true}
 		        icon="icon-trash"
