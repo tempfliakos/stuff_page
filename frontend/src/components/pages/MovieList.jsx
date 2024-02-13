@@ -4,37 +4,33 @@ import {useDispatch, useSelector} from "react-redux";
 import {getMovies} from "../../store/movie/selectors";
 import {getMovieList} from "../../store/movie/actions";
 import {Movie} from "../views/movie/Movie";
-import {genres} from "../../store/catalogs/genres";
 import Cookies from "universal-cookie/lib";
 import {trackPromise} from "react-promise-tracker";
 import {MovieDetail} from "../views/movie/MovieDetail";
 import {TextSearch} from "../components/TextSearch";
 import {SearchContainer} from "../components/SearchContainer";
+import {ToggleSwitch} from "../abstracts/ToggleSwitch";
+import {deepCopy} from "../../utils/CopyUtil";
 
 export function MovieList() {
 
 	const [titleFilter, setTitleFilter] = useState("");
-	const [genresFilter, setGenresFilter] = useState(initGenres());
-	const [seenFilter, setSeenFilter] = useState(null);
-	const [ownedFilter, setOwnedFilter] = useState(false);
-	const [releaseFilter, setReleaseFilter] = useState(false);
-	const [lizaFilter, setLizaFilter] = useState(false);
-	const [filterExpand, setFilterExpand] = useState(false);
+	const [ownedFilter, setOwnedFilter] = useState(true);
+	const [seenFilter, setSeenFilter] = useState(false);
+	const [releaseFilter, setReleaseFilter] = useState(null);
+	const [specialFilter, setSpecialFilter] = useState(null);
 	const [addView, setAddView] = useState(false);
 	const [selected, setSelected] = useState(null);
+	const [filter, setFilter] = useState({
+		title: titleFilter,
+		owned: ownedFilter,
+		seen: seenFilter,
+		release: releaseFilter,
+		special: specialFilter,
+	});
 
 	const dispatch = useDispatch();
 	const movies = useSelector(getMovies);
-
-	let defaultFilter = {
-		title: "",
-		genre: initGenres(),
-		seen: null,
-		owned: false,
-		release: false,
-		liza: null,
-	};
-	const [filter, setFilter] = useState(defaultFilter);
 
 	useEffect(() => {
 		const cookie = new Cookies();
@@ -43,78 +39,39 @@ export function MovieList() {
 		);
 	}, [dispatch])
 
-	function initGenres() {
-		return genres.map(g => g.text);
-	}
-
 	function handleTitleSearch(searchText) {
-		defaultFilter.title = searchText;
-		defaultFilter.genre = genresFilter;
-		defaultFilter.seen = seenFilter;
-		defaultFilter.owned = ownedFilter;
-		defaultFilter.release = releaseFilter;
-		defaultFilter.liza = lizaFilter;
-		setTitleFilter(defaultFilter.title);
-		setFilter(defaultFilter);
+		let tempFilter = deepCopy(filter);
+		filter.title = searchText;
+		setTitleFilter(searchText);
+		setFilter(tempFilter);
 	}
 
-	function handleGenreSelect(event, data) {
-		defaultFilter.title = titleFilter;
-		defaultFilter.genre = data.value.length > 0 ? data.value : initGenres();
-		defaultFilter.seen = seenFilter;
-		defaultFilter.owned = ownedFilter;
-		defaultFilter.release = releaseFilter;
-		defaultFilter.liza = lizaFilter;
-		setGenresFilter(defaultFilter.genre);
-		setFilter(defaultFilter);
+	function handleOwnToggle(checked) {
+		let tempFilter = deepCopy(filter);
+		tempFilter.owned = checked;
+		setOwnedFilter(checked);
+		setFilter(tempFilter);
 	}
 
-	function handleSeenToggle(event, data) {
-		defaultFilter.title = titleFilter;
-		defaultFilter.genre = genresFilter;
-		defaultFilter.seen = data.checked;
-		defaultFilter.owned = ownedFilter;
-		defaultFilter.release = releaseFilter;
-		defaultFilter.liza = lizaFilter;
-		setSeenFilter(defaultFilter.seen);
-		setFilter(defaultFilter);
+	function handleSeenToggle(checked) {
+		let tempFilter = deepCopy(filter);
+		tempFilter.seen = checked;
+		setSeenFilter(checked);
+		setFilter(tempFilter);
 	}
 
-	function handleOwnToggle(event, data) {
-		defaultFilter.title = titleFilter;
-		defaultFilter.genre = genresFilter;
-		defaultFilter.seen = seenFilter;
-		defaultFilter.owned = data.checked;
-		defaultFilter.release = releaseFilter;
-		defaultFilter.liza = lizaFilter;
-		setOwnedFilter(defaultFilter.owned);
-		setFilter(defaultFilter);
+	function handleReleaseToggle(checked) {
+		let tempFilter = deepCopy(filter);
+		tempFilter.release = checked;
+		setReleaseFilter(checked);
+		setFilter(tempFilter);
 	}
 
-	function handleReleaseToggle(event, data) {
-		defaultFilter.title = titleFilter;
-		defaultFilter.genre = genresFilter;
-		defaultFilter.seen = seenFilter;
-		defaultFilter.owned = ownedFilter;
-		defaultFilter.release = data.checked;
-		defaultFilter.liza = lizaFilter;
-		setReleaseFilter(defaultFilter.release);
-		setFilter(defaultFilter);
-	}
-
-	function handleLizaToggle(event, data) {
-		defaultFilter.title = titleFilter;
-		defaultFilter.genre = genresFilter;
-		defaultFilter.seen = seenFilter;
-		defaultFilter.owned = ownedFilter;
-		defaultFilter.release = releaseFilter;
-		defaultFilter.liza = data.checked;
-		setLizaFilter(defaultFilter.liza);
-		setFilter(defaultFilter);
-	}
-
-	function handleFilterExpand() {
-		setFilterExpand(!filterExpand);
+	function handleSpecialToggle(checked) {
+		let tempFilter = deepCopy(filter);
+		tempFilter.special = checked;
+		setSpecialFilter(checked);
+		setFilter(tempFilter);
 	}
 
 	return <div className="grid-area-main">
@@ -123,8 +80,15 @@ export function MovieList() {
 			selected ?
 				<MovieDetail movie={selected} setMovie={setSelected} movies={movies}/> :
 				<>
+					<TextSearch handleSearch={handleTitleSearch}/>
 					<SearchContainer>
-						<TextSearch handleSearch={handleTitleSearch}/>
+						<div className="d-grid gap-2">
+							<ToggleSwitch value={ownedFilter} toggleFunc={handleOwnToggle} text="Beszerzett"/>
+							<ToggleSwitch value={seenFilter} toggleFunc={handleSeenToggle} text="Megnézett"/>
+							<ToggleSwitch value={releaseFilter} toggleFunc={handleReleaseToggle}
+							              text="Jövőbeni megjelenés"/>
+							<ToggleSwitch value={specialFilter} toggleFunc={handleSpecialToggle} text="Speciális"/>
+						</div>
 					</SearchContainer>
 
 					<div className="d-flex align-items-center justify-content-center flex-wrap gap-3 mx-2 pt-1">

@@ -9,25 +9,16 @@ function filterWithTitle() {
 	return obj.title.toUpperCase().includes(filter.title.toUpperCase());
 }
 
-function filterWithGenre() {
-	for (let genre of filter.genre) {
-		if (obj.genres.includes(genre)) {
-			return true;
-		}
-	}
-	return false;
-}
-
-function filterWithSeen() {
-	if (filter.seen) {
-		return !obj.seen === filter.seen;
+function filterWithOwned() {
+	if (filter.owned !== null) {
+		return obj.owned === filter.owned;
 	}
 	return true;
 }
 
-function filterWithOwned() {
-	if (filter.owned) {
-		return !obj.owned === filter.owned;
+function filterWithSeen() {
+	if (filter.seen !== null) {
+		return obj.seen === filter.seen;
 	}
 	return true;
 }
@@ -36,9 +27,9 @@ function filterWithRelease() {
 	return filter.release ? releaseInTheFuture() : true;
 }
 
-function filterWithLiza() {
-	if (filter.liza) {
-		return obj.liza === filter.liza;
+function filterWithSpecial() {
+	if (filter.special !== null) {
+		return obj.liza === filter.special;
 	}
 	return true;
 }
@@ -50,7 +41,7 @@ function releaseInTheFuture() {
 export function filterMovie(paramMovie, paramFilter) {
 	obj = paramMovie;
 	filter = paramFilter;
-	return filterWithTitleMovie() && filterWithGenre() && filterWithSeen() && filterWithOwned() && filterWithRelease() && filterWithLiza();
+	return filterWithTitleMovie() && filterWithOwned() && filterWithSeen() && filterWithRelease() && filterWithSpecial();
 }
 
 export function filterGame(paramGame, paramFilter) {

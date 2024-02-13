@@ -3,34 +3,20 @@ import {useEffect, useState} from "react";
 import {getAchievementList} from "../../../store/achievement/actions";
 import {Button} from "../../abstracts/Button";
 import {AchievementTrophyComponent} from "./AchievementTrophyComponent";
-import {sortByTitle} from "../../../utils/SortUtil";
+import {trackPromise} from "react-promise-tracker";
 import {gameService} from "../../../services/game-service";
+import {getAchievements} from "../../../store/achievement/selectors";
 
 export function GameDetail({game, closeFunction}) {
 
-	const [achievementList, setAchievementList] = useState([]);
+	const achievementList = useSelector(getAchievements);
 	const [earned, setEarned] = useState(game.earned !== undefined && game.earned === game.sum);
 
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		async function getList() {
-			return await dispatch(getAchievementList(game));
-		}
-
-		async function setData() {
-			let tempList = await getList();
-			setAchievementList(sortAchievements(tempList));
-		}
-
-		setData();
-	}, []);
-
-	function sortAchievements(achievements) {
-		if (achievements) {
-			return achievements.sort((a, b) => sortByTitle(a, b));
-		}
-	}
+		trackPromise(dispatch(getAchievementList(game)));
+	}, [dispatch, game]);
 
 	async function handleStarClicked() {
 		game.star = !game.star;
