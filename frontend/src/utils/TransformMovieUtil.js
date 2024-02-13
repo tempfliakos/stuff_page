@@ -1,5 +1,6 @@
 import {genres} from "../store/catalogs/genres";
 
+//TODO export to model
 export function tmdbConverter(movie) {
     return {
         id: movie.id,

@@ -6,11 +6,12 @@ services:
     build: ./frontend
     restart: always
     stdin_open: true
-    container_name: frontend
+    container_name: stuff_frontend
     ports:
       - ${FRONTEND_PORT}:${FRONTEND_PORT}
     environment:
       - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
       - REACT_APP_SERVER_LINK=${REACT_APP_SERVER_LINK}
       - REACT_APP_TMDB_IMG_LINK=${REACT_APP_TMDB_IMG_LINK}
       - PORT=${FRONTEND_PORT}
@@ -20,24 +21,27 @@ services:
     depends_on:
       - server
     networks:
-      - eb
+      - stuff_network
 
-  server:  
+  server:
     build: ./server
     restart: always
-    container_name: server
+    container_name: stuff_server
     ports:
-      - ${SERVER_PORT}:3001
+      - ${SERVER_PORT}:${SERVER_PORT}
     environment:
       - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
       - SERVER_PORT=${SERVER_PORT}
       - FRONTEND_LINK=${FRONTEND_LINK}
+      - GTA_SERVER_LINK=${GTA_SERVER_LINK}
+      - GTA_AUTH=${GTA_AUTH}
       - NODE_ENV=${SERVER_STATUS}
       - SECRET=${SECRET}
-      - PGHOST=${PGHOST}
+      - PGHOST=${DB_CONTAINER_NAME}
       - PGDATABASE=${PGDATABASE}
       - PGUSER=${PGUSER}
-      - PGPORT=${PGPORT}
+      - PGPORT=5432
       - PGPASS=${PGPASS}
       - TMDB_LINK=${TMDB_LINK}
       - TMDB_IMG_LINK=${TMDB_IMG_LINK}
@@ -48,13 +52,14 @@ services:
       - /app/node_modules
     depends_on:
       - db
+      - gta_server
     networks:
-      - eb
+      - stuff_network
 
   db:
-    image: postgres:10.13
+    image: postgres:15
     restart: always
-    container_name: db
+    container_name: ${DB_CONTAINER_NAME}
     ports:
       - ${PGPORT}:5432
     user: ${PGUSER}
@@ -70,9 +75,28 @@ services:
       - ./db/books_table.sql:/docker-entrypoint-initdb.d/05_book.sql
       - ./db/c_console.sql:/docker-entrypoint-initdb.d/06_game.sql
     networks:
-      - eb
+      - stuff_network
+
+  gta_server:
+    build: ./gta_server
+    restart: always
+    container_name: ${GTA_CONTAINER_NAME}
+    ports:
+      - ${GTA_SERVER_PORT}:${GTA_SERVER_PORT}
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
+      - SECRET=${SECRET}
+      - SERVER_PORT=${GTA_SERVER_PORT}
+      - GTA_CONNECTION_STRING=${GTA_CONNECTION_STRING}
+      - GTA_AUTH=${GTA_AUTH}
+    volumes:
+      - ./gta_server:/app
+      - /app/node_modules
+    networks:
+      - stuff_network
       
 networks:
-  eb:
-    name: eb
+  stuff_network:
+    name: stuff_network
     

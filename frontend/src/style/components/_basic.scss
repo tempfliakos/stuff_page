@@ -1,0 +1,69 @@
+input {
+  border-radius: 20px;
+  padding: 1rem 1.25rem;
+  border: 3px solid $lightgrey;
+  background-color: transparent;
+  transition: 800ms;
+
+  &:focus-visible {
+    outline: none;
+    border: 3px solid $lightgreen;
+  }
+}
+
+i {
+  font-family: 'Material Icons' !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  margin-inline: 0.25rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::placeholder {
+  color: $white;
+  opacity: 1;
+}
+
+button {
+  border-radius: 20px;
+  padding: 1rem 1.25rem;
+  border: none;
+  width: 100%;
+  transition: 800ms;
+
+  &:hover {
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: transparent;
+    color: $white;
+    box-shadow: 0 0 10px 10px $darkgreen;
+  }
+
+  &.floating-button {
+    position: fixed;
+    width: 4rem;
+    height: 4rem;
+    z-index: 1;
+
+    &.add {
+      right: 1rem;
+      bottom: 1rem;
+    }
+
+    &.search {
+      right: 1rem;
+      bottom: 6rem;
+    }
+  }
+}
+
+.longtext-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+

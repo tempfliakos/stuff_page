@@ -1,6 +1,6 @@
-import {ApiService} from "../utils/api-service";
+import {ApiParent} from "../utils/ApiParent";
 
-class MovieService extends ApiService {
+class MovieService extends ApiParent {
     constructor() {
         super("movies");
     }

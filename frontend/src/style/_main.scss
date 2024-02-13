@@ -1,0 +1,17 @@
+@import "~bootstrap/scss/bootstrap";
+
+@import "abstracts/_colors";
+@import "abstracts/_icons";
+@import "abstracts/_fonts";
+@import "abstracts/_scrollbar";
+
+@import "components/_basic";
+@import "components/_card";
+@import "components/_navigation";
+@import "components/_specific";
+@import "components/_star";
+@import "components/_switch";
+
+@import "layout/_layout";
+
+@import "pages/_login_page";

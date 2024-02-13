@@ -1,0 +1,98 @@
+$white: #ffffff;
+$black: #000000;
+
+//$darkgreen: #61892f;
+//$lightgreen: #86c232;
+//$lightblack: #222629;
+//$darkgrey: #474b4f;
+//$lightgrey: #6b6e70;
+
+$darkgreen: #45a29e;
+$lightgreen: #66fcf1;
+$lightblack: #0b0c10;
+$darkgrey: #1f2833;
+$lightgrey: #c5c6c7;
+
+.c-white {
+  color: $white;
+}
+
+.c-black {
+  color: $black;
+}
+
+.c-dark-green {
+  color: $darkgreen;
+}
+
+.c-light-green {
+  color: $lightgreen;
+}
+
+.c-light-black {
+  color: $lightblack;
+}
+
+.c-dark-grey {
+  color: $darkgrey;
+}
+
+.c-light-grey {
+  color: $lightgrey;
+}
+
+.bg-white {
+  background-color: $white !important;
+}
+
+.bg-black {
+  background-color: $black !important;
+}
+
+.bg-dark-green {
+  background-color: $darkgreen !important;
+}
+
+.bg-light-green {
+  background-color: $lightgreen !important;
+}
+
+.bg-light-black {
+  background-color: $lightblack !important;
+}
+
+.bg-dark-grey {
+  background-color: $darkgrey !important;
+}
+
+.bg-light-grey {
+  background-color: $lightgrey !important;
+}
+
+.bg-white-hover:hover {
+  background-color: $white;
+}
+
+.bg-black-hover:hover {
+  background-color: $black;
+}
+
+.bg-dark-green-hover:hover {
+  background-color: $darkgreen;
+}
+
+.bg-light-green-hover:hover {
+  background-color: $lightgreen;
+}
+
+.bg-light-black-hover:hover {
+  background-color: $lightblack;
+}
+
+.bg-dark-grey-hover:hover {
+  background-color: $darkgrey;
+}
+
+.bg-light-grey-hover:hover {
+  background-color: $lightgrey;
+}

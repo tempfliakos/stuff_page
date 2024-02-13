@@ -1,6 +1,6 @@
-import {ApiService} from "../utils/api-service";
+import {ApiParent} from "../utils/ApiParent";
 
-class AchievementService extends ApiService {
+class AchievementService extends ApiParent {
     constructor() {
         super("achievements");
     }

@@ -1,0 +1,135 @@
+$menu: '\e5d2';
+$search: '\e8b6';
+$eye: '\e8f4';
+$save: '\e161';
+$star: '\e838';
+$trash: '\e872';
+$clock: '\e923';
+$paw: '\e91d';
+$back: '\e2ea';
+$lock: '\e897';
+$openLock: '\e898';
+$expandOff: '\e5ce';
+$expandOn: '\e5cf';
+$done: '\e86c';
+$doneRemove: '\f236';
+$close: '\e5cd';
+
+.icon-menu {
+  &:before {
+    content: $menu;
+  }
+}
+
+.icon-search {
+  &:before {
+    content: $search;
+  }
+}
+
+.icon-eye {
+  &:before {
+    content: $eye;
+  }
+}
+
+.icon-save {
+  &:before {
+    content: $save;
+  }
+}
+
+.icon-star {
+  &:before {
+    content: $star;
+  }
+}
+
+.icon-trash {
+  &:before {
+    content: $trash;
+  }
+}
+
+.icon-clock {
+  &:before {
+    content: $clock;
+  }
+}
+
+.icon-paw {
+  &:before {
+    content: $paw;
+  }
+}
+
+.icon-back {
+  &:before {
+    content: $back;
+  }
+}
+
+.icon-lock {
+  &:before {
+    content: $lock;
+  }
+}
+
+.icon-open-lock {
+  &:before {
+    content: $openLock;
+  }
+}
+
+.icon-expand-on {
+  &:before {
+    content: $expandOn;
+  }
+}
+
+.icon-expand-off {
+  &:before {
+    content: $expandOff;
+  }
+}
+
+.icon-done {
+  &:before {
+    content: $done;
+  }
+}
+
+.icon-done-remove {
+  &:before {
+    content: $doneRemove;
+  }
+}
+
+.icon-close {
+  &:before {
+    content: $close;
+  }
+}
+
+.icon-file {
+  width: 1rem;
+
+  &.icon-gamer-score {
+    &:before {
+      content: url("../../resources/gamer_score.svg");
+    }
+  }
+
+  &.icon-google {
+    &:before {
+      content: url("../../resources/google.svg");
+    }
+  }
+
+  &.icon-youtube {
+    &:before {
+      content: url("../../resources/youtube.svg");
+    }
+  }
+}
+

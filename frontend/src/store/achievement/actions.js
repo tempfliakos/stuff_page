@@ -12,9 +12,11 @@ export function updateAchievement(achievement) {
 }
 
 export function getAchievementList(game) {
+    console.log(game)
     return async (dispatch) => {
-        const achievements = await achievementService.find({game: game.game_id});
+        const achievements = await achievementService.find({game: game.id});
         dispatch(setAchievements(achievements));
+        return achievements;
     }
 }
 
