@@ -41,7 +41,7 @@ export function AchievementTrophyComponent({game, achievement, earned}) {
 		<div className={"mb-3 px-2 border-radius-20-px bg-light-black-hover c-light-grey cursor-pointer " + (expanded ? "bg-light-black" : "")}>
 			<div className="d-flex align-items-center justify-content-between">
 				<div className="d-flex align-items-center gap-3">
-					<div className="d-flex justify-content-center h-50 py-3">
+					<div className="d-flex d-lg-flex d-none justify-content-center h-50 py-3">
 						<img className={"width-5 " + (achievement.earned ? "border-radius-20-px" : "")}
 						     src={achievement.earned ? achievement.picture : locked_img}
 						     alt={achievement.title}/>

@@ -74,7 +74,7 @@ export function MovieList() {
 		setFilter(tempFilter);
 	}
 
-	return <div className="grid-area-main">
+	return <div>
 		<NewMovie movies={movies} addView={addView} setAddView={setAddView}/>
 		{!addView ?
 			selected ?

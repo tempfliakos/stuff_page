@@ -28,10 +28,10 @@ export default function App() {
 		}
 	}, [loggedIn, navigate]);
 
-	return loggedIn ? <div className="wrapper p-3">
+	return loggedIn !== null ? <div className="wrapper gap-3">
 			{loggedIn ?
 				<Navigation>
-					<div className="grid-area-main">
+					<div className="content">
 						<Routes>
 							<Route exact path="/" element={<Dashboard/>}/>
 							<Route path="/movies" element={<MovieList/>}/>

@@ -1,6 +1,6 @@
 import {Link, useLocation} from "react-router-dom";
 
-export function NavLink({path, content, openMenu}) {
+export function NavLink({path, content, openMenu, icon}) {
 	const location = useLocation();
 
 	function isActive() {
@@ -13,10 +13,14 @@ export function NavLink({path, content, openMenu}) {
 		}
 	}
 
-	return <Link key={path} to={path} className="nav-item" onClick={handleOnClick}>
-			<div
-				className={"nav-item-container d-flex align-items-center justify-content-center px-5 " + (isActive() ? "active" : "")}>
-				{content}
-			</div>
-		</Link>
+	return <Link key={path} to={path} className="nav-item w-100" onClick={handleOnClick}>
+		<div
+			className={"nav-item-container d-none d-lg-flex align-items-center justify-content-center px-5 " + (isActive() ? "active" : "")}>
+			{content}
+		</div>
+		<div
+			className={"nav-item-container icon-container d-flex flex-column d-lg-none align-items-center justify-content-center " + (isActive() ? "active" : "")}>
+			{<i className={icon}/>}
+		</div>
+	</Link>
 }

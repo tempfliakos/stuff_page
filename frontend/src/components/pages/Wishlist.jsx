@@ -49,7 +49,7 @@ export function Wishlist() {
 	}
 
 	return <GameContext.Provider value={{games, setGames}}>
-		<div className="grid-area-main">
+		<div>
 			<NewGameComponent games={games} platformConstant={platform} addView={addView} setAddView={setAddView}
 			                  wish={true}/>
 			{!addView ? <div className="d-flex flex-column gap-3 mt-3">

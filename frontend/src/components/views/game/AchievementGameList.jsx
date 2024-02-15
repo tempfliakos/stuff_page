@@ -76,7 +76,7 @@ export function AchievementGameList({platformConstant}) {
 		setFilter(defaultFilter);
 	}
 
-	return <div className="grid-area-main">
+	return <div>
 		<NewGameComponent games={games} platformConstant={platformConstant} addView={addView} setAddView={setAddView}/>
 		{!addView ?
 			selected ? <GameDetail game={selected} closeFunction={() => setSelected(null)}/> : <>

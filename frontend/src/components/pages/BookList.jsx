@@ -26,7 +26,7 @@ export function BookList() {
 		trackPromise(dispatch(initBookList(cookie.get("stuffPages"))));
 	}, [dispatch]);
 
-	return <div className="grid-area-main">
+	return <div>
 		<NewBook books={books} addView={addView} setAddView={setAddView}/>
 		{!addView ?
 			selected ? <BookDetail book={selected} setBook={setSelected}/>

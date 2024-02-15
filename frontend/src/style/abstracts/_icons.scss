@@ -14,6 +14,12 @@ $expandOn: '\e5cf';
 $done: '\e86c';
 $doneRemove: '\f236';
 $close: '\e5cd';
+$analytics: '\ef3e';
+$movie: '\e02c';
+$book: '\e865';
+$joystick: '\e338';
+$settings: '\e8b8';
+$logout: '\e9ba';
 
 .icon-menu {
   &:before {
@@ -108,6 +114,42 @@ $close: '\e5cd';
 .icon-close {
   &:before {
     content: $close;
+  }
+}
+
+.icon-analytics {
+  &:before {
+    content: $analytics;
+  }
+}
+
+.icon-movie {
+  &:before {
+    content: $movie;
+  }
+}
+
+.icon-book {
+  &:before {
+    content: $book;
+  }
+}
+
+.icon-joystick {
+  &:before {
+    content: $joystick;
+  }
+}
+
+.icon-settings {
+  &:before {
+    content: $settings;
+  }
+}
+
+.icon-logout {
+  &:before {
+    content: $logout;
   }
 }
 

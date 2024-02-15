@@ -11,7 +11,7 @@ export function NavBar({items, children}) {
 	}
 
 	return <>
-		<div className="grid-area-menu">
+		<div className="menu">
 			<div id="navBar">
 				<div className="d-none d-lg-flex flex-column align-items-center justify-content-center flex-wrap gap-3">
 					{items.map(item =>
@@ -19,12 +19,12 @@ export function NavBar({items, children}) {
 					)}
 				</div>
 
-				<div className="d-flex d-lg-none flex-column gap-3">
+				<div className="d-flex d-lg-none flex-column align-items-center gap-3">
 					<Button icon={open ? "icon-close" : "icon-menu"} additionalClassNames="floating-button position-relative"
 					        onClick={handleOpenMenu}/>
 					<div className="d-flex flex-column gap-3">
 						{open ? items.map(item =>
-							<NavLink key={item.path} path={item.path} content={item.content}
+							<NavLink key={item.path} path={item.path} content={item.content} icon={item.icon}
 							         openMenu={() => setOpen(false)}/>
 						) : null}
 					</div>

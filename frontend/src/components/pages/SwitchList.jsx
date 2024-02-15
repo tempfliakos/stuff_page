@@ -52,7 +52,7 @@ export function SwitchList() {
 	}
 
 	return <GameContext.Provider value={{games, setGames}}>
-		<div className="grid-area-main">
+		<div>
 			<NewGameComponent games={games} platformConstant={SWITCH} addView={addView} setAddView={setAddView}/>
 			{!addView ?
 				<Scrollable scrollFunction={handleScroll}>
