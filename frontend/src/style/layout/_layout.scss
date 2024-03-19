@@ -8,11 +8,14 @@ body {
 }
 
 .menu {
+  position: relative;
+  min-width: 15vw;
+  max-width: 15vw;
 }
 
 .content {
-  width: 80vw;
-  //max-width: 80vw;
+  min-width: 80vw;
+  max-width: 80vw;
 }
 
 .grid-area-empty {

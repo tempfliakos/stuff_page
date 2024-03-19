@@ -1,6 +1,6 @@
 import {Link, useLocation} from "react-router-dom";
 
-export function NavLink({path, content, openMenu, icon}) {
+export function NavLink({path, content, openMenu, icon, iconComponent}) {
 	const location = useLocation();
 
 	function isActive() {
@@ -20,6 +20,7 @@ export function NavLink({path, content, openMenu, icon}) {
 		</div>
 		<div
 			className={"nav-item-container icon-container d-flex flex-column d-lg-none align-items-center justify-content-center " + (isActive() ? "active" : "")}>
+			{iconComponent}
 			{<i className={icon}/>}
 		</div>
 	</Link>

@@ -1,6 +1,11 @@
 #navBar {
+  position: fixed;
+  top: 0;
+  margin-top: 1rem;
+  max-width: 15vw;
   .nav-item {
     color: $white;
+    fill: $white;
     text-decoration: none;
     line-height: 3rem;
     transition: all .2s ease-in-out;

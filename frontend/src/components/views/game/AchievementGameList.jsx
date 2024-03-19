@@ -9,6 +9,7 @@ import {gameService} from "../../../services/game-service";
 import {starService} from "../../../services/star-service";
 import {deepCopy} from "../../../utils/CopyUtil";
 import {TextSearch} from "../../components/TextSearch";
+import {GameContext} from "../../../services/Contexts";
 
 export function AchievementGameList({platformConstant}) {
 
@@ -76,7 +77,7 @@ export function AchievementGameList({platformConstant}) {
 		setFilter(defaultFilter);
 	}
 
-	return <div>
+	return <GameContext.Provider value={{games, setGames}}>
 		<NewGameComponent games={games} platformConstant={platformConstant} addView={addView} setAddView={setAddView}/>
 		{!addView ?
 			selected ? <GameDetail game={selected} closeFunction={() => setSelected(null)}/> : <>
@@ -97,5 +98,5 @@ export function AchievementGameList({platformConstant}) {
 				</Scrollable>
 			</> : null
 		}
-	</div>
+	</GameContext.Provider>
 }
