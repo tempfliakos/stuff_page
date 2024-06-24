@@ -12,7 +12,8 @@ create table books
 	picture text,
 	page numeric(3),
 	priority numeric(3) default 999,
-	title text
+	title text,
+	owned bool default false
 );
 
 create unique index books_uindex

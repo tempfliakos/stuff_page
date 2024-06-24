@@ -23,7 +23,11 @@ module.exports = (sequelize, DataTypes) => {
     picture: DataTypes.STRING,
     page: DataTypes.INTEGER,
     priority: DataTypes.INTEGER,
-    title: DataTypes.STRING
+    title: DataTypes.STRING,
+    owned: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    }
   }, {
     sequelize,
     modelName: 'Books',
