@@ -1,9 +1,10 @@
 const axios = require("axios");
 const ErrorMessage = require("./ErrorMessage");
+const {GTA_SERVER_LINK} = require("../constants/EndpointConstants");
 
 class GTAUtil {
     async requestGTAGame(title, console) {
-        const url = `${process.env.GTA_SERVER_LINK}games?console=${console}&q=${title}`;
+        const url = `${GTA_SERVER_LINK}games?console=${console}&q=${title}`;
         const config = {
             url: url,
             headers: {
@@ -19,7 +20,7 @@ class GTAUtil {
     }
 
     async requestGTAAchievement(id) {
-        const url = `${process.env.GTA_SERVER_LINK}achievements?id=${id}`;
+        const url = `${GTA_SERVER_LINK}achievements?id=${id}`;
         const config = {
             url: url,
             headers: {

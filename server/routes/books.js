@@ -53,12 +53,25 @@ router
 					book_id: data.book_id,
 				}
 			});
-			const nextPriority = await Books.count({
-				where: {
-					user_id: id
-				}
-			}) + 1;
-			if (!userBook) {
+
+			if (userBook) {
+				userBook = await userBook.update({
+					user_id: id,
+					book_id: data.book_id,
+					author: data.author,
+					description: data.description,
+					picture: data.picture,
+					page: data.page,
+					title: data.title,
+					priority: data.priority,
+					owned: data.owned
+				});
+			} else {
+				const nextPriority = await Books.count({
+					where: {
+						user_id: id
+					}
+				}) + 1;
 				userBook = await Books.create({
 					user_id: id,
 					book_id: data.book_id,
@@ -67,7 +80,8 @@ router
 					picture: data.picture,
 					page: data.page,
 					title: data.title,
-					priority: nextPriority
+					priority: nextPriority,
+					owned: data.owned
 				});
 			}
 			res.status(200).send(userBook);
@@ -93,6 +107,7 @@ router
 			for (let book of books) {
 				if (book.book_id === data.book_id) {
 					book.priority = data.priority;
+					book.owned = data.owned;
 				} else {
 					priority = priority === data.priority ? priority + 1 : priority;
 					book.priority = priority;
@@ -134,7 +149,8 @@ router
 
 async function updateBook(book, priority) {
 	const updateAble = {
-		priority: priority
+		priority: priority,
+		owned: book.owned
 	}
 	Books.update(updateAble, {where: {id: book.id}});
 }
