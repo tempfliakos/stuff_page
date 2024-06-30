@@ -54,35 +54,34 @@ router
 				}
 			});
 
-			if (userBook) {
-				userBook = await userBook.update({
-					user_id: id,
-					book_id: data.book_id,
-					author: data.author,
-					description: data.description,
-					picture: data.picture,
-					page: data.page,
-					title: data.title,
-					priority: data.priority,
-					owned: data.owned
-				});
-			} else {
-				const nextPriority = await Books.count({
+			let priority = data.priority;
+			if(data.owned) {
+				priority = null;
+			} else if(!priority) {
+				priority = await Books.count({
 					where: {
-						user_id: id
+						user_id: id,
+						owned: false
 					}
 				}) + 1;
-				userBook = await Books.create({
-					user_id: id,
-					book_id: data.book_id,
-					author: data.author,
-					description: data.description,
-					picture: data.picture,
-					page: data.page,
-					title: data.title,
-					priority: nextPriority,
-					owned: data.owned
-				});
+			}
+
+			const book = {
+				user_id: id,
+				book_id: data.book_id,
+				author: data.author,
+				description: data.description,
+				picture: data.picture,
+				page: data.page,
+				title: data.title,
+				priority: priority,
+				owned: data.owned
+			}
+
+			if (userBook) {
+				userBook = await userBook.update(book);
+			} else {
+				userBook = await Books.create(book);
 			}
 			res.status(200).send(userBook);
 		} catch (e) {
@@ -98,7 +97,8 @@ router
 			const data = req.body;
 			let books = await Books.findAll({
 				where: {
-					user_id: id
+					user_id: id,
+					owned: data.owned
 				},
 				order: [['priority', 'ASC']]
 			});
